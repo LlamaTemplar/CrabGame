@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 2673228}
   - component: {fileID: 2673227}
   - component: {fileID: 2673226}
+  - component: {fileID: 2673230}
   m_Layer: 0
   m_Name: Player Crab
   m_TagString: Untagged
@@ -251,6 +252,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2673230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2673225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a882908bbc0e81f4e9c024a60fa0e1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightArm: {fileID: 355198030}
+  rightCooldown: 0
+  rightStartTime: 2
+  leftArm: {fileID: 2008640280}
+  leftCooldown: 0
+  leftStartTime: 2
+  blockCooldown: 0
+  startBlockTime: 2
 --- !u!1 &355198027
 GameObject:
   m_ObjectHideFlags: 0
