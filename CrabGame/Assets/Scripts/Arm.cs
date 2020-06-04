@@ -27,9 +27,13 @@ public class Arm : MonoBehaviour
             loseArm = false;
         }
 
-        if (loseArm)
+        if (loseArm && gameObject.tag == "Player")
         {
             currentHP += Time.deltaTime;
+        }
+        else if (loseArm && gameObject.tag == "Enemy")
+        {
+            //if not dead restore current arms
         }
     }
 

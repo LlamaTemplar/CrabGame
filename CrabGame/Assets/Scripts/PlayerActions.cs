@@ -176,6 +176,8 @@ public class PlayerActions : MonoBehaviour
         {
             //Actual Block code
             print("holding block");
+            //Blocking Animation
+
         }
         else
         {
@@ -193,6 +195,8 @@ public class PlayerActions : MonoBehaviour
         {
             //Actual Attacking
             print("right attack");
+            //Right Arm Attack animation
+
             //begin cooldown
             rightCooldown = rightStartTime;
         }
@@ -207,6 +211,8 @@ public class PlayerActions : MonoBehaviour
         {
             //Actual Attacking
             print("left attack");
+            //Left Arm Attack animation
+
             //begin cooldown
             leftCooldown = leftStartTime;
         }
