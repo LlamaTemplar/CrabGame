@@ -8,6 +8,10 @@ public class Arm : MonoBehaviour
     public float currentHP;
     public bool loseArm = false;
 
+    public Collider2D[] enemies;
+    public float attackRadius;
+    public LayerMask whatIsEnemy;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +38,23 @@ public class Arm : MonoBehaviour
         else if (loseArm && gameObject.tag == "Enemy")
         {
             //if not dead restore current arms
+        }
+
+        enemies = Physics2D.OverlapCircleAll(transform.position, attackRadius, whatIsEnemy);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
+    }
+
+    public void DealDamage(int dmg)
+    {
+        for (int i=0; i<enemies.Length; i++)
+        {
+            enemies[i].GetComponent<Enemy>().TakeDamage(dmg);
+            print(enemies[i].gameObject.name);
         }
     }
 

@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class EnemyActions : MonoBehaviour
 {
-    private Transform startingPosition;
-    private float speed = 10;
-    private Transform target;
+    private Vector3 startingPosition;
+    private float speed = 2;
+    public Transform target;
     public bool isSleeping = false;
     public bool aggro = false;
-    public float wakingDistance = 15;
-    public float stoppingDistance = 6;
+    public float wakingDistance = 8;
+    public float stoppingDistance = 3;
 
     public GameObject rightArm;
     public GameObject leftArm;
+    private Vector3 rightOGpos;
+    private Vector3 leftOGpos;
 
     public enum EnemyAction {Attack, Block};
     public EnemyAction currentAction;
 
-    public float attackDistance = 4;
     public float cooldown;
-    private float startCooldown = 2f;
+    private float startCooldown = 4f;
+    public float attackDistance = 4;
     public bool isAttacking = false;
 
     public float blockDistance = 4;
@@ -29,8 +31,12 @@ public class EnemyActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startingPosition = transform;
-        currentAction = (EnemyAction)Random.Range(0, 1);
+        startingPosition = transform.position;
+        //random action, note that min is inclusive and max is exclusive, so range is from 0-1, NOT 0-2
+        currentAction = (EnemyAction)Random.Range(0, 2);
+
+        rightOGpos = rightArm.transform.localPosition;
+        leftOGpos = leftArm.transform.localPosition;
     }
 
     // Update is called once per frame
@@ -57,13 +63,17 @@ public class EnemyActions : MonoBehaviour
         else //if the player is not within waking distance...
         {
             //if the enmey moved away from starting position...
-            if (Vector2.Distance(transform.position, startingPosition.position) != 0)
+            if (Vector2.Distance(transform.position, startingPosition) != 0)
             {
+                aggro = false;
                 //move enemy back to starting position
-                transform.position = Vector2.MoveTowards(transform.position, startingPosition.position, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, startingPosition, speed * Time.deltaTime);
             }
-            //put enemy to sleep
-            isSleeping = true;
+            else if (Vector2.Distance(transform.position, startingPosition) == 0)
+            {
+                //put enemy to sleep
+                isSleeping = true;
+            }
         }
 
         //if cooldown is not counting down...
@@ -90,6 +100,11 @@ public class EnemyActions : MonoBehaviour
         {
             //Cooldown counting down
             cooldown -= Time.deltaTime;
+
+            //move rightarm back to orignal position, note that this code will be moved when an right arm attack animation is added to better time the move arm back
+            rightArm.transform.localPosition = rightOGpos;
+            //move leftarm back to orignal position, note that this code will be moved when an left arm attack animation is added to better time the move arm back
+            leftArm.transform.localPosition = leftOGpos;
         }
     }
 
@@ -100,16 +115,47 @@ public class EnemyActions : MonoBehaviour
         //check if enemy has an arm for an attack
         if (rightArm.GetComponent<Arm>().loseArm == false || leftArm.GetComponent<Arm>().loseArm == false)
         {
-            //if statement for checking colliders
-            //then if Player is in Collider deal damage by calling on Enemy DealDamage()
-            //Attack Animation
-            print("Attacking");
+            //if we have both arms, attack with both
+            if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == false)
+            {
+                //move right arm so collider can hit player
+                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
+                //move left arm so collider can hit player
+                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
+
+                //if statement for checking colliders
+                //then if Player is in Collider deal damage by calling on Enemy DealDamage()
+                //Attack Animation
+                print("Both Arms Attacking");
+            }
+            else if (rightArm.GetComponent<Arm>().loseArm == true && leftArm.GetComponent<Arm>().loseArm == false)//if we lost right arm, attack with left
+            {
+                //move left arm so collider can hit player
+                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
+
+                //if statement for checking colliders
+                //then if Player is in Collider deal damage by calling on Enemy DealDamage()
+                //Attack Animation
+                print("Left Arm Attacking");
+            }
+            else if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == true)//if we lost left arm, attack with rightt
+            {
+                //move right arm so collider can hit player
+                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
+
+                //if statement for checking colliders
+                //then if Player is in Collider deal damage by calling on Enemy DealDamage()
+                //Attack Animation
+                print("Right Arm Attacking");
+            }
 
             //start cooldown 
             cooldown = startCooldown;
         }
         //Enemy is no longer attacking 
         isAttacking = false;
+        //new random action
+        currentAction = (EnemyAction)Random.Range(0, 2);
     }
 
     void Block()
@@ -127,5 +173,7 @@ public class EnemyActions : MonoBehaviour
         }
         //Enemy is no longer blocking 
         isBlocking = false;
+        //new random action
+        currentAction = (EnemyAction)Random.Range(0, 2);
     }
 }

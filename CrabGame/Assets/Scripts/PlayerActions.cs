@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
+    //temp damage
+    private int damage = 10;
+
     //Right Arm variables
     public GameObject rightArm;
     public float rightCooldown;
@@ -11,6 +14,7 @@ public class PlayerActions : MonoBehaviour
     private float rightDelay;
     private float rightStartDelay = 0.2f;
     private bool rightWindUp = false;
+    private Vector3 rightOGpos;
 
     //Left Arm variables 
     public GameObject leftArm;
@@ -19,6 +23,7 @@ public class PlayerActions : MonoBehaviour
     private float leftDelay;
     private float leftStartDelay = 0.2f;
     private bool leftWindUp = false;
+    private Vector3 leftOGpos;
 
     //Block variables
     public float blockCooldown;
@@ -30,6 +35,8 @@ public class PlayerActions : MonoBehaviour
     {
         rightDelay = rightStartDelay;
         leftDelay = leftStartDelay;
+        rightOGpos = rightArm.transform.localPosition;
+        leftOGpos = leftArm.transform.localPosition;
     }
 
     // Update is called once per frame
@@ -118,6 +125,9 @@ public class PlayerActions : MonoBehaviour
         {
             //cooldown counting down
             rightCooldown -= Time.deltaTime;
+
+            //move rightarm back to orignal position, note that this code will be moved when an right arm attack animation is added to better time the move arm back
+            //rightArm.transform.localPosition = rightOGpos;
         }
 
         //checks if the left arm button is pressed and if the cooldowntime is at 0
@@ -167,6 +177,9 @@ public class PlayerActions : MonoBehaviour
         {
             //cooldown counting down
             leftCooldown -= Time.deltaTime;
+
+            //move leftarm back to orignal position, note that this code will be moved when an left arm attack animation is added to better time the move arm back
+            leftArm.transform.localPosition = leftOGpos;
         }
     }
 
@@ -197,6 +210,11 @@ public class PlayerActions : MonoBehaviour
             print("right attack");
             //Right Arm Attack animation
 
+            //move right arm so collider can hit enemy
+            rightArm.GetComponent<Arm>().DealDamage(damage);
+            rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
+            
+
             //begin cooldown
             rightCooldown = rightStartTime;
         }
@@ -212,6 +230,9 @@ public class PlayerActions : MonoBehaviour
             //Actual Attacking
             print("left attack");
             //Left Arm Attack animation
+
+            //move left arm so collider can hit enemy
+            leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
             //begin cooldown
             leftCooldown = leftStartTime;
