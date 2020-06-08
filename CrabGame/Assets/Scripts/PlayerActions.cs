@@ -127,7 +127,7 @@ public class PlayerActions : MonoBehaviour
             rightCooldown -= Time.deltaTime;
 
             //move rightarm back to orignal position, note that this code will be moved when an right arm attack animation is added to better time the move arm back
-            //rightArm.transform.localPosition = rightOGpos;
+            rightArm.transform.localPosition = rightOGpos;
         }
 
         //checks if the left arm button is pressed and if the cooldowntime is at 0
@@ -187,15 +187,24 @@ public class PlayerActions : MonoBehaviour
     {
         if (b == true)
         {
+            //make player bool true, to prevent taking damage
+            gameObject.GetComponent<Player>().isBlocking = true;
+            //Blocking Animation
+            
+
             //Actual Block code
             print("holding block");
-            //Blocking Animation
-
         }
         else
         {
-            //stops blocking
+            //make player bool false, to prevent taking damage
+            gameObject.GetComponent<Player>().isBlocking = false;
+            //Blocking Animation
+            
+
+            //stops blocking code
             print("not blocking");
+            
         }
     }
 
@@ -209,12 +218,11 @@ public class PlayerActions : MonoBehaviour
             //Actual Attacking
             print("right attack");
             //Right Arm Attack animation
-
-            //move right arm so collider can hit enemy
-            rightArm.GetComponent<Arm>().DealDamage(damage);
             rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
-            
 
+            //deal damge if enemy is in hitbox
+            rightArm.GetComponent<Arm>().DealDamage(damage);
+            
             //begin cooldown
             rightCooldown = rightStartTime;
         }
@@ -230,9 +238,10 @@ public class PlayerActions : MonoBehaviour
             //Actual Attacking
             print("left attack");
             //Left Arm Attack animation
-
-            //move left arm so collider can hit enemy
             leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
+
+            //deal damge if enemy is in hitbox
+            leftArm.GetComponent<Arm>().DealDamage(damage);
 
             //begin cooldown
             leftCooldown = leftStartTime;
