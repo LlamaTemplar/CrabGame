@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyActions : MonoBehaviour
 {
     private Vector3 startingPosition;
-    private Quaternion startingRotation;
     private float speed = 2;
     public Transform target;
     public bool isSleeping = false;
@@ -40,7 +39,6 @@ public class EnemyActions : MonoBehaviour
     void Start()
     {
         startingPosition = transform.position;
-        startingRotation = transform.rotation;
         //random action, note that min is inclusive and max is exclusive, so range is from 0-1, NOT 0-2
         currentAction = (EnemyAction)Random.Range(0, 2);
 
@@ -66,10 +64,6 @@ public class EnemyActions : MonoBehaviour
         {
             //wake up the Enemy
             isSleeping = false;
-            Vector3 lookPos = target.position - transform.position;
-            float angle = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);
             //while the player is not within stopping distacnce....
             if (Vector2.Distance(transform.position, target.position) > stoppingDistance && (isBlocking == false && isAttacking == false))
             {

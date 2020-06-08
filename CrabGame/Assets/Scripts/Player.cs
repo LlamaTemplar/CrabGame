@@ -21,12 +21,12 @@ public class Player : MonoBehaviour
         //tenp mmove code
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x - 0.1f, gameObject.transform.position.y, gameObject.transform.position.z);
+            //gameObject.transform.position = new Vector3(gameObject.transform.position.x - 0.1f, gameObject.transform.position.y, gameObject.transform.position.z);
             //transform.Rotate(0,0,Time.deltaTime * 20);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x + 0.1f, gameObject.transform.position.y, gameObject.transform.position.z);
+            //gameObject.transform.position = new Vector3(gameObject.transform.position.x + 0.1f, gameObject.transform.position.y, gameObject.transform.position.z);
             //transform.Rotate(0,0,-Time.deltaTime * 20);
         }
     }
