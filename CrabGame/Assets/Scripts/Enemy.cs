@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     private int startingHP = 100;
     public int currentHP;
 
+    public bool isBlocking = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        currentHP -= dmg;
+        if (isBlocking == false)
+        {
+            currentHP -= dmg;
+        }
 
         if (currentHP <= 0)
         {

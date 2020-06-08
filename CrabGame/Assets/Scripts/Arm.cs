@@ -40,13 +40,13 @@ public class Arm : MonoBehaviour
             //if not dead restore current arms
         }
 
-        enemies = Physics2D.OverlapCircleAll(transform.position, attackRadius, whatIsEnemy);
+        enemies = Physics2D.OverlapCircleAll(new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z), attackRadius, whatIsEnemy);
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
+        Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z), attackRadius);
     }
 
     public void DealDamage(int dmg)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyActions : MonoBehaviour
 {
     private Vector3 startingPosition;
+    private Quaternion startingRotation;
     private float speed = 2;
     public Transform target;
     public bool isSleeping = false;
@@ -17,21 +18,29 @@ public class EnemyActions : MonoBehaviour
     private Vector3 rightOGpos;
     private Vector3 leftOGpos;
 
-    public enum EnemyAction {Attack, Block};
+    public enum EnemyAction {Attack, Block, None};
     public EnemyAction currentAction;
 
+    //temp damage
+    private int damage = 5;
+
+    //note that this is a shared cooldown for both blocking and attacking
     public float cooldown;
     private float startCooldown = 4f;
+
     public float attackDistance = 4;
     public bool isAttacking = false;
 
     public float blockDistance = 4;
     public bool isBlocking = false;
+    public float blockTimer = -1;
+    private float lengthOfBlock = 3f;
 
     // Start is called before the first frame update
     void Start()
     {
         startingPosition = transform.position;
+        startingRotation = transform.rotation;
         //random action, note that min is inclusive and max is exclusive, so range is from 0-1, NOT 0-2
         currentAction = (EnemyAction)Random.Range(0, 2);
 
@@ -42,11 +51,25 @@ public class EnemyActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if action is block, but if we don't have both arms to block, then just attack
+        if (currentAction == EnemyAction.Block && (rightArm.GetComponent<Arm>().loseArm == true || leftArm.GetComponent<Arm>().loseArm == true))
+        {
+            currentAction = EnemyAction.Attack;
+        }
+        else if (rightArm.GetComponent<Arm>().loseArm == true && leftArm.GetComponent<Arm>().loseArm == true)//if both arms are lost then crab can't do anything
+        {
+            currentAction = EnemyAction.None;
+        }
+
         //if the Player is in wake up distance and we are not blocking...
         if (Vector2.Distance(transform.position, target.position) <= wakingDistance && (isBlocking == false && isAttacking == false))
         {
             //wake up the Enemy
             isSleeping = false;
+            Vector3 lookPos = target.position - transform.position;
+            float angle = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);
             //while the player is not within stopping distacnce....
             if (Vector2.Distance(transform.position, target.position) > stoppingDistance && (isBlocking == false && isAttacking == false))
             {
@@ -106,6 +129,22 @@ public class EnemyActions : MonoBehaviour
             //move leftarm back to orignal position, note that this code will be moved when an left arm attack animation is added to better time the move arm back
             leftArm.transform.localPosition = leftOGpos;
         }
+
+        //blocktimer begins when its greater than 0
+        if (blockTimer > 0 && isBlocking == true)
+        {
+            blockTimer -= Time.deltaTime;
+            if (rightArm.GetComponent<Arm>().loseArm == true || leftArm.GetComponent<Arm>().loseArm == true)
+            {
+                blockTimer = 0;
+                isBlocking = false;
+            }
+        }
+        else if(blockTimer <= 0 && isBlocking == true)//unblock when timer is 0
+        {
+            blockTimer = 0;
+            Unblock();
+        }
     }
 
     void Attack()
@@ -118,35 +157,32 @@ public class EnemyActions : MonoBehaviour
             //if we have both arms, attack with both
             if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == false)
             {
-                //move right arm so collider can hit player
-                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
-                //move left arm so collider can hit player
-                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
-
-                //if statement for checking colliders
-                //then if Player is in Collider deal damage by calling on Enemy DealDamage()
                 //Attack Animation
                 print("Both Arms Attacking");
+                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
+                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
+
+                //deal damge if player is in hitbox
+                rightArm.GetComponent<Arm>().DealDamage(damage);
+                leftArm.GetComponent<Arm>().DealDamage(damage);
             }
             else if (rightArm.GetComponent<Arm>().loseArm == true && leftArm.GetComponent<Arm>().loseArm == false)//if we lost right arm, attack with left
             {
-                //move left arm so collider can hit player
-                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
-
-                //if statement for checking colliders
-                //then if Player is in Collider deal damage by calling on Enemy DealDamage()
                 //Attack Animation
                 print("Left Arm Attacking");
+                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
+
+                //deal damge if player is in left arm hitbox
+                leftArm.GetComponent<Arm>().DealDamage(damage);
             }
             else if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == true)//if we lost left arm, attack with rightt
             {
-                //move right arm so collider can hit player
-                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
-
-                //if statement for checking colliders
-                //then if Player is in Collider deal damage by calling on Enemy DealDamage()
                 //Attack Animation
                 print("Right Arm Attacking");
+                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
+
+                //deal damge if player is in right arm hitbox
+                rightArm.GetComponent<Arm>().DealDamage(damage);
             }
 
             //start cooldown 
@@ -160,19 +196,34 @@ public class EnemyActions : MonoBehaviour
 
     void Block()
     {
-        //the enemy is blocking
-        isBlocking = true;
         //check if enemy has both arms for an block
         if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == false)
         {
+            //this if statement should only be used once instead of looping
+            if (isBlocking == false)
+            {
+                blockTimer = lengthOfBlock;
+            }
+
+            //the enemy is blocking
+            isBlocking = true;
+
             //Block Animation
             print("Blocking");
-
-            //start cooldown 
-            cooldown = startCooldown;
         }
+        
+    }
+
+    void Unblock()
+    {
+        //undo blocking code
+        print("not blocking");
+
         //Enemy is no longer blocking 
         isBlocking = false;
+
+        //start cooldown 
+        cooldown = startCooldown;
         //new random action
         currentAction = (EnemyAction)Random.Range(0, 2);
     }
