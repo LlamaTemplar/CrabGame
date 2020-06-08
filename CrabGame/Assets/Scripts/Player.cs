@@ -18,24 +18,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //tenp mmove code
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            //gameObject.transform.position = new Vector3(gameObject.transform.position.x - 0.1f, gameObject.transform.position.y, gameObject.transform.position.z);
-            //transform.Rotate(0,0,Time.deltaTime * 20);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            //gameObject.transform.position = new Vector3(gameObject.transform.position.x + 0.1f, gameObject.transform.position.y, gameObject.transform.position.z);
-            //transform.Rotate(0,0,-Time.deltaTime * 20);
-        }
+
     }
 
     void Die()
     {
-        //Death Animation
+        // Death Animation
+
         Destroy(gameObject);
-        //Que Game over screen
+        
+        // Que Game over screen
         print("Game Over");
     }
 

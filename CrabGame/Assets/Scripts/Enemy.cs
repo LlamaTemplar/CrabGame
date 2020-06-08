@@ -18,11 +18,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //temp for test damage
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //TakeDamage(10);
-        }
+
     }
 
     public void TakeDamage(int dmg)
@@ -40,9 +36,11 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        //Death Animation
+        // Death Animation
+        
         Destroy(gameObject);
-        //Que Game over screen
+        
+        // Que Game over screen
         print("Game Over");
     }
 }

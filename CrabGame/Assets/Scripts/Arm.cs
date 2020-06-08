@@ -8,7 +8,7 @@ public class Arm : MonoBehaviour
     public float currentHP;
     public bool loseArm = false;
 
-    public Collider2D[] enemies;
+    public Collider2D[] opponent;
     public float attackRadius;
     public LayerMask whatIsEnemy;
 
@@ -31,16 +31,12 @@ public class Arm : MonoBehaviour
             loseArm = false;
         }
 
-        if (loseArm && gameObject.tag == "Player")
+        if (loseArm)
         {
             currentHP += Time.deltaTime;
         }
-        else if (loseArm && gameObject.tag == "Enemy")
-        {
-            //if not dead restore current arms
-        }
 
-        enemies = Physics2D.OverlapCircleAll(new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z), attackRadius, whatIsEnemy);
+        opponent = Physics2D.OverlapCircleAll(new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z), attackRadius, whatIsEnemy);
     }
 
     private void OnDrawGizmosSelected()
@@ -51,10 +47,10 @@ public class Arm : MonoBehaviour
 
     public void DealDamage(int dmg)
     {
-        for (int i=0; i<enemies.Length; i++)
+        for (int i=0; i< opponent.Length; i++)
         {
-            enemies[i].GetComponent<Enemy>().TakeDamage(dmg);
-            print(enemies[i].gameObject.name);
+            opponent[i].GetComponent<Enemy>().TakeDamage(dmg);
+            print(opponent[i].gameObject.name);
         }
     }
 
