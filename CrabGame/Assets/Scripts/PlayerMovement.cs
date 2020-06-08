@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum RotateType
+{
+	Version1,
+	Version2
+}
+
 public class PlayerMovement : MonoBehaviour
 {
+	public RotateType turningMechanics = RotateType.Version1;
+
 	//Walking
 	public float walkSpeed = 6;
 	public float notStrafingPenalty = 0.67f;
@@ -20,12 +28,18 @@ public class PlayerMovement : MonoBehaviour
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
 
-		bool isRotating = Mathf.Abs(h) > Mathf.Epsilon && Mathf.Abs(v) > Mathf.Epsilon;
+		float epsilon = 0.1f;
+
+		bool isRotating = false;
+		if (turningMechanics == RotateType.Version1)
+			isRotating = Mathf.Abs(h) > epsilon && v < -epsilon;
+		if (turningMechanics == RotateType.Version2)
+			isRotating = Mathf.Abs(h) > epsilon && Mathf.Abs(v) > epsilon;
 
 		if (isRotating)
-			transform.Rotate(0, -1 * h * rotateSpeed * deltaTime, 0);
+			transform.Rotate(0, 0, -1 * h * rotateSpeed * deltaTime);
 
-		transform.Translate(new Vector3(h, 0, (isRotating ? v * whileRotatingPenalty : v) * notStrafingPenalty) * walkSpeed * deltaTime, Space.Self);
+		transform.Translate(new Vector3(h, (isRotating ? v * whileRotatingPenalty : v) * notStrafingPenalty, 0) * walkSpeed * deltaTime, Space.Self);
 
 
 	}
