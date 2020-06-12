@@ -7,8 +7,11 @@ public class Arm : MonoBehaviour
     private int startingHP = 20;
     public float currentHP;
     public bool loseArm = false;
+    public bool itemInArm = false;
 
-    public Collider2D[] opponent;
+    // Temp damage
+    public int damage = 10;
+    public bool attacking = false;
     public float attackRadius;
     public LayerMask whatIsEnemy;
 
@@ -35,22 +38,36 @@ public class Arm : MonoBehaviour
         {
             currentHP += Time.deltaTime;
         }
-
-        opponent = Physics2D.OverlapCircleAll(new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z), attackRadius, whatIsEnemy);
     }
 
-    private void OnDrawGizmosSelected()
+    public void SetAttacking()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z), attackRadius);
+        attacking = true;
     }
 
-    public void DealDamage(int dmg)
+    private void OnTriggerStay2D(Collider2D col)
     {
-        for (int i=0; i< opponent.Length; i++)
+        if (gameObject.CompareTag("Player"))
         {
-            opponent[i].GetComponent<Enemy>().TakeDamage(dmg);
-            print(opponent[i].gameObject.name);
+            if (col.gameObject.CompareTag("Enemy"))
+            {
+                if (attacking)
+                {
+                    col.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                    attacking = false;
+                }
+            }
+        }
+        else if (gameObject.CompareTag("Enemy"))
+        {
+            if (col.gameObject.CompareTag("Player"))
+            {
+                if (attacking)
+                {
+                    col.gameObject.GetComponent<Player>().TakeDamage(damage);
+                    attacking = false;
+                }
+            }
         }
     }
 

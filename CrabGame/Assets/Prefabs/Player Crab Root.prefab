@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1970778562909667633}
   m_Layer: 8
   m_Name: Player Crab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 6329959394028881832}
   - component: {fileID: 6329959394028881831}
   - component: {fileID: 6329959394028881833}
+  - component: {fileID: 6329959395912608961}
   m_Layer: 9
   m_Name: Left Arm
   m_TagString: Player
@@ -209,6 +210,22 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!58 &6329959395912608961
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329959394028881835}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08
 --- !u!1 &6329959395596667125
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +237,7 @@ GameObject:
   - component: {fileID: 6329959395596667122}
   - component: {fileID: 6329959395596667121}
   - component: {fileID: 6329959395596667123}
+  - component: {fileID: 6329959395912608962}
   m_Layer: 9
   m_Name: Right Arm
   m_TagString: Player
@@ -309,6 +327,22 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!58 &6329959395912608962
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329959395596667125}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08
 --- !u!1 &6329959395915245303
 GameObject:
   m_ObjectHideFlags: 0

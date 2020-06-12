@@ -158,8 +158,8 @@ public class EnemyActions : MonoBehaviour
                 leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
                 // Deal damge if player is in hitbox
-                rightArm.GetComponent<Arm>().DealDamage(damage);
-                leftArm.GetComponent<Arm>().DealDamage(damage);
+                rightArm.GetComponent<Arm>().SetAttacking();
+                leftArm.GetComponent<Arm>().SetAttacking();
             }
             else if (rightArm.GetComponent<Arm>().loseArm == true && leftArm.GetComponent<Arm>().loseArm == false)// If we lost right arm, attack with left
             {
@@ -168,7 +168,7 @@ public class EnemyActions : MonoBehaviour
                 leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
                 //deal damge if player is in left arm hitbox
-                leftArm.GetComponent<Arm>().DealDamage(damage);
+                leftArm.GetComponent<Arm>().SetAttacking();
             }
             else if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == true)// If we lost left arm, attack with rightt
             {
@@ -177,7 +177,7 @@ public class EnemyActions : MonoBehaviour
                 rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
 
                 // Deal damge if player is in right arm hitbox
-                rightArm.GetComponent<Arm>().DealDamage(damage);
+                rightArm.GetComponent<Arm>().SetAttacking();
             }
 
             // Start cooldown 

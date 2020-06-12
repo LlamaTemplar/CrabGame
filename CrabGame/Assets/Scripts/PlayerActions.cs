@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
-    // Temp damage
-    private int damage = 10;
-
     // Right Arm variables
     public GameObject rightArm;
     public float rightCooldown;
@@ -129,9 +126,12 @@ public class PlayerActions : MonoBehaviour
             // Cooldown counting down
             rightCooldown -= Time.deltaTime;
 
-            // Move rightarm back to orignal position, note that this code will be moved when an right arm attack animation is added to better time the move arm back
-            // This line of code just helps visualize the attack and will be removed when we have animations
-            rightArm.transform.localPosition = rightOGpos;
+            // Move rightarm back to orignal position after 0.5f secs
+            // Note that the arm is visible to help visualize, when animation is added, turn off sprite
+            if (rightCooldown < rightStartTime - 0.5f)
+            {
+                rightArm.transform.localPosition = rightOGpos;
+            }
         }
 
         // Checks if the left arm button is pressed and if the cooldowntime is at 0
@@ -182,9 +182,12 @@ public class PlayerActions : MonoBehaviour
             // Cooldown counting down
             leftCooldown -= Time.deltaTime;
 
-            // Move leftarm back to orignal position, note that this code will be moved when an left arm attack animation is added to better time the move arm back 
-            // This line of code just helps visualize the attack and will be removed when we have animations
-            leftArm.transform.localPosition = leftOGpos;
+            // Move Leftarm back to orignal position after 0.5f secs
+            // Note that the arm is visible to help visualize, when animation is added, turn off sprite
+            if (leftCooldown < leftStartTime - 0.5f)
+            {
+                leftArm.transform.localPosition = leftOGpos;
+            }
         }
     }
 
@@ -193,7 +196,7 @@ public class PlayerActions : MonoBehaviour
         if (b == true)
         {
             // Make player bool true, to prevent taking damage
-            gameObject.GetComponent<Player>().isBlocking = true;
+            gameObject.GetComponent<Player>().isBlocking = b;
             // Blocking Animation
             
 
@@ -203,7 +206,7 @@ public class PlayerActions : MonoBehaviour
         else
         {
             // Make player bool false, to prevent taking damage
-            gameObject.GetComponent<Player>().isBlocking = false;
+            gameObject.GetComponent<Player>().isBlocking = b;
             // Blocking Animation
             
 
@@ -222,11 +225,13 @@ public class PlayerActions : MonoBehaviour
         {
             // Actual Attacking
             print("right attack");
-            // Right Arm Attack animation (this line of code just helps visualize the attack and will be removed when we have animations)
+            // Right Arm Attack animation
+
+            // Move arm hitbox into position to deal damage
             rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
 
             // Deal damge if enemy is in hitbox
-            rightArm.GetComponent<Arm>().DealDamage(damage);
+            rightArm.GetComponent<Arm>().SetAttacking();
             
             // Begin cooldown
             rightCooldown = rightStartTime;
@@ -242,11 +247,13 @@ public class PlayerActions : MonoBehaviour
         {
             // Actual Attacking
             print("left attack");
-            // Left Arm Attack animation (this line of code just helps visualize the attack and will be removed when we have animations)
+            // Left Arm Attack animation
+
+            // Move arm hitbox into position to deal damage
             leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
             // Deal damge if enemy is in hitbox
-            leftArm.GetComponent<Arm>().DealDamage(damage);
+            leftArm.GetComponent<Arm>().SetAttacking();
 
             // Begin cooldown
             leftCooldown = leftStartTime;
