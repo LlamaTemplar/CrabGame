@@ -12,13 +12,13 @@ public class PlayerMovement : MonoBehaviour
 {
 	public RotateType turningMechanics = RotateType.Version1;
 
-	//Walking
+	// Walking
 	public float walkSpeed = 6;
 	public float notStrafingPenalty = 0.67f;
 	public float whileRotatingPenalty = 0.5f;
 
-	//Rotating
-	public float rotateSpeed = 60; //In degrees per second
+	// Rotating
+	public float rotateSpeed = 60; // In degrees per second
 
 	// Update is called once per frame
 	void Update()
