@@ -2,26 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyAction { Attack, Block, None };
+
 public class EnemyActions : MonoBehaviour
 {
-    private Vector3 startingPosition;
+    // REMOVED Follow Player Code
+    /*private Vector3 startingPosition;
     private float speed = 2;
     public Transform target;
     public bool isSleeping = false;
     public bool aggro = false;
     public float wakingDistance = 8;
-    public float stoppingDistance = 3;
+    public float stoppingDistance = 3;*/
+
+    public Transform hitArea;
+    public LayerMask whatIsPlayer;
+    public bool canAct = false;
 
     public GameObject rightArm;
     public GameObject leftArm;
     private Vector3 rightOGpos;
     private Vector3 leftOGpos;
 
-    public enum EnemyAction {Attack, Block, None};
     public EnemyAction currentAction;
-
-    // Temp damage
-    private int damage = 5;
 
     // Note that this is a shared cooldown for both blocking and attacking
     public float cooldown;
@@ -38,8 +41,10 @@ public class EnemyActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // REMOVED Follow Player Code
         // Store starting position
-        startingPosition = transform.position;
+        /*startingPosition = transform.position;*/
+
         // Random action, note that min is inclusive and max is exclusive, so range is from 0-1, NOT 0-2
         currentAction = (EnemyAction)Random.Range(0, 2);
 
@@ -61,7 +66,8 @@ public class EnemyActions : MonoBehaviour
             currentAction = EnemyAction.None;
         }
 
-        // If the Player is in wake up distance and we are not blocking...
+        // REMOVED Follow Player Code
+        /*// If the Player is in wake up distance and we are not blocking...
         if (Vector2.Distance(transform.position, target.position) <= wakingDistance && (isBlocking == false && isAttacking == false))
         {
             // Wake up the Enemy
@@ -93,22 +99,33 @@ public class EnemyActions : MonoBehaviour
                 // Put enemy to sleep
                 isSleeping = true;
             }
+        }*/
+
+        // Checks if Player is in hit area (NOTE that the "Vector2" parameter must be equal to the size of the collider attached on hitArea)
+        Collider2D[] playerInArea = Physics2D.OverlapBoxAll(hitArea.position, new Vector2(2.8f,1), 0f, whatIsPlayer);
+        if (playerInArea.Length > 0)
+        {
+            canAct = true;
+        }
+        else
+        {
+            canAct = false;
         }
 
         // If cooldown is not counting down...
         if (cooldown <= 0)
         {
             cooldown = 0;
-            // If the enemy is not sleeping and not aggro
-            if (isSleeping == false && aggro == false)
+            // If the Player is Range...
+            if (canAct == true)
             {
-                // If current action is Attack and Player is with in attack distance...
-                if (currentAction == EnemyAction.Attack && Vector2.Distance(transform.position, target.position) <= attackDistance)
+                // If current action is Attack
+                if (currentAction == EnemyAction.Attack)
                 {
                     //Attack Code
                     Attack();
                 }
-                else if (currentAction == EnemyAction.Block && Vector2.Distance(transform.position, target.position) <= blockDistance)// If action is block and Player is in Block range
+                else if (currentAction == EnemyAction.Block)// If action is block
                 {
                     // Block Code
                     Block();
@@ -140,6 +157,15 @@ public class EnemyActions : MonoBehaviour
             blockTimer = 0;
             Unblock();
         }
+    }
+
+    // Help Visualize hitArea
+    private void OnDrawGizmosSelected()
+    {
+        // Set Gizmos color to red
+        Gizmos.color = Color.red;
+        // Draw Gizmo at hitArea Position (NOTE that the "Vector2" parameter must be equal to the size of the collider attached on hitArea)
+        Gizmos.DrawWireCube(hitArea.position, new Vector2(2.8f, 1));
     }
 
     void Attack()
