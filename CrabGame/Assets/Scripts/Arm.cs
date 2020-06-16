@@ -53,7 +53,7 @@ public class Arm : MonoBehaviour
             {
                 if (attacking)
                 {
-                    col.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
                     attacking = false;
                 }
             }
@@ -64,7 +64,7 @@ public class Arm : MonoBehaviour
             {
                 if (attacking)
                 {
-                    col.gameObject.GetComponent<Player>().TakeDamage(damage);
+                    col.gameObject.GetComponentInParent<Player>().TakeDamage(damage);
                     attacking = false;
                 }
             }

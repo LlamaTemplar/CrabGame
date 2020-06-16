@@ -102,7 +102,7 @@ public class EnemyActions : MonoBehaviour
         }*/
 
         // Checks if Player is in hit area (NOTE that the "Vector2" parameter must be equal to the size of the collider attached on hitArea)
-        Collider2D[] playerInArea = Physics2D.OverlapBoxAll(hitArea.position, new Vector2(2.8f,1), 0f, whatIsPlayer);
+        Collider2D[] playerInArea = Physics2D.OverlapBoxAll(hitArea.position, new Vector2(2.8f,1), 90, whatIsPlayer);
         if (playerInArea.Length > 0)
         {
             canAct = true;
