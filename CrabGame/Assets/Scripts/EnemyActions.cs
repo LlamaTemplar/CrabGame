@@ -8,8 +8,8 @@ public class EnemyActions : MonoBehaviour
 {
     // REMOVED Follow Player Code
     /*private Vector3 startingPosition;
-    private float speed = 2;
     public Transform target;
+    private float speed = 2;
     public bool isSleeping = false;
     public bool aggro = false;
     public float wakingDistance = 8;
@@ -101,17 +101,6 @@ public class EnemyActions : MonoBehaviour
             }
         }*/
 
-        // Checks if Player is in hit area (NOTE that the "Vector2" parameter must be equal to the size of the collider attached on hitArea)
-        Collider2D[] playerInArea = Physics2D.OverlapBoxAll(hitArea.position, new Vector2(2.8f,1), 90, whatIsPlayer);
-        if (playerInArea.Length > 0)
-        {
-            canAct = true;
-        }
-        else
-        {
-            canAct = false;
-        }
-
         // If cooldown is not counting down...
         if (cooldown <= 0)
         {
@@ -157,15 +146,6 @@ public class EnemyActions : MonoBehaviour
             blockTimer = 0;
             Unblock();
         }
-    }
-
-    // Help Visualize hitArea
-    private void OnDrawGizmosSelected()
-    {
-        // Set Gizmos color to red
-        Gizmos.color = Color.red;
-        // Draw Gizmo at hitArea Position (NOTE that the "Vector2" parameter must be equal to the size of the collider attached on hitArea)
-        Gizmos.DrawWireCube(hitArea.position, new Vector2(2.8f, 1));
     }
 
     void Attack()
