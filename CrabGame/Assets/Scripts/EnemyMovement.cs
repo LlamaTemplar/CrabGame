@@ -32,12 +32,12 @@ public class EnemyMovement : MonoBehaviour
 	public float aggroSpeed = 5;
 	public float retreatSpeed = 7;
 
-	// Mirroring
-	public PlayerRotationVariant turningMechanics = PlayerRotationVariant.Version1;
-	public float walkSpeed = 6;
-	public float notStrafingPenalty = 0.67f;
-	public float whileRotatingPenalty = 0.5f;
-	public float rotateSpeed = 60; // In degrees per second
+	//// Mirroring
+	//public PlayerRotationVariant turningMechanics = PlayerRotationVariant.Version1;
+	//public float walkSpeed = 6;
+	//public float notStrafingPenalty = 0.67f;
+	//public float whileRotatingPenalty = 0.5f;
+	//public float rotateSpeed = 60; // In degrees per second
 
 	private void Update()
 	{
@@ -94,25 +94,25 @@ public class EnemyMovement : MonoBehaviour
 		}
 	}
 
-	// Update is called once per frame
-	void MirrorInput()
-	{
-		float deltaTime = Time.deltaTime;
+	//// Update is called once per frame
+	//void MirrorInput()
+	//{
+	//	float deltaTime = Time.deltaTime;
 
-		float h = -Input.GetAxis("Horizontal");
-		float v = -Input.GetAxis("Vertical");
+	//	float h = -Input.GetAxis("Horizontal");
+	//	float v = -Input.GetAxis("Vertical");
 
-		float epsilon = 0.1f;
+	//	float epsilon = 0.1f;
 
-		bool isRotating = false;
-		if (turningMechanics == PlayerRotationVariant.Version1)
-			isRotating = Mathf.Abs(h) > epsilon && v < -epsilon;
-		if (turningMechanics == PlayerRotationVariant.Version2)
-			isRotating = Mathf.Abs(h) > epsilon && Mathf.Abs(v) > epsilon;
+	//	bool isRotating = false;
+	//	if (turningMechanics == PlayerRotationVariant.Version1)
+	//		isRotating = Mathf.Abs(h) > epsilon && v < -epsilon;
+	//	if (turningMechanics == PlayerRotationVariant.Version2)
+	//		isRotating = Mathf.Abs(h) > epsilon && Mathf.Abs(v) > epsilon;
 
-		if (isRotating)
-			transform.Rotate(0, 0, -1 * h * rotateSpeed * deltaTime);
+	//	if (isRotating)
+	//		transform.Rotate(0, 0, -1 * h * rotateSpeed * deltaTime);
 
-		transform.Translate(new Vector3(h, (isRotating ? v * whileRotatingPenalty : v) * notStrafingPenalty, 0) * walkSpeed * deltaTime, Space.Self);
-	}
+	//	transform.Translate(new Vector3(h, (isRotating ? v * whileRotatingPenalty : v) * notStrafingPenalty, 0) * walkSpeed * deltaTime, Space.Self);
+	//}
 }
