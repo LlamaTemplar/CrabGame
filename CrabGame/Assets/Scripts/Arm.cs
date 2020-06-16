@@ -9,7 +9,7 @@ public class Arm : MonoBehaviour
     public bool loseArm = false;
     public bool itemInArm = false;
 
-    // Temp damage
+    // Temp damage (Change value between player and enemies)
     public int damage = 10;
     public bool attacking = false;
     public float attackRadius;
