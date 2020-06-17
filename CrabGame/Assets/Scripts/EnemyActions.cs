@@ -126,9 +126,13 @@ public class EnemyActions : MonoBehaviour
             // Cooldown counting down
             cooldown -= Time.deltaTime;
 
-            // Move arms back to orignal position, note that this code will be moved when an attack animation is added to better time the move arm back
-            rightArm.transform.localPosition = rightOGpos;
-            leftArm.transform.localPosition = leftOGpos;
+            // Move arms back to orignal position
+            // Note that the arm is visible to help visualize, when animation is added, turn off sprite
+            if (cooldown < startCooldown - 0.5f)
+            {
+                rightArm.transform.localPosition = rightOGpos;
+                leftArm.transform.localPosition = leftOGpos;
+            }
         }
 
         // Blocktimer begins when its greater than 0

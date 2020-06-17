@@ -1539,6 +1539,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Crab Root (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708063, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1593,6 +1598,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508024001012596, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023719535712, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023676947188, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
@@ -1822,6 +1842,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Crab Root
       objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708063, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1876,6 +1901,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508024001012596, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023719535712, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023676947188, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
@@ -1998,6 +2038,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Crab Root (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708063, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2052,6 +2097,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508024001012596, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023719535712, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023676947188, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
@@ -3143,6 +3203,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Crab Root (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708063, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3197,6 +3262,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508024001012596, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023719535712, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023676947188, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
@@ -5399,6 +5479,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Crab Root (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708063, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5453,6 +5538,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508024001012596, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023719535712, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023676947188, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
