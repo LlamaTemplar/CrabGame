@@ -205,7 +205,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 0
   loseArm: 0
-  opponent: []
+  itemInArm: 0
+  damage: 10
+  attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
     serializedVersion: 2
@@ -322,7 +324,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 0
   loseArm: 0
-  opponent: []
+  itemInArm: 0
+  damage: 10
+  attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
     serializedVersion: 2

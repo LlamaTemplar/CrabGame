@@ -4538,16 +4538,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Crab Root
       objectReference: {fileID: 0}
-    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
-        type: 3}
-      propertyPath: rotateSpeed
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
-        type: 3}
-      propertyPath: turningMechanics
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6329959395915245299, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4602,6 +4592,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: rotateSpeed
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: turningMechanics
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02fd053b76622de4cac8d103fac55df2, type: 3}
