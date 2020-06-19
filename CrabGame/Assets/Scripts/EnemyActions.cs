@@ -193,6 +193,7 @@ public class EnemyActions : MonoBehaviour
             // Start cooldown 
             cooldown = startCooldown;
         }
+
         // Enemy is no longer attacking 
         isAttacking = false;
         // New random action

@@ -20,7 +20,7 @@ public class EnemyHitArea : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        print("here");
+        //print("here");
         if (col.gameObject.CompareTag("Player"))
         {
             enemyActions.canAct = true;
