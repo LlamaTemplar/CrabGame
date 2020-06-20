@@ -27,12 +27,32 @@ PrefabInstance:
     - target: {fileID: 6329959395915245303, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
       propertyPath: m_Name
-      value: Player Crab Root Variant
+      value: SidewaysPrototype
       objectReference: {fileID: 0}
     - target: {fileID: 6329959395915245303, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: rotateSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: turningMechanics
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: notStrafingPenalty
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6329959395915245299, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
@@ -89,6 +109,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6329959395915245300, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329959395915245300, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6187745237330706023, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
       propertyPath: m_LocalRotation.z
@@ -104,35 +134,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+    - target: {fileID: 6329959394028881831, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
-      propertyPath: rotateSpeed
-      value: 100
+      propertyPath: m_SortingLayerID
+      value: -1260845309
       objectReference: {fileID: 0}
-    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+    - target: {fileID: 6329959394028881831, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
-      propertyPath: turningMechanics
-      value: 0
+      propertyPath: m_SortingLayer
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+    - target: {fileID: 6329959395596667121, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
-      propertyPath: notStrafingPenalty
-      value: 0.3
+      propertyPath: m_SortingLayerID
+      value: -1260845309
       objectReference: {fileID: 0}
-    - target: {fileID: 6329959395915245294, guid: 02fd053b76622de4cac8d103fac55df2,
+    - target: {fileID: 6329959395596667121, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6329959395915245300, guid: 02fd053b76622de4cac8d103fac55df2,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6329959395915245300, guid: 02fd053b76622de4cac8d103fac55df2,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
+      propertyPath: m_SortingLayer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02fd053b76622de4cac8d103fac55df2, type: 3}

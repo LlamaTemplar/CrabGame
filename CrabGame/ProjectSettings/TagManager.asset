@@ -42,3 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 3927095255
+    locked: 0
+  - name: Wall
+    uniqueID: 2631139511
+    locked: 0
+  - name: Player
+    uniqueID: 3034121987
+    locked: 0
+  - name: CrabEnemy
+    uniqueID: 843964099
+    locked: 0
