@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum EnemyMovementVariant
 {
-	Version1,
-	Version2
+	CirclingThePlayer,
+	StraightLineToPlayer
 }
 
 public enum EnemyState
@@ -16,20 +16,31 @@ public enum EnemyState
 	Retreating
 }
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMoveFreeMove : MonoBehaviour
 {
 	public PlayerMovement player;
 	public GameObject sleepPoint;
 
-	public float aggroDistance = 10;
+	public float aggroRange = 10;
 	public float stoppingDistance = 1.5f;
-	public float sleepingDistance = 0.5f;
+	private float sleepingDistance = 0.5f;
 
 	EnemyState state = EnemyState.Sleeping;
 
 	// Movement
-	public EnemyMovementVariant movementMechanics = EnemyMovementVariant.Version1;
-	public float aggroSpeed = 5;
+	public EnemyMovementVariant movementMechanics = EnemyMovementVariant.StraightLineToPlayer;
+
+	[Tooltip("If false, the enemy is always aggro")]
+	public bool useAggro = true;
+	[Tooltip("If false, the enemy is always aggro")]
+	public bool chasePastAggroRange = true;
+	[Tooltip("If true, the enemy cannot move")]
+	public bool isStatic = false;
+	[Tooltip("If true, the enemy moves at the fast speed instead")]
+	public bool useFastSpeed = false;
+	public float walkSpeedSlow = 5;
+	public float walkSpeedFast = 10;
+	private float walkSpeed = 5;
 	public float retreatSpeed = 7;
 
 	//// Mirroring
@@ -43,35 +54,46 @@ public class EnemyMovement : MonoBehaviour
 	{
 		float deltaTime = Time.deltaTime;
 
-
 		Vector3 dif = (player.transform.position - transform.position);
-		float distance = Vector3.SqrMagnitude(dif);
+		float dist = Vector3.SqrMagnitude(dif);
+
+		Vector3 aggroDif = (player.transform.position - sleepPoint.transform.position);
+		float aggroDist = Vector3.SqrMagnitude(aggroDif);
 
 		Vector3 sleepDif = (sleepPoint.transform.position - transform.position);
-		float sleepDistance = Vector3.SqrMagnitude(sleepDif);
+		float sleepDist = Vector3.SqrMagnitude(sleepDif);
 
-		if (distance < aggroDistance * aggroDistance)
+		if (useAggro)
 		{
-			if (distance > stoppingDistance * stoppingDistance)
-				state = EnemyState.Aggro;
+			if (aggroDist < aggroRange * aggroRange)
+			{
+				if (dist > stoppingDistance * stoppingDistance)
+					state = EnemyState.Aggro;
+				else
+					state = EnemyState.Mirroring;
+			}
 			else
-				state = EnemyState.Mirroring;
+			{
+				if (sleepDist > sleepingDistance * sleepingDistance)
+					state = EnemyState.Retreating;
+				else
+					state = EnemyState.Sleeping;
+			}
 		}
 		else
-		{
-			if (sleepDistance > sleepingDistance * sleepingDistance)
-				state = EnemyState.Retreating;
-			else
-				state = EnemyState.Sleeping;
-		}
+			state = EnemyState.Aggro;
 
+		walkSpeed = useFastSpeed ? walkSpeedFast : walkSpeedSlow;
 
 		if (state == EnemyState.Aggro)
 		{
-			if (movementMechanics == EnemyMovementVariant.Version1)
-				transform.Translate(dif.normalized * aggroSpeed * deltaTime, Space.Self);
-			else if(movementMechanics == EnemyMovementVariant.Version2)
-				transform.Translate(dif.normalized * aggroSpeed * deltaTime, Space.World);
+			if (!isStatic)
+			{
+				if (movementMechanics == EnemyMovementVariant.CirclingThePlayer)
+					transform.Translate(dif.normalized * walkSpeed * deltaTime, Space.Self);
+				else if (movementMechanics == EnemyMovementVariant.StraightLineToPlayer)
+					transform.Translate(dif.normalized * walkSpeed * deltaTime, Space.World);
+			}
 
 			float angle = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg - 90;
 			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -83,10 +105,13 @@ public class EnemyMovement : MonoBehaviour
 		}
 		else if (state == EnemyState.Retreating)
 		{
-			transform.Translate(sleepDif.normalized * retreatSpeed * deltaTime, Space.World);
+			if (!isStatic)
+			{
+				transform.Translate(sleepDif.normalized * retreatSpeed * deltaTime, Space.World);
 
-			float angle = Mathf.Atan2(sleepDif.y, sleepDif.x) * Mathf.Rad2Deg - 90;
-			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+				float angle = Mathf.Atan2(sleepDif.y, sleepDif.x) * Mathf.Rad2Deg - 90;
+				transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+			}
 		}
 		else if (state == EnemyState.Sleeping)
 		{
