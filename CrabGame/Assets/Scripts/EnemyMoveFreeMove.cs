@@ -32,7 +32,7 @@ public class EnemyMoveFreeMove : MonoBehaviour
 
 	[Tooltip("If false, the enemy is always aggro")]
 	public bool useAggro = true;
-	[Tooltip("If false, the enemy is always aggro")]
+	[Tooltip("If true, the enemy stays aggro as long as it stays close to the player")]
 	public bool chasePastAggroRange = true;
 	[Tooltip("If true, the enemy cannot move")]
 	public bool isStatic = false;
@@ -65,7 +65,7 @@ public class EnemyMoveFreeMove : MonoBehaviour
 
 		if (useAggro)
 		{
-			if (aggroDist < aggroRange * aggroRange)
+			if ((chasePastAggroRange ? dist : aggroDist) < aggroRange * aggroRange)
 			{
 				if (dist > stoppingDistance * stoppingDistance)
 					state = EnemyState.Aggro;
