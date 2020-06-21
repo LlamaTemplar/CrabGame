@@ -574,6 +574,14 @@ PrefabInstance:
       propertyPath: retreatSpeed
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: walkSpeedSlow
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
 --- !u!4 &378510615 stripped
@@ -746,6 +754,14 @@ PrefabInstance:
       propertyPath: retreatSpeed
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: walkSpeedSlow
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
 --- !u!4 &671227070 stripped
@@ -855,6 +871,14 @@ PrefabInstance:
       propertyPath: retreatSpeed
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: walkSpeedSlow
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
 --- !u!4 &762998544 stripped
@@ -962,6 +986,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: walkSpeedSlow
       value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1306,6 +1338,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: walkSpeedSlow
       value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1676,6 +1716,14 @@ PrefabInstance:
       propertyPath: retreatSpeed
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: walkSpeedSlow
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
 --- !u!114 &1117880647 stripped
@@ -1983,6 +2031,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: walkSpeedSlow
       value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2355,6 +2411,14 @@ PrefabInstance:
       propertyPath: retreatSpeed
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: walkSpeedSlow
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
 --- !u!4 &1630485240 stripped
@@ -2718,6 +2782,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: walkSpeedSlow
       value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3116,5 +3188,15 @@ PrefabInstance:
       propertyPath: sleepPoint
       value: 
       objectReference: {fileID: 1533342055}
+    - target: {fileID: 391947450750362938, guid: f8f8b4d4e103e8d4bab61004c957e543,
+        type: 3}
+      propertyPath: aggroRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 391947450750362938, guid: f8f8b4d4e103e8d4bab61004c957e543,
+        type: 3}
+      propertyPath: walkSpeedSlow
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f8b4d4e103e8d4bab61004c957e543, type: 3}
