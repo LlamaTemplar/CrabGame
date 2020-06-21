@@ -568,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: stoppingDistance
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
@@ -748,7 +748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: stoppingDistance
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
@@ -865,7 +865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: stoppingDistance
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
@@ -982,7 +982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: stoppingDistance
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
@@ -1334,7 +1334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: stoppingDistance
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
@@ -1710,7 +1710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: stoppingDistance
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
@@ -2027,7 +2027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: stoppingDistance
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
@@ -2405,7 +2405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: stoppingDistance
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
@@ -2778,7 +2778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: stoppingDistance
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
       propertyPath: retreatSpeed
@@ -3196,6 +3196,11 @@ PrefabInstance:
     - target: {fileID: 391947450750362938, guid: f8f8b4d4e103e8d4bab61004c957e543,
         type: 3}
       propertyPath: walkSpeedSlow
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 391947450750362938, guid: f8f8b4d4e103e8d4bab61004c957e543,
+        type: 3}
+      propertyPath: stoppingDistance
       value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
