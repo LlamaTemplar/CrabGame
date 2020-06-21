@@ -205,16 +205,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6706508023657708063}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e75775d7c014b4a9c963ab223eba24, type: 3}
+  m_Script: {fileID: 11500000, guid: 86d3d68927054e54ebf7b5579d04b1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   sleepPoint: {fileID: 0}
-  aggroDistance: 21.73
-  stoppingDistance: 2
-  sleepingDistance: 0.5
-  movementMechanics: 0
-  aggroSpeed: 2.5
+  aggroRange: 10
+  stoppingDistance: 1.5
+  movementMechanics: 1
+  useAggro: 1
+  chasePastAggroRange: 1
+  isStatic: 0
+  useFastSpeed: 0
+  walkSpeedSlow: 5
+  walkSpeedFast: 10
   retreatSpeed: 7
 --- !u!1 &6706508023676947188
 GameObject:
