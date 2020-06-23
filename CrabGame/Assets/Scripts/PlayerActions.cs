@@ -26,6 +26,9 @@ public class PlayerActions : MonoBehaviour
     public float blockCooldown;
     public float startBlockTime = 2f;
     private bool isBlocking = false;
+    private Vector3 rightBlockPos;
+    private Vector3 leftBlockPos;
+    public GameObject subBlockSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +40,10 @@ public class PlayerActions : MonoBehaviour
         // Store original Local Positions (Might also be removed after adding animation)
         rightOGpos = rightArm.transform.localPosition;
         leftOGpos = leftArm.transform.localPosition;
+
+        // Store Block positions
+        rightBlockPos = new Vector3(rightArm.transform.localPosition.x - 0.05f, rightArm.transform.localPosition.y, rightArm.transform.localPosition.z);
+        leftBlockPos = new Vector3(leftArm.transform.localPosition.x + 0.05f, leftArm.transform.localPosition.y, leftArm.transform.localPosition.z);
     }
 
     // Update is called once per frame
@@ -198,7 +205,9 @@ public class PlayerActions : MonoBehaviour
             // Make player bool true, to prevent taking damage
             gameObject.GetComponent<Player>().isBlocking = b;
             // Blocking Animation
-            
+            rightArm.transform.localPosition = rightBlockPos;
+            leftArm.transform.localPosition = leftBlockPos;
+            subBlockSprite.SetActive(true);
 
             // Actual Block code
             print("holding block");
@@ -207,8 +216,10 @@ public class PlayerActions : MonoBehaviour
         {
             // Make player bool false, to prevent taking damage
             gameObject.GetComponent<Player>().isBlocking = b;
-            // Blocking Animation
-            
+            // Stop Blocking Animation
+            rightArm.transform.localPosition = rightOGpos;
+            leftArm.transform.localPosition = leftOGpos;
+            subBlockSprite.SetActive(false);
 
             // Stops blocking code
             print("not blocking");

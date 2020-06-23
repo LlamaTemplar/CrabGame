@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int startingHP = 100;
+    public int startingHP = 100;
     public int currentHP;
+    public HealthBar healthBar;
 
     public bool isBlocking = false;
 
@@ -13,12 +14,21 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentHP = startingHP;
+        if (healthBar == null)
+        {
+            print("Player Reference to Health Bar is Missing");
+        }
+        else
+        {
+            healthBar.SetMaxHealth(startingHP);
+            healthBar.SetHealth(currentHP);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     void Die()
@@ -36,6 +46,7 @@ public class Player : MonoBehaviour
         if (isBlocking == false)
         {
             currentHP -= dmg;
+            healthBar.SetHealth(currentHP);
         }
 
         if (currentHP <= 0)
