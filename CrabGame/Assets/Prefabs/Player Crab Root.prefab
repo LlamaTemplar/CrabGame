@@ -498,12 +498,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightArm: {fileID: 6329959395596667125}
   rightCooldown: 0
-  rightStartTime: 2
+  rightStartTime: 1
   leftArm: {fileID: 6329959394028881835}
   leftCooldown: 0
-  leftStartTime: 2
+  leftStartTime: 1
   blockCooldown: 0
-  startBlockTime: 2
+  startBlockTime: 0.8
   subBlockSprite: {fileID: 6125351020225652949}
 --- !u!114 &6329959395915245294
 MonoBehaviour:

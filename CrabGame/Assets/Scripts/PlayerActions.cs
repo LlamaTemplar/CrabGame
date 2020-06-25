@@ -7,7 +7,7 @@ public class PlayerActions : MonoBehaviour
     // Right Arm variables
     public GameObject rightArm;
     public float rightCooldown;
-    public float rightStartTime = 2f;
+    public float rightStartTime = 1f;
     private float rightDelay;
     private float rightStartDelay = 0.2f;
     private bool rightWindUp = false;
@@ -16,7 +16,7 @@ public class PlayerActions : MonoBehaviour
     // Left Arm variables 
     public GameObject leftArm;
     public float leftCooldown;
-    public float leftStartTime = 2f;
+    public float leftStartTime = 1f;
     private float leftDelay;
     private float leftStartDelay = 0.2f;
     private bool leftWindUp = false;
@@ -24,10 +24,11 @@ public class PlayerActions : MonoBehaviour
 
     // Block variables
     public float blockCooldown;
-    public float startBlockTime = 2f;
+    public float startBlockTime = 0.8f;
     private bool isBlocking = false;
+    // Will most likely be removed these 3 lines after adding animations
     private Vector3 rightBlockPos;
-    private Vector3 leftBlockPos;
+    private Vector3 leftBlockPos; 
     public GameObject subBlockSprite;
 
     // Start is called before the first frame update
@@ -58,13 +59,13 @@ public class PlayerActions : MonoBehaviour
             if (leftArm.GetComponent<Arm>().loseArm == false && rightArm.GetComponent<Arm>().loseArm == false)
             {
                 // If both arm keys are pressed and the both their delays are greater than 0
-                if ((Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.F)) && (rightDelay > 0 || leftDelay > 0))
+                if ((Input.GetKey(KeyCode.K) && Input.GetKey(KeyCode.J)) && (rightDelay > 0 || leftDelay > 0))
                 {
                     isBlocking = true;
                     // Blocking code
                     Blocking(isBlocking);
                 }
-                else if ((Input.GetKeyUp(KeyCode.G) || Input.GetKeyUp(KeyCode.F)) && isBlocking == true) // While blocking, when keys are released undo blocking
+                else if ((Input.GetKeyUp(KeyCode.K) || Input.GetKeyUp(KeyCode.J)) && isBlocking == true) // While blocking, when keys are released undo blocking
                 {
                     // Blocking cooldown begins counting down
                     blockCooldown = startBlockTime;
@@ -92,11 +93,15 @@ public class PlayerActions : MonoBehaviour
             // Check if we still have right arm
             if (rightArm.GetComponent<Arm>().loseArm == false)
             {
-                // When key is pressed and the delay is at starting number
-                if (Input.GetKeyDown(KeyCode.G) && rightDelay == rightStartDelay)
+                // When key is pressed and the delay is at starting number and we are NOT blocking and the left arm is NOT winding up for attack
+                if (Input.GetKeyDown(KeyCode.K) && rightDelay == rightStartDelay && isBlocking == false && leftWindUp == false)
                 {
-                    // The wind up is true
-                    rightWindUp = true;
+                    // If block is NOT on cooldown...
+                    if (blockCooldown == 0)
+                    {
+                        // The wind up is true
+                        rightWindUp = true;
+                    }
                 }
 
                 // While wind up is true (i don't like while loops)
@@ -135,7 +140,7 @@ public class PlayerActions : MonoBehaviour
 
             // Move rightarm back to orignal position after 0.5f secs
             // Note that the arm is visible to help visualize, when animation is added, turn off sprite
-            if (rightCooldown < rightStartTime - 0.5f)
+            if (rightCooldown < rightStartTime - 0.5f && isBlocking == false)
             {
                 rightArm.transform.localPosition = rightOGpos;
             }
@@ -148,11 +153,15 @@ public class PlayerActions : MonoBehaviour
             // Check if we still have left arm
             if (leftArm.GetComponent<Arm>().loseArm == false)
             {
-                // When key is pressed and the delay is at starting number
-                if (Input.GetKeyDown(KeyCode.F) && leftDelay == leftStartDelay)
+                // When key is pressed and the delay is at starting number and we are NOT blocking and the right arm is NOT winding up for attack
+                if (Input.GetKeyDown(KeyCode.J) && leftDelay == leftStartDelay && isBlocking == false && rightWindUp == false)
                 {
-                    // The wind up is true
-                    leftWindUp = true;
+                    // If block is NOT on cooldown...
+                    if (blockCooldown == 0)
+                    {
+                        // The wind up is true
+                        leftWindUp = true;
+                    }
                 }
 
                 // While wind up is true (i don't like while loops)
@@ -191,7 +200,7 @@ public class PlayerActions : MonoBehaviour
 
             // Move Leftarm back to orignal position after 0.5f secs
             // Note that the arm is visible to help visualize, when animation is added, turn off sprite
-            if (leftCooldown < leftStartTime - 0.5f)
+            if (leftCooldown < leftStartTime - 0.5f && isBlocking == false)
             {
                 leftArm.transform.localPosition = leftOGpos;
             }

@@ -37,6 +37,10 @@ public class EnemyActions : MonoBehaviour
     public bool isBlocking = false;
     public float blockTimer = -1;
     private float lengthOfBlock = 3f;
+    // Will most likely be removed these 3 lines after adding animations
+    private Vector3 rightBlockPos;
+    private Vector3 leftBlockPos;
+    public GameObject subBlockSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +55,10 @@ public class EnemyActions : MonoBehaviour
         // Store original Local Positions (Might also be removed after adding animation)
         rightOGpos = rightArm.transform.localPosition;
         leftOGpos = leftArm.transform.localPosition;
+
+        // Store Block positions
+        rightBlockPos = new Vector3(rightArm.transform.localPosition.x - 0.05f, rightArm.transform.localPosition.y, rightArm.transform.localPosition.z);
+        leftBlockPos = new Vector3(leftArm.transform.localPosition.x + 0.05f, leftArm.transform.localPosition.y, leftArm.transform.localPosition.z);
     }
 
     // Update is called once per frame
@@ -214,6 +222,9 @@ public class EnemyActions : MonoBehaviour
 
             // The enemy is blocking
             isBlocking = true;
+            subBlockSprite.SetActive(true);
+            rightArm.transform.localPosition = rightBlockPos;
+            leftArm.transform.localPosition = leftBlockPos;
 
             // Block Animation
             print("Blocking");
@@ -229,6 +240,9 @@ public class EnemyActions : MonoBehaviour
 
         // Enemy is no longer blocking 
         isBlocking = false;
+        subBlockSprite.SetActive(false);
+        rightArm.transform.localPosition = rightOGpos;
+        leftArm.transform.localPosition = leftOGpos;
 
         // Start cooldown 
         cooldown = startCooldown;
