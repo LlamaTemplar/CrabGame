@@ -28,7 +28,7 @@ public class EnemyActions : MonoBehaviour
 
     // Note that this is a shared cooldown for both blocking and attacking
     public float cooldown;
-    private float startCooldown = 4f;
+    private float startCooldown = 3f;
 
     public float attackDistance = 4;
     public bool isAttacking = false;
@@ -36,7 +36,7 @@ public class EnemyActions : MonoBehaviour
     public float blockDistance = 4;
     public bool isBlocking = false;
     public float blockTimer = -1;
-    private float lengthOfBlock = 3f;
+    private float lengthOfBlock = 2.5f;
     // Will most likely be removed these 3 lines after adding animations
     private Vector3 rightBlockPos;
     private Vector3 leftBlockPos;
@@ -206,6 +206,11 @@ public class EnemyActions : MonoBehaviour
         isAttacking = false;
         // New random action
         currentAction = (EnemyAction)Random.Range(0, 2);
+        // Increase Chance of Attacking
+        if (currentAction == EnemyAction.Block)
+        {
+            currentAction = (EnemyAction)Random.Range(0, 2);
+        }
     }
 
     void Block()
@@ -246,7 +251,7 @@ public class EnemyActions : MonoBehaviour
 
         // Start cooldown 
         cooldown = startCooldown;
-        // new random action
-        currentAction = (EnemyAction)Random.Range(0, 2);
+        // Change ACtion to Attack, We don't want it to block immdiately again
+        currentAction = EnemyAction.Attack;
     }
 }
