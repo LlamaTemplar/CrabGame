@@ -13,13 +13,13 @@ public class SoundTester : MonoBehaviour
 
     private void Start()
     {
-        soundPlayer.PlaySound("Crab");
+        soundPlayer.PlaySound(0);
     }
 
     [ContextMenu("Play random sound")]
     private void PlayRandomSound()
     {
-        soundPlayer.PlaySound("Crab");
+        soundPlayer.PlaySound(0);
         //soundPlayer.PlaySound(Random.Range(0, soundPlayer.GetSoundsLength() - 1));
     }
 }
