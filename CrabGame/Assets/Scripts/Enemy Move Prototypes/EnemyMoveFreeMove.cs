@@ -50,6 +50,11 @@ public class EnemyMoveFreeMove : MonoBehaviour
 	//public float whileRotatingPenalty = 0.5f;
 	//public float rotateSpeed = 60; // In degrees per second
 
+	private void Awake()
+	{
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+	}
+
 	private void Update()
 	{
 		float deltaTime = Time.deltaTime;
