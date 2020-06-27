@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Player : Unit
 {
-    protected override void Die()
+	private void Awake()
+	{
+		healthBar = GameObject.FindGameObjectWithTag("Player Healthbar").GetComponent<HealthBar>();
+	}
+
+	protected override void Die()
     {
 		base.Die();
 
