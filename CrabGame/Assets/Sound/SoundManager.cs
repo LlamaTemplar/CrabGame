@@ -6,11 +6,11 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
-    //[SerializeField]
-    //Sound[] sounds;
+    public float masterVolume = 1f;
 
     private void Awake()
     {
+        // Only allow one SoundManager
         if(instance == null)
         {
             instance = this;
@@ -24,6 +24,16 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
 
+    }
+
+    private void Update()
+    {
+        SetMasterVolume(masterVolume);
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        AudioListener.volume = volume;
     }
 
 

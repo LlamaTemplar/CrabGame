@@ -55,8 +55,8 @@ public class SoundPlayer : MonoBehaviour
         for (int i = 0; i < sounds.Length; i++)
         {
             GameObject gb = new GameObject("Sound_" + i + "_" + sounds[i].clipName);
-           // gb.transform.SetParent(soundContainer.transform);
-            sounds[i].Source = gameObject.AddComponent<AudioSource>();
+            gb.transform.SetParent(soundContainer.transform);
+            sounds[i].Source = gb.AddComponent<AudioSource>();
         }
     }
 
@@ -66,10 +66,7 @@ public class SoundPlayer : MonoBehaviour
         {
             if (sounds[i].clipName == _name)
             {
-                //GetComponent<AudioSource>().PlayOneShot(sounds[i].clip);
-                //GetComponentInChildren<AudioSource>().Play();
-                //transform.GetChild(0).gameObject.AddComponent<AudioSource>().PlayOneShot(sounds[i].clip);
-                //sounds[i].Play();
+
                 sounds[i].Source.PlayOneShot(sounds[i].clip);
                 return;
             }
@@ -78,9 +75,7 @@ public class SoundPlayer : MonoBehaviour
 
     public void PlaySound(int index)
     {
-        var s = sounds[index].Source;
-        s.PlayOneShot(sounds[index].clip);
-        //GetComponent<AudioSource>().PlayOneShot(sounds[index].clip);
+        sounds[index].Source.PlayOneShot(sounds[index].clip);
     }
 
     public int GetSoundsLength()
