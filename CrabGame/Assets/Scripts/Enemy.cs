@@ -2,45 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Unit
 {
-    private int startingHP = 100;
-    public int currentHP;
-
-    public bool isBlocking = false;
-
-    // Start is called before the first frame update
-    void Start()
+	protected override void Die()
     {
-        currentHP = startingHP;
-    }
+		base.Die();
 
-    // Update is called once per frame
-    void Update()
-    {
+		// Death Animation
 
-    }
-
-    public void TakeDamage(int dmg)
-    {
-        if (isBlocking == false)
-        {
-            currentHP -= dmg;
-        }
-
-        if (currentHP <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        // Death Animation
-        
-        Destroy(gameObject);
-        
-        // Que Game over screen
-        print("Game Over");
+		Destroy(gameObject);
     }
 }

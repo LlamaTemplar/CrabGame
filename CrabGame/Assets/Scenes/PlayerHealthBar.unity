@@ -354,11 +354,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 152719235}
-    - target: {fileID: 1835533391646215984, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b895a6d172e059547a2b159510166410, type: 3}
 --- !u!1 &1048563689
@@ -373,7 +368,7 @@ GameObject:
   - component: {fileID: 1048563692}
   - component: {fileID: 1048563691}
   m_Layer: 5
-  m_Name: Health Bar
+  m_Name: Health Bar Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,7 +392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 88.100006, y: -26.199997}
+  m_AnchoredPosition: {x: 708, y: -26.199951}
   m_SizeDelta: {x: 150, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1048563691
@@ -669,7 +664,7 @@ Canvas:
   m_GameObject: {fileID: 1531241201}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
