@@ -9,7 +9,7 @@ public class Link : MonoBehaviour
 	// CURRENTLY NOT IN USE, to use simply remove the PressHandler component from the object, add an event to the button component on object, and drag Link script in
 	public void OpenLink()
 	{
-		Application.OpenURL("https://github.com/BlackthornProd/Hyperlink-project");
+		Application.OpenURL("https://forms.gle/yMpMNimxsDzpxAWU9");
 	}
 	/////////
 
@@ -18,9 +18,9 @@ public class Link : MonoBehaviour
 	///////// Opens link if exported as WebGL
 	public void OpenLinkJSPlugin()
 	{
-		#if !UNITY_EDITOR
-		openWindow("https://github.com/BlackthornProd/Hyperlink-project");
-		#endif
+#if !UNITY_EDITOR
+		openWindow("https://forms.gle/yMpMNimxsDzpxAWU9");
+#endif
 	}
 
 	[DllImport("__Internal")]
