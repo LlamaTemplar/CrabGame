@@ -1,5 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8634744839828934127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941599521139407855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d3d68927054e54ebf7b5579d04b1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  sleepPoint: {fileID: 8634744839438154863}
+  aggroRange: 4
+  stoppingDistance: 1
+  movementMechanics: 1
+  useAggro: 1
+  chasePastAggroRange: 1
+  isStatic: 0
+  useFastSpeed: 0
+  walkSpeedSlow: 2.5
+  walkSpeedFast: 10
+  retreatSpeed: 2.5
 --- !u!1 &8634744839438154863
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +36,7 @@ GameObject:
   m_Layer: 0
   m_Name: SleepPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -30,29 +54,6 @@ Transform:
   m_Father: {fileID: 8634744840111165614}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8634744839828934127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941599521139407855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86d3d68927054e54ebf7b5579d04b1a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  sleepPoint: {fileID: 8634744839438154863}
-  aggroDistance: 10
-  stoppingDistance: 4
-  movementMechanics: 1
-  useAggro: 1
-  isStatic: 0
-  useFastSpeed: 0
-  walkSpeedSlow: 5
-  walkSpeedFast: 10
-  retreatSpeed: 7
 --- !u!1 &8634744840111165615
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +77,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8634744840111165615}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.39, y: 6.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -96,11 +97,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy (Free Move)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7864750413196637701, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7864750413196637721, guid: b895a6d172e059547a2b159510166410,
         type: 3}
@@ -157,18 +153,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1835533391646215984, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835533391646215984, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1835533391646215984, guid: b895a6d172e059547a2b159510166410, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b895a6d172e059547a2b159510166410, type: 3}
 --- !u!1 &1941599521139407855 stripped
 GameObject:
