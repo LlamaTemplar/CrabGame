@@ -22,6 +22,6 @@ public class Player : Unit
         
         // Que Game over screen
         print("Game Over");
-		levelManager.LoadScene(0);
+		levelManager.LoadScene(1);
 	}
 }

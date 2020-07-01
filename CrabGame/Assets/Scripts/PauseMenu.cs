@@ -5,6 +5,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
 	public GameObject root;
+	public GameObject controlRoot;
 
 	private LevelManager levelManager;
 
@@ -31,6 +32,21 @@ public class PauseMenu : MonoBehaviour
 		SetState(false);
 	}
 
+	public void RestartGame()
+	{
+		levelManager.LoadScene(1);
+	}
+
+	public void LoadSurvey()
+	{
+		levelManager.LoadScene(2);
+	}
+
+	public void ShowControls(bool controlState)
+	{
+		controlRoot.SetActive(controlState);
+	}
+
 	private void SetState(bool state)
 	{
 		root.SetActive(state);
@@ -40,8 +56,5 @@ public class PauseMenu : MonoBehaviour
 			Time.timeScale = 1.0f;
 	}
 
-	public void LoadSurvey()
-	{
-		levelManager.LoadScene(2);
-	}
+
 }
