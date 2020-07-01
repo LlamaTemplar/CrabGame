@@ -22,13 +22,22 @@ public class PauseMenu : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Pause"))
 		{
-			bool newState = !root.activeSelf;
-			root.SetActive(newState);
-			if (newState)
-				Time.timeScale = 0.1f;
-			else
-				Time.timeScale = 1.0f;
+			SetState(!root.activeSelf);
 		}
+	}
+
+	public void ResumeGame()
+	{
+		SetState(false);
+	}
+
+	private void SetState(bool state)
+	{
+		root.SetActive(state);
+		if (state)
+			Time.timeScale = 0.1f;
+		else
+			Time.timeScale = 1.0f;
 	}
 
 	public void LoadSurvey()
