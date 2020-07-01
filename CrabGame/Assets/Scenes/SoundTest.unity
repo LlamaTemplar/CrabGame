@@ -494,7 +494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853983579}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.31, y: 1.57, z: 0}
+  m_LocalPosition: {x: -5.95, y: 2.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -513,13 +513,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - clipName: Crab
+  - clipName: Punch
     clip: {fileID: 8300000, guid: 05018cb0a1eee69439c5d61b2f7b457a, type: 3}
     audioMixerGroup: {fileID: 9143083336552316457, guid: 50afea2e475099a4f9a4d6daaa0a4329,
       type: 2}
     volume: 1
     pitch: 1
     loop: 0
+    playOnAwake: 0
+  - clipName: Walk
+    clip: {fileID: 8300000, guid: 000ded824f54bc54cbc35a435a953ccc, type: 3}
+    audioMixerGroup: {fileID: 9143083336552316457, guid: 50afea2e475099a4f9a4d6daaa0a4329,
+      type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
     playOnAwake: 0
 --- !u!114 &853983585
 MonoBehaviour:
@@ -562,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fe142d24599a9418f9ba8b353c430a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeSetByUser: 1
 --- !u!4 &1749260479
 Transform:
   m_ObjectHideFlags: 0

@@ -11,11 +11,18 @@ public class SoundPlayer : MonoBehaviour
     [SerializeField]
     Sound[] sounds;
 
+    /// <summary>
+    /// A data container for sounds. All data will be inserted into an <c>AudioSource</c>
+    /// when the game starts.
+    /// </summary>
     [System.Serializable]
     struct Sound
     {
         
         private AudioSource _source;
+        /// <summary>
+        /// Reference to the <c>AudioSource</c>
+        /// </summary>
         [HideInInspector]
         public AudioSource Source
         {
@@ -49,38 +56,53 @@ public class SoundPlayer : MonoBehaviour
     {
         soundManager = FindObjectOfType<SoundManager>();
 
-        GameObject soundContainer = new GameObject("Sound Container");
+        GameObject soundContainer = new GameObject("Sound Container");      
         soundContainer.transform.SetParent(this.transform);
+        soundContainer.transform.localPosition = new Vector3(0, 0, 0);
 
         for (int i = 0; i < sounds.Length; i++)
         {
             GameObject gb = new GameObject("Sound_" + i + "_" + sounds[i].clipName);
             gb.transform.SetParent(soundContainer.transform);
+            gb.transform.localPosition = new Vector3(0,0,0);
             sounds[i].Source = gb.AddComponent<AudioSource>();
         }
     }
 
+    /// <summary>
+    /// Plays any of the sounds in <c>sounds</c>
+    /// </summary>
+    /// <param name="name">The name of the clip</param>
     public void PlaySound(string name)
     {
         for (int i = 0; i < sounds.Length; i++)
         {
-            if (sounds[i].clipName == name)
+            if (sounds[i].Source.isPlaying == false && sounds[i].clipName == name)
             {
 
-                sounds[i].Source.PlayOneShot(sounds[i].clip);
+                //sounds[i].Source.PlayOneShot(sounds[i].clip);
+                sounds[i].Source.Play();
                 return;
             }
         }
     }
 
+    /// <summary>
+    ///  Plays the requested sound in <c>sounds</c>
+    /// </summary>
+    /// <param name="index">The clips position within the <c>sounds</c> array</param>
     public void PlaySound(int index)
     {
         if (index >= sounds.Length)
             Debug.LogError(gameObject.name + ":  PlaySound request is out of bounds of sounds array)");
-        else
-            sounds[index].Source.PlayOneShot(sounds[index].clip);
+        else if(sounds[index].Source.isPlaying == false)
+            sounds[index].Source.Play();
     }
 
+    /// <summary>
+    /// Stops the requested sound if it's playing
+    /// </summary>
+    /// <param name="name">The name of the clip</param>
     public void StopSound(string name)
     {
         for (int i = 0; i < sounds.Length; i++)
@@ -92,6 +114,10 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stops the requested sound if it's playing
+    /// </summary>
+    /// <param name="index">The clips position within the <c>sounds</c> array</param>
     public void StopSound(int index)
     {
         if(index >= sounds.Length)
@@ -104,6 +130,9 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stops all the sounds that are playing
+    /// </summary>
     public void StopAllSounds()
     {
         for (int i = 0; i < sounds.Length; i++)
