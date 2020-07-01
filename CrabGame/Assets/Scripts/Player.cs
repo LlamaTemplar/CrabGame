@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Player : Unit
 {
+	private LevelManager levelManager;
+
 	private void Awake()
 	{
 		healthBar = GameObject.FindGameObjectWithTag("Player Healthbar").GetComponent<HealthBar>();
+		levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
 	}
 
 	protected override void Die()
@@ -19,5 +22,6 @@ public class Player : Unit
         
         // Que Game over screen
         print("Game Over");
-    }
+		levelManager.LoadScene(0);
+	}
 }
