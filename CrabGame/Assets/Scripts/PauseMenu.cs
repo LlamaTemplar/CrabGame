@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
 	private void Start()
 	{
 		root.SetActive(false);
+		controlRoot.SetActive(false);
 	}
 
 	void Update()
