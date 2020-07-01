@@ -1,14 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public enum PlayerRotationVariant
-{
-	Version1,
-	Version2
-}
 
-public class PlayerMovement : MonoBehaviour
+public class MovePrototype1 : MonoBehaviour
 {
 	public PlayerRotationVariant turningMechanics = PlayerRotationVariant.Version1;
 
@@ -33,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
 		bool isRotating = false;
 		//if (turningMechanics == PlayerRotationVariant.Version1)
-			isRotating = Mathf.Abs(h) > epsilon && Mathf.Abs(v) > epsilon;
+		isRotating = Mathf.Abs(h) > epsilon && Mathf.Abs(v) > epsilon;
 		//if (turningMechanics == PlayerRotationVariant.Version2)
 		//	isRotating = Mathf.Abs(h) > epsilon && Mathf.Abs(v) > epsilon;
 
@@ -45,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
 				transform.Rotate(0, 0, Mathf.Sign(v) * h * rotateSpeed * deltaTime);
 		}
 
-		transform.Translate(new Vector3(h, (isRotating ? v * whileRotatingPenalty : v) * notStrafingPenalty, 0) * walkSpeed * deltaTime, Space.Self);
-		
+		transform.Translate(new Vector3(h * notStrafingPenalty, (isRotating ? v * whileRotatingPenalty : v) , 0) * walkSpeed * deltaTime, Space.Self);
+
 
 
 	}

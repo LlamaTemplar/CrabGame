@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &391947451527835048
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6706508023657708063, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy Crab Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.733688
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.869957
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.99992436
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.012300614
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706508023657708035, guid: aca0e799ed975a84da5fad14b4bb0899,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 181.40999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: sleepPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: aggroDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: movementMechanics
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: stoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450690706, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
+      propertyPath: retreatSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aca0e799ed975a84da5fad14b4bb0899, type: 3}
