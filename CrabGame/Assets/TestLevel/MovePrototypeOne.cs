@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public class MovePrototype1 : MonoBehaviour
+public class MovePrototypeOne : MonoBehaviour
 {
 	public PlayerRotationVariant turningMechanics = PlayerRotationVariant.Version1;
 

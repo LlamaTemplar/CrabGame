@@ -8,7 +8,7 @@ public class HealthBarMover : MonoBehaviour
 	private HealthBar hpBar;
 	public Unit parent;
 
-	void Start()
+	void Awake()
 	{
 		hpBar = Instantiate(hpBarPrefab);
 		hpBar.transform.SetParent(FindObjectOfType<Canvas>().transform);

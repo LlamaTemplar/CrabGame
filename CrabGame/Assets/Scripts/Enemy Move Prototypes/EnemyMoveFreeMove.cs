@@ -18,7 +18,9 @@ public enum EnemyState
 
 public class EnemyMoveFreeMove : MonoBehaviour
 {
-	public PlayerMovement player;
+	// changed type from playermovement to MovePrototype1
+	private MovePrototypeOne player;
+
 	public GameObject sleepPoint;
 
 	public float aggroRange = 10;
@@ -52,7 +54,14 @@ public class EnemyMoveFreeMove : MonoBehaviour
 
 	private void Awake()
 	{
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+		// BUG REPORT
+		// All gameobjects in the player prefab have the tag player, which one was it looking for? 
+		// Apparently it would find the wrong one in the build
+		// Additionally, this script was looking for the wrong script (not your fault)
+		// I changed the type from PlayerMovement to MovePrototypeOne
+
+		//player = GameObject.FindGameObjectWithTag("Player").GetComponent<MovePrototypeOne>();
+		player = GameObject.FindObjectOfType<MovePrototypeOne>();
 	}
 
 	private void Update()
@@ -124,6 +133,11 @@ public class EnemyMoveFreeMove : MonoBehaviour
 			{
 
 			}
+		}
+		else
+		{
+			// This is causing builds to not work
+			Debug.LogError("Missing Reference to player");
 		}
 	}
 
