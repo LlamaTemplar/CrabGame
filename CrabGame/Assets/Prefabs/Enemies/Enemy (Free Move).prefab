@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8634744839438154862}
   m_Layer: 0
   m_Name: SleepPoint
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 8634744840111165614}
   m_Layer: 0
   m_Name: Enemy (Free Move)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,6 +73,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy (Free Move)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864750413196637701, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7864750413196637721, guid: b895a6d172e059547a2b159510166410,
         type: 3}
@@ -134,10 +139,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4362302516832280316, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7864750413196637703, guid: b895a6d172e059547a2b159510166410,
         type: 3}
       propertyPath: healthBar
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190153028253618158, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 843964099
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190153028253618158, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7864750411621658417, guid: b895a6d172e059547a2b159510166410,
         type: 3}

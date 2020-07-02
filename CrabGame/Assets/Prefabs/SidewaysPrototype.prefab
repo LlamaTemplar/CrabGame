@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SidewaysPrototype
       objectReference: {fileID: 0}
+    - target: {fileID: 6329959395915245303, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6329959395915245299, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -97,6 +102,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6232598998747742321, guid: 585d675fd80e90243b0aab5d22d70a21,
         type: 3}
+    - target: {fileID: 6125351020225652949, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6597203698723407019, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1260845309
+      objectReference: {fileID: 0}
+    - target: {fileID: 6597203698723407019, guid: 02fd053b76622de4cac8d103fac55df2,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1970778562909667633, guid: 02fd053b76622de4cac8d103fac55df2,
         type: 3}
       propertyPath: m_Color.g

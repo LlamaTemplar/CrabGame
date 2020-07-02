@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
 	public void LoadScene(int index)
 	{
+		Time.timeScale = 1;
 		UnityEngine.SceneManagement.SceneManager.LoadScene(index);
 	}
 }

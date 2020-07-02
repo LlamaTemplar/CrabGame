@@ -5,15 +5,15 @@ using UnityEngine;
 public class HealthBarMover : MonoBehaviour
 {
 	public HealthBar hpBarPrefab;
-	public HealthBar hpBar;
+	private HealthBar hpBar;
 	public Unit parent;
 
 	void Start()
 	{
 		hpBar = Instantiate(hpBarPrefab);
 		hpBar.transform.SetParent(FindObjectOfType<Canvas>().transform);
-		if (parent.healthBar == null)
-			parent.healthBar = hpBar;
+		if (parent.GetHealthBar() == null)
+			parent.SetHealthBar(hpBar);
 	}
 
     // Update is called once per frame

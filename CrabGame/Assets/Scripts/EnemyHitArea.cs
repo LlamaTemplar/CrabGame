@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHitArea : MonoBehaviour
 {
-    public EnemyActions enemyActions;
+    private EnemyActions enemyActions;
 
     // Start is called before the first frame update
     void Start()

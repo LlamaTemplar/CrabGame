@@ -57,70 +57,73 @@ public class EnemyMoveFreeMove : MonoBehaviour
 
 	private void Update()
 	{
-		float deltaTime = Time.deltaTime;
-
-		Vector3 dif = (player.transform.position - transform.position);
-		float dist = Vector3.SqrMagnitude(dif);
-
-		Vector3 aggroDif = (player.transform.position - sleepPoint.transform.position);
-		float aggroDist = Vector3.SqrMagnitude(aggroDif);
-
-		Vector3 sleepDif = (sleepPoint.transform.position - transform.position);
-		float sleepDist = Vector3.SqrMagnitude(sleepDif);
-
-		if (useAggro)
+		if(player != null)
 		{
-			if ((chasePastAggroRange ? dist : aggroDist) < aggroRange * aggroRange)
+			float deltaTime = Time.deltaTime;
+
+			Vector3 dif = (player.transform.position - transform.position);
+			float dist = Vector3.SqrMagnitude(dif);
+
+			Vector3 aggroDif = (player.transform.position - sleepPoint.transform.position);
+			float aggroDist = Vector3.SqrMagnitude(aggroDif);
+
+			Vector3 sleepDif = (sleepPoint.transform.position - transform.position);
+			float sleepDist = Vector3.SqrMagnitude(sleepDif);
+
+			if (useAggro)
 			{
-				if (dist > stoppingDistance * stoppingDistance)
-					state = EnemyState.Aggro;
+				if ((chasePastAggroRange ? dist : aggroDist) < aggroRange * aggroRange)
+				{
+					if (dist > stoppingDistance * stoppingDistance)
+						state = EnemyState.Aggro;
+					else
+						state = EnemyState.Mirroring;
+				}
 				else
-					state = EnemyState.Mirroring;
+				{
+					if (sleepDist > sleepingDistance * sleepingDistance)
+						state = EnemyState.Retreating;
+					else
+						state = EnemyState.Sleeping;
+				}
 			}
 			else
+				state = EnemyState.Aggro;
+
+			walkSpeed = useFastSpeed ? walkSpeedFast : walkSpeedSlow;
+
+			if (state == EnemyState.Aggro)
 			{
-				if (sleepDist > sleepingDistance * sleepingDistance)
-					state = EnemyState.Retreating;
-				else
-					state = EnemyState.Sleeping;
-			}
-		}
-		else
-			state = EnemyState.Aggro;
+				if (!isStatic)
+				{
+					if (movementMechanics == EnemyMovementVariant.CirclingThePlayer)
+						transform.Translate(dif.normalized * walkSpeed * deltaTime, Space.Self);
+					else if (movementMechanics == EnemyMovementVariant.StraightLineToPlayer)
+						transform.Translate(dif.normalized * walkSpeed * deltaTime, Space.World);
+				}
 
-		walkSpeed = useFastSpeed ? walkSpeedFast : walkSpeedSlow;
-
-		if (state == EnemyState.Aggro)
-		{
-			if (!isStatic)
-			{
-				if (movementMechanics == EnemyMovementVariant.CirclingThePlayer)
-					transform.Translate(dif.normalized * walkSpeed * deltaTime, Space.Self);
-				else if (movementMechanics == EnemyMovementVariant.StraightLineToPlayer)
-					transform.Translate(dif.normalized * walkSpeed * deltaTime, Space.World);
-			}
-
-			float angle = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg - 90;
-			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-		}
-		else if (state == EnemyState.Mirroring)
-		{
-			float angle = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg - 90;
-			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-		}
-		else if (state == EnemyState.Retreating)
-		{
-			if (!isStatic)
-			{
-				transform.Translate(sleepDif.normalized * retreatSpeed * deltaTime, Space.World);
-
-				float angle = Mathf.Atan2(sleepDif.y, sleepDif.x) * Mathf.Rad2Deg - 90;
+				float angle = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg - 90;
 				transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 			}
-		}
-		else if (state == EnemyState.Sleeping)
-		{
+			else if (state == EnemyState.Mirroring)
+			{
+				float angle = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg - 90;
+				transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+			}
+			else if (state == EnemyState.Retreating)
+			{
+				if (!isStatic)
+				{
+					transform.Translate(sleepDif.normalized * retreatSpeed * deltaTime, Space.World);
 
+					float angle = Mathf.Atan2(sleepDif.y, sleepDif.x) * Mathf.Rad2Deg - 90;
+					transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+				}
+			}
+			else if (state == EnemyState.Sleeping)
+			{
+
+			}
 		}
 	}
 

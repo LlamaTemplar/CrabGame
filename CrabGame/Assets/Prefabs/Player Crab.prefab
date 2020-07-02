@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 5473712129905531165}
   m_Layer: 8
   m_Name: Player Crab
-  m_TagString: Enemy
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

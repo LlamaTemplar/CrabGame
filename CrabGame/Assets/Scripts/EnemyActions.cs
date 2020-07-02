@@ -171,7 +171,7 @@ public class EnemyActions : MonoBehaviour
             if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == false)
             {
                 // Attack Animation
-                print("Both Arms Attacking");
+                //print("Both Arms Attacking");
                 rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
                 leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
@@ -182,7 +182,7 @@ public class EnemyActions : MonoBehaviour
             else if (rightArm.GetComponent<Arm>().loseArm == true && leftArm.GetComponent<Arm>().loseArm == false)// If we lost right arm, attack with left
             {
                 //Attack Animation
-                print("Left Arm Attacking");
+               // print("Left Arm Attacking");
                 leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
                 //deal damge if player is in left arm hitbox
@@ -191,7 +191,7 @@ public class EnemyActions : MonoBehaviour
             else if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == true)// If we lost left arm, attack with rightt
             {
                 // Attack Animation
-                print("Right Arm Attacking");
+                //print("Right Arm Attacking");
                 rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
 
                 // Deal damge if player is in right arm hitbox
@@ -232,7 +232,7 @@ public class EnemyActions : MonoBehaviour
             leftArm.transform.localPosition = leftBlockPos;
 
             // Block Animation
-            print("Blocking");
+            //print("Blocking");
         }
         
     }
@@ -241,7 +241,7 @@ public class EnemyActions : MonoBehaviour
     {
         // Undo blocking code
         gameObject.GetComponent<Enemy>().isBlocking = false;
-        print("not blocking");
+       // print("not blocking");
 
         // Enemy is no longer blocking 
         isBlocking = false;

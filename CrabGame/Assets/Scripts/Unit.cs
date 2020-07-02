@@ -6,7 +6,7 @@ public class Unit : MonoBehaviour
 {
     public int startingHP = 100;
     public int currentHP;
-    public HealthBar healthBar;
+    protected HealthBar healthBar;
 
     public bool isBlocking = false;
 
@@ -17,6 +17,7 @@ public class Unit : MonoBehaviour
         if (healthBar == null)
         {
             print("Reference to Health Bar is Missing");
+            print(gameObject);
         }
         else
         {
@@ -49,5 +50,15 @@ public class Unit : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void SetHealthBar(HealthBar healthBar)
+    {
+        this.healthBar = healthBar;
+    }
+
+    public HealthBar GetHealthBar()
+    {
+        return healthBar;
     }
 }
