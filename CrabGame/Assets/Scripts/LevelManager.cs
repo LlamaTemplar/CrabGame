@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 	private void FixedUpdate()
 	{
 		gemScore.text = gemNum.ToString();
+		
 	}
 
 	public void LoadScene(int index)

@@ -137,7 +137,7 @@ public class EnemyMoveFreeMove : MonoBehaviour
 		else
 		{
 			// This is causing builds to not work
-			Debug.LogError("Missing Reference to player");
+			//Debug.LogError("Missing Reference to player");
 		}
 	}
 
