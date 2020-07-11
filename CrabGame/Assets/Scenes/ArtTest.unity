@@ -494,7 +494,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 8790032619948496196, guid: 9ab1117f3a951fe4bb94c6520f8b2f5b,
+        type: 3}
     - target: {fileID: 5293636507336235930, guid: 9ab1117f3a951fe4bb94c6520f8b2f5b,
         type: 3}
       propertyPath: m_Sprite
@@ -531,8 +532,13 @@ PrefabInstance:
     - target: {fileID: 3332012439524107685, guid: 9ab1117f3a951fe4bb94c6520f8b2f5b,
         type: 3}
       propertyPath: m_BoneTransforms.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3332012439524107685, guid: 9ab1117f3a951fe4bb94c6520f8b2f5b,
+        type: 3}
+      propertyPath: m_BoneTransforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 1247701060}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -6794871512765240276, guid: 9ab1117f3a951fe4bb94c6520f8b2f5b,
     type: 3}
@@ -726,7 +732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 1.6059022e+36
-  m_labelHash: -2.9343335e+29
+  m_labelHash: -195.34435
 --- !u!114 &1247701059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,6 +747,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpriteLibraryAsset: {fileID: 11400000, guid: e8e96040065d7d94bb1d3bbf41451a83,
     type: 2}
+--- !u!4 &1247701060 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7216269133011957253, guid: 9ab1117f3a951fe4bb94c6520f8b2f5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1247701041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8245029122685904490
 PrefabInstance:
   m_ObjectHideFlags: 0
