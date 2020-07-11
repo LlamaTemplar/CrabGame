@@ -817,9 +817,9 @@ ScriptedImporter:
     internalID: 0
     spriteBone:
     - name: Right_Claw
-      position: {x: 150.14832, y: 54.252655, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7569544, w: 0.6534678}
-      length: 177.04768
+      position: {x: 150.14844, y: 54.25296, z: 0}
+      rotation: {x: 0, y: 0, z: 0.7569539, w: 0.6534684}
+      length: 177.04771
       parentId: -1
     spriteOutline: []
     vertices:
@@ -1537,9 +1537,9 @@ ScriptedImporter:
     internalID: 0
     spriteBone:
     - name: Right_Clamp
-      position: {x: 113.5387, y: 69.43555, z: 0}
-      rotation: {x: 0, y: 0, z: 0.9660803, w: 0.25824213}
-      length: 109.33721
+      position: {x: 113.53876, y: 69.43591, z: 0}
+      rotation: {x: 0, y: 0, z: 0.96608007, w: 0.2582429}
+      length: 109.337234
       parentId: -1
     spriteOutline: []
     vertices:
@@ -2030,13 +2030,13 @@ ScriptedImporter:
     spriteBone:
     - name: Right_shoulder
       position: {x: 6.8929443, y: 6.810196, z: 0}
-      rotation: {x: 0, y: 0, z: -0.14565392, w: -0.9893356}
-      length: 77.21299
+      rotation: {x: 0, y: 0, z: -0.14565387, w: -0.98933566}
+      length: 77.21298
       parentId: -1
     - name: Right_Arm
-      position: {x: 77.21301, y: -0.000021517528, z: 0}
-      rotation: {x: -0, y: 0, z: -0.30017787, w: -0.9538833}
-      length: 74.10395
+      position: {x: 77.21298, y: -0.0000083468285, z: 0}
+      rotation: {x: 0, y: 0, z: 0.19896182, w: 0.9800073}
+      length: 67.059875
       parentId: 0
     spriteOutline: []
     vertices:
@@ -10689,17 +10689,17 @@ ScriptedImporter:
       parentId: 3
     - name: Right_shoulder
       position: {x: -2.7350023, y: 113.40523, z: 0}
-      rotation: {x: 0, y: -0, z: 0.80408585, w: 0.5945132}
-      length: 77.21298
+      rotation: {x: 0, y: -0, z: 0.80408585, w: 0.59451324}
+      length: 77.212975
       parentId: 0
     - name: Right_Arm
-      position: {x: 77.21295, y: -0.000004209379, z: 0}
-      rotation: {x: 0, y: 0, z: -0.30017787, w: -0.9538833}
-      length: 74.10395
+      position: {x: 77.21295, y: 0.0000023459797, z: 0}
+      rotation: {x: 0, y: 0, z: 0.19896181, w: 0.98000723}
+      length: 67.05987
       parentId: 5
     - name: Right_Clamp
-      position: {x: 94.29705, y: 2.2320673, z: 0}
-      rotation: {x: 0, y: 0, z: 0.75689, w: 0.6535424}
+      position: {x: 91.77867, y: 21.763458, z: 0}
+      rotation: {x: 0, y: 0, z: -0.82097757, w: -0.57096046}
       length: 109.33723
       parentId: 6
     - name: Right_Claw
