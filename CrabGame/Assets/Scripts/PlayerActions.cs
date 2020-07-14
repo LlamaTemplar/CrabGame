@@ -217,9 +217,6 @@ public class PlayerActions : MonoBehaviour
             rightArm.transform.localPosition = rightBlockPos;
             leftArm.transform.localPosition = leftBlockPos;
             subBlockSprite.SetActive(true);
-
-            // Actual Block code
-            print("holding block");
         }
         else
         {
@@ -229,10 +226,6 @@ public class PlayerActions : MonoBehaviour
             rightArm.transform.localPosition = rightOGpos;
             leftArm.transform.localPosition = leftOGpos;
             subBlockSprite.SetActive(false);
-
-            // Stops blocking code
-            print("not blocking");
-            
         }
     }
 

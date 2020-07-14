@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Player Healthbar
   - Level Manager
+  - Player Arm
+  - Enemy Arm
   layers:
   - Default
   - TransparentFX

@@ -57,11 +57,8 @@ public class Unit : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        if (isBlocking == false)
-        {
-            currentHP -= dmg;
-            healthBar.SetHealth(currentHP);
-        }
+        currentHP -= dmg;
+        healthBar.SetHealth(currentHP);
 
         if (currentHP <= 0)
         {

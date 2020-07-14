@@ -9,8 +9,9 @@ public class Arm : MonoBehaviour
     public bool loseArm = false;
     public bool itemInArm = false;
 
-    // Temp damage (Change value between player and enemies)
-    public int damage = 10;
+    // Change damage value between player and enemies
+    public int currentDamage;
+    public int ogDamage = 10;
     public bool attacking = false;
     public float attackRadius;
     public LayerMask whatIsEnemy;
@@ -19,6 +20,7 @@ public class Arm : MonoBehaviour
     void Start()
     {
         currentHP = startingHP;
+        currentDamage = ogDamage;
     }
 
     // Update is called once per frame
@@ -38,6 +40,11 @@ public class Arm : MonoBehaviour
         {
             currentHP += Time.deltaTime;
         }
+
+        if (attacking == false)
+        {
+            currentDamage = ogDamage;
+        }
     }
 
     public void SetAttacking()
@@ -45,26 +52,50 @@ public class Arm : MonoBehaviour
         attacking = true;
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (gameObject.CompareTag("Player Arm"))
+        {
+            if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
+            {
+                if (attacking)
+                {
+                    currentDamage = 0;
+                }
+            }
+        }
+        else if (gameObject.CompareTag("Enemy Arm"))
+        {
+            if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
+            {
+                if (attacking)
+                {
+                    currentDamage = 0;
+                }
+            }
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("Player Arm"))
         {
             if (col.gameObject.CompareTag("Enemy"))
             {
                 if (attacking)
                 {
-                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
+                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
                     attacking = false;
                 }
             }
         }
-        else if (gameObject.CompareTag("Enemy"))
+        else if (gameObject.CompareTag("Enemy Arm"))
         {
             if (col.gameObject.CompareTag("Player"))
             {
                 if (attacking)
                 {
-                    col.gameObject.GetComponentInParent<Player>().TakeDamage(damage);
+                    col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
                     attacking = false;
                 }
             }
