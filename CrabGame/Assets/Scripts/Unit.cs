@@ -10,6 +10,14 @@ public class Unit : MonoBehaviour
 
     public bool isBlocking = false;
 
+    // For Walking Sound
+    private SoundPlayer soundPlayer;
+    private Vector3 oldPos;
+    public bool isWalking = false;
+    public bool once = false;
+    // For Punching Sound
+    public bool isPunching = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +32,21 @@ public class Unit : MonoBehaviour
             healthBar.SetMaxHealth(startingHP);
             healthBar.SetHealth(currentHP);
         }
+
+        if (gameObject.GetComponent<SoundPlayer>() != null)
+            soundPlayer = gameObject.GetComponent<SoundPlayer>();
+        else
+            print("This GameObject Doesn't have a Sound Player Component");
+
+        oldPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        CheckIfWalking();
+        UpdateOldPosition();
+        PlayWalkingSound(isWalking);
     }
 
 	protected virtual void Die()
@@ -60,5 +77,54 @@ public class Unit : MonoBehaviour
     public HealthBar GetHealthBar()
     {
         return healthBar;
+    }
+
+    private void CheckIfWalking()
+    {
+        if (oldPos != transform.position)
+        {
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
+        }
+    }
+
+    private void UpdateOldPosition()
+    {
+        oldPos = transform.position;
+    }
+
+    private void PlayWalkingSound(bool canPlay)
+    {
+        if (canPlay)
+        {
+            if (once == false)
+            {
+                soundPlayer.PlaySound("Walking");
+                once = true;
+            }
+        }
+        else
+        {
+            if (once == true)
+            {
+                soundPlayer.StopSound("Walking");
+                once = false;
+            }
+        }
+    }
+
+    public void PlayPunchingSound()
+    {
+        if (isPunching)
+        {
+            soundPlayer.StopSound("Punching");
+            isPunching = false;
+        }
+
+        soundPlayer.PlaySound("Punching");
+        isPunching = true;
     }
 }

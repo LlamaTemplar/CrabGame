@@ -25,7 +25,7 @@ public class PlayerActions : MonoBehaviour
     // Block variables
     public float blockCooldown;
     public float startBlockTime = 0.8f;
-    private bool isBlocking = false;
+    public bool isBlocking = false;
     // Will most likely be removed these 3 lines after adding animations
     private Vector3 rightBlockPos;
     private Vector3 leftBlockPos; 
@@ -252,7 +252,9 @@ public class PlayerActions : MonoBehaviour
 
             // Deal damge if enemy is in hitbox
             rightArm.GetComponent<Arm>().SetAttacking();
-            
+
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
+
             // Begin cooldown
             rightCooldown = rightStartTime;
         }
@@ -274,6 +276,8 @@ public class PlayerActions : MonoBehaviour
 
             // Deal damge if enemy is in hitbox
             leftArm.GetComponent<Arm>().SetAttacking();
+
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
 
             // Begin cooldown
             leftCooldown = leftStartTime;

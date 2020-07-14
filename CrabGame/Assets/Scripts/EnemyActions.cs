@@ -178,6 +178,8 @@ public class EnemyActions : MonoBehaviour
                 // Deal damge if player is in hitbox
                 rightArm.GetComponent<Arm>().SetAttacking();
                 leftArm.GetComponent<Arm>().SetAttacking();
+
+                gameObject.GetComponent<Unit>().PlayPunchingSound();
             }
             else if (rightArm.GetComponent<Arm>().loseArm == true && leftArm.GetComponent<Arm>().loseArm == false)// If we lost right arm, attack with left
             {
@@ -187,6 +189,8 @@ public class EnemyActions : MonoBehaviour
 
                 //deal damge if player is in left arm hitbox
                 leftArm.GetComponent<Arm>().SetAttacking();
+
+                gameObject.GetComponent<Unit>().PlayPunchingSound();
             }
             else if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == true)// If we lost left arm, attack with rightt
             {
@@ -196,6 +200,8 @@ public class EnemyActions : MonoBehaviour
 
                 // Deal damge if player is in right arm hitbox
                 rightArm.GetComponent<Arm>().SetAttacking();
+
+                gameObject.GetComponent<Unit>().PlayPunchingSound();
             }
 
             // Start cooldown 
