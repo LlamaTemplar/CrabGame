@@ -16,6 +16,10 @@ public class Arm : MonoBehaviour
     public float attackRadius;
     public LayerMask whatIsEnemy;
 
+    // Default is 1
+    [Range(1f,10f)]
+    public float knockBackDist;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +67,15 @@ public class Arm : MonoBehaviour
                     currentDamage = 0;
                 }
             }
+
+            // Currently does not effect arms, it can if you want it to though
+            if (col.gameObject.CompareTag("Enemy"))
+            {
+                if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
+                {
+                    KnockBack(col.gameObject);
+                }
+            }
         }
         else if (gameObject.CompareTag("Enemy Arm"))
         {
@@ -71,6 +84,14 @@ public class Arm : MonoBehaviour
                 if (attacking)
                 {
                     currentDamage = 0;
+                }
+            }
+
+            if (col.gameObject.CompareTag("Player"))
+            {
+                if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == false)
+                {
+                    KnockBack(col.gameObject);
                 }
             }
         }
@@ -108,5 +129,11 @@ public class Arm : MonoBehaviour
         {
             currentHP -= dmg;
         }
+    }
+
+    private void KnockBack(GameObject target)
+    {
+        Vector2 diff = target.transform.parent.position - transform.position;
+        target.transform.parent.position = new Vector2(target.transform.parent.position.x + (diff.x * knockBackDist), target.transform.parent.position.y + (diff.y * knockBackDist));
     }
 }
