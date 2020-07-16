@@ -51,9 +51,14 @@ public class Arm : MonoBehaviour
         }
     }
 
-    public void SetAttacking()
+    public void SetAttackingTrue()
     {
         attacking = true;
+    }
+
+    public void SetAttackingFalse()
+    {
+        attacking = false;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -73,6 +78,8 @@ public class Arm : MonoBehaviour
             {
                 if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
                 {
+                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
+                    attacking = false;
                     KnockBack(col.gameObject);
                 }
             }
@@ -87,17 +94,21 @@ public class Arm : MonoBehaviour
                 }
             }
 
+            // Currently does not effect arms, it can if you want it to though
             if (col.gameObject.CompareTag("Player"))
             {
                 if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == false)
                 {
+                    col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
+                    attacking = false;
                     KnockBack(col.gameObject);
                 }
             }
         }
     }
 
-    private void OnTriggerStay2D(Collider2D col)
+    // Currently Not in use, but kept for reference
+    /*private void OnTriggerStay2D(Collider2D col)
     {
         if (gameObject.CompareTag("Player Arm"))
         {
@@ -105,8 +116,7 @@ public class Arm : MonoBehaviour
             {
                 if (attacking)
                 {
-                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
-                    attacking = false;
+                    
                 }
             }
         }
@@ -116,12 +126,11 @@ public class Arm : MonoBehaviour
             {
                 if (attacking)
                 {
-                    col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
-                    attacking = false;
+                    
                 }
             }
         }
-    }
+    }*/
 
     public void TakeDamamge(int dmg)
     {

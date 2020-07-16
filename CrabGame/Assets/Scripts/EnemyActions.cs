@@ -140,7 +140,10 @@ public class EnemyActions : MonoBehaviour
             {
                 rightArm.transform.localPosition = rightOGpos;
                 leftArm.transform.localPosition = leftOGpos;
+                rightArm.GetComponent<Arm>().SetAttackingFalse();
+                leftArm.GetComponent<Arm>().SetAttackingFalse();
             }
+
         }
 
         // Blocktimer begins when its greater than 0
@@ -176,8 +179,16 @@ public class EnemyActions : MonoBehaviour
                 leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
                 // Deal damge if player is in hitbox
-                rightArm.GetComponent<Arm>().SetAttacking();
-                leftArm.GetComponent<Arm>().SetAttacking();
+                // We don't want to attack with both arms, so randomly pick one arm
+                int randNum = Random.Range(0,2);
+                if (randNum == 0)
+                {
+                    rightArm.GetComponent<Arm>().SetAttackingTrue();
+                }
+                else
+                {
+                    leftArm.GetComponent<Arm>().SetAttackingTrue();
+                }
 
                 gameObject.GetComponent<Unit>().PlayPunchingSound();
             }
@@ -188,7 +199,7 @@ public class EnemyActions : MonoBehaviour
                 leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
                 //deal damge if player is in left arm hitbox
-                leftArm.GetComponent<Arm>().SetAttacking();
+                leftArm.GetComponent<Arm>().SetAttackingTrue();
 
                 gameObject.GetComponent<Unit>().PlayPunchingSound();
             }
@@ -199,7 +210,7 @@ public class EnemyActions : MonoBehaviour
                 rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
 
                 // Deal damge if player is in right arm hitbox
-                rightArm.GetComponent<Arm>().SetAttacking();
+                rightArm.GetComponent<Arm>().SetAttackingTrue();
 
                 gameObject.GetComponent<Unit>().PlayPunchingSound();
             }
