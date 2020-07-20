@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1951518215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941599521139407855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97290976fa14f7b41baa626ca85ccb7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clipName: Walking
+    clip: {fileID: 8300000, guid: c7a87ae5c18b89d45b8712db6a457d6e, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+  - clipName: Punching
+    clip: {fileID: 8300000, guid: 11d673e931b53ef4991c04cfbad37d81, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
 --- !u!1 &8634744839438154863
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,20 +161,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4362302516832280316, guid: b895a6d172e059547a2b159510166410,
+    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: sleepPoint
+      value: 
+      objectReference: {fileID: 8634744839438154863}
+    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: aggroRange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: stoppingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: walkSpeedSlow
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: walkSpeedFast
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: retreatSpeed
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4362302516832280316, guid: b895a6d172e059547a2b159510166410,
         type: 3}
       propertyPath: m_TagString
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7864750413196637703, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: healthBar
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7190153028253618158, guid: b895a6d172e059547a2b159510166410,
         type: 3}
@@ -161,6 +208,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7864750411621658417, guid: b895a6d172e059547a2b159510166410,
         type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864750411621658417, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
       propertyPath: m_Color.g
       value: 0.121885024
       objectReference: {fileID: 0}
@@ -169,11 +221,6 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.18378437
       objectReference: {fileID: 0}
-    - target: {fileID: 7864750411621658417, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.7830189
-      objectReference: {fileID: 0}
     - target: {fileID: 7864750412987805538, guid: b895a6d172e059547a2b159510166410,
         type: 3}
       propertyPath: m_Color.r
@@ -203,39 +250,15 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.18431373
-      objectReference: {fileID: 0}
-    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: sleepPoint
-      value: 
-      objectReference: {fileID: 8634744839438154863}
-    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: walkSpeedSlow
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: retreatSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: walkSpeedFast
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: aggroRange
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
-        type: 3}
-      propertyPath: stoppingDistance
-      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b895a6d172e059547a2b159510166410, type: 3}
+--- !u!1 &1941599521139407855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7864750413196637701, guid: b895a6d172e059547a2b159510166410,
+    type: 3}
+  m_PrefabInstance: {fileID: 8634744839828934122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1941599521139407859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7864750413196637721, guid: b895a6d172e059547a2b159510166410,

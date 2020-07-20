@@ -25,7 +25,7 @@ public class PlayerActions : MonoBehaviour
     // Block variables
     public float blockCooldown;
     public float startBlockTime = 0.8f;
-    private bool isBlocking = false;
+    public bool isBlocking = false;
     // Will most likely be removed these 3 lines after adding animations
     private Vector3 rightBlockPos;
     private Vector3 leftBlockPos; 
@@ -143,6 +143,7 @@ public class PlayerActions : MonoBehaviour
             if (rightCooldown < rightStartTime - 0.5f && isBlocking == false)
             {
                 rightArm.transform.localPosition = rightOGpos;
+                rightArm.GetComponent<Arm>().SetAttackingFalse();
             }
         }
 
@@ -203,6 +204,7 @@ public class PlayerActions : MonoBehaviour
             if (leftCooldown < leftStartTime - 0.5f && isBlocking == false)
             {
                 leftArm.transform.localPosition = leftOGpos;
+                leftArm.GetComponent<Arm>().SetAttackingFalse();
             }
         }
     }
@@ -217,9 +219,6 @@ public class PlayerActions : MonoBehaviour
             rightArm.transform.localPosition = rightBlockPos;
             leftArm.transform.localPosition = leftBlockPos;
             subBlockSprite.SetActive(true);
-
-            // Actual Block code
-            print("holding block");
         }
         else
         {
@@ -229,10 +228,6 @@ public class PlayerActions : MonoBehaviour
             rightArm.transform.localPosition = rightOGpos;
             leftArm.transform.localPosition = leftOGpos;
             subBlockSprite.SetActive(false);
-
-            // Stops blocking code
-            print("not blocking");
-            
         }
     }
 
@@ -243,16 +238,16 @@ public class PlayerActions : MonoBehaviour
         // Double check if the Player is not blocking
         if (isBlocking == false)
         {
-            // Actual Attacking
-            print("right attack");
             // Right Arm Attack animation
 
             // Move arm hitbox into position to deal damage
             rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
 
             // Deal damge if enemy is in hitbox
-            rightArm.GetComponent<Arm>().SetAttacking();
-            
+            rightArm.GetComponent<Arm>().SetAttackingTrue();
+
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
+
             // Begin cooldown
             rightCooldown = rightStartTime;
         }
@@ -265,15 +260,15 @@ public class PlayerActions : MonoBehaviour
         // Double check if the Player is not blocking
         if (isBlocking == false)
         {
-            // Actual Attacking
-            print("left attack");
             // Left Arm Attack animation
 
             // Move arm hitbox into position to deal damage
             leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
             // Deal damge if enemy is in hitbox
-            leftArm.GetComponent<Arm>().SetAttacking();
+            leftArm.GetComponent<Arm>().SetAttackingTrue();
+
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
 
             // Begin cooldown
             leftCooldown = leftStartTime;
