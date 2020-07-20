@@ -12,8 +12,8 @@ public class Gem : MonoBehaviour
 
         if(contact == "Player")
         {
-            LevelManager levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
-            levelManager.gemNum++;
+            //LevelManager levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+            //levelManager.gemNum++;
             GameObject.Destroy(this.gameObject);
         }
     }
