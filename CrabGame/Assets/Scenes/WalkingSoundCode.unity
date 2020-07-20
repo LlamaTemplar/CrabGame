@@ -478,45 +478,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1941599520393175684, guid: a970c3348da763b4d8b6fe9cd35c22df,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy Arm
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941599521211786640, guid: a970c3348da763b4d8b6fe9cd35c22df,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy Arm
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941599521153469188, guid: a970c3348da763b4d8b6fe9cd35c22df,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941599520393175690, guid: a970c3348da763b4d8b6fe9cd35c22df,
-        type: 3}
-      propertyPath: knockBackDist
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941599521211786646, guid: a970c3348da763b4d8b6fe9cd35c22df,
-        type: 3}
-      propertyPath: knockBackDist
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5, guid: a970c3348da763b4d8b6fe9cd35c22df, type: 3}
-      propertyPath: stoppingDistance
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7864750413196637720, guid: a970c3348da763b4d8b6fe9cd35c22df,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7864750413196637720, guid: a970c3348da763b4d8b6fe9cd35c22df,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a970c3348da763b4d8b6fe9cd35c22df, type: 3}
 --- !u!224 &947546407 stripped
@@ -692,26 +653,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6513028871737283037, guid: 821a81fefd8464648b1511cf0885e618,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player Arm
-      objectReference: {fileID: 0}
-    - target: {fileID: 6513028871159357059, guid: 821a81fefd8464648b1511cf0885e618,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player Arm
-      objectReference: {fileID: 0}
-    - target: {fileID: 6513028871159357057, guid: 821a81fefd8464648b1511cf0885e618,
-        type: 3}
-      propertyPath: knockBackDist
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6513028871737283035, guid: 821a81fefd8464648b1511cf0885e618,
-        type: 3}
-      propertyPath: knockBackDist
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 821a81fefd8464648b1511cf0885e618, type: 3}

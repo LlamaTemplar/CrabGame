@@ -174,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
         type: 3}
       propertyPath: stoppingDistance
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
         type: 3}
@@ -191,6 +191,11 @@ PrefabInstance:
       propertyPath: retreatSpeed
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7864750413207029486, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4362302516832280316, guid: b895a6d172e059547a2b159510166410,
         type: 3}
       propertyPath: m_TagString
@@ -205,6 +210,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayer
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864750412987805550, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy Arm
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864750413264824442, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy Arm
       objectReference: {fileID: 0}
     - target: {fileID: 7864750411621658417, guid: b895a6d172e059547a2b159510166410,
         type: 3}
@@ -236,6 +251,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.18431373
       objectReference: {fileID: 0}
+    - target: {fileID: 7864750412987805536, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: knockBackDist
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7864750413264824446, guid: b895a6d172e059547a2b159510166410,
         type: 3}
       propertyPath: m_Color.r
@@ -250,6 +270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.18431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864750413264824444, guid: b895a6d172e059547a2b159510166410,
+        type: 3}
+      propertyPath: knockBackDist
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b895a6d172e059547a2b159510166410, type: 3}
