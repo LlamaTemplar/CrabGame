@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
 	private int sceneToLoad = -1;
 	
 	[SerializeField]
-	private TransitionFade faderPrefab; // Used for transitions
+	private TransitionFade faderPrefab = null; // Used for transitions
 	private TransitionFade fader;
 
 	private static LevelManager Instance; // The only LevelManager
