@@ -52,7 +52,9 @@ public class LevelManager : MonoBehaviour
 		fader.GetComponent<RectTransform>().offsetMax = Vector2.zero;
 		fader.transform.localScale = Vector2.one;
 
-		fader.transitionState = TransitionState.FadingIn;
+		fader.SetTransitionState(TransitionState.FadingIn);
+		if (!firstTime)
+			fader.PlayTransitionSound();
 		fader.opacity = firstTime ? 0 : 1;
 	}
 
@@ -65,7 +67,8 @@ public class LevelManager : MonoBehaviour
 
 	public IEnumerator LoadSceneCoroutine()
 	{
-		fader.transitionState = TransitionState.FadingOut;
+		fader.SetTransitionState(TransitionState.FadingOut);
+		fader.PlayTransitionSound();
 
 		yield return new WaitForSeconds(fader.transitionTime);
 

@@ -16,16 +16,36 @@ public class TransitionFade : MonoBehaviour
 
 	public float transitionTime = 0.5f;
 
-	public TransitionState transitionState;
+	private TransitionState transitionState;
+
+	public AudioClip fadeInSound;
+	public AudioClip fadeOutSound;
+	public AudioSource sound;
 
 	public float opacity = 1;
 
-	// For OnClick Event for Start Button
+	private void Awake()
+	{
+		sound = GetComponent<AudioSource>();
+	}
+
 	public void Update()
 	{
 		float increment = Time.deltaTime * (1 / transitionTime) * (transitionState == TransitionState.FadingIn ? -1 : 1);
 		opacity = Mathf.Clamp01(opacity + increment);
 		Color newColor = new Color(image.color.r, image.color.g, image.color.b, opacity);
 		image.color = newColor;
+	}
+
+	public void SetTransitionState(TransitionState newState)
+	{
+		transitionState = newState;
+		sound.clip = transitionState == TransitionState.FadingIn ? fadeInSound : fadeOutSound;
+	}
+
+	public void PlayTransitionSound()
+	{
+		sound.Stop();
+		sound.Play();
 	}
 }
