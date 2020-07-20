@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour
     protected HealthBar healthBar;
 
     public bool isBlocking = false;
+    public bool isKnockedBack = false;
 
     // For Walking Sound
     private SoundPlayer soundPlayer;

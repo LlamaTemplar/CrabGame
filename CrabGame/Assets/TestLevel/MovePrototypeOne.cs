@@ -38,9 +38,11 @@ public class MovePrototypeOne : MonoBehaviour
 				transform.Rotate(0, 0, Mathf.Sign(v) * h * rotateSpeed * deltaTime);
 		}
 
+		if (gameObject.GetComponent<Unit>().isKnockedBack)
+		{
+			h = 0f;
+			v = 0f;
+		}
 		transform.Translate(new Vector3(h * notStrafingPenalty, (isRotating ? v * whileRotatingPenalty : v) , 0) * walkSpeed * deltaTime, Space.Self);
-
-
-
 	}
 }
