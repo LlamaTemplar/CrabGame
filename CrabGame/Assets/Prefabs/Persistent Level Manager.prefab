@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gemNum: 0
+  faderPrefab: {fileID: 302608205720606569, guid: 487d9e05b91529143a45629249ecc474,
+    type: 3}

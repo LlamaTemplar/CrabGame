@@ -4,41 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+public enum TransitionState
+{
+	FadingIn,
+	FadingOut
+}
+
 public class TransitionFade : MonoBehaviour
 {
 	public Image image;
 
-	public bool transitionState;
+	public float transitionTime = 0.5f;
 
-    // For OnClick Event for Start Button
-    public void StartGame()
-    {
-        // Load the next Scene in the Build settings
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+	public TransitionState transitionState;
 
-    // For OnClick Event for Controls Button
-    public void ShowControls()
-    {
-        // Hide Start Menu
-        startMenu.SetActive(false);
-        // Show Controls
-        controls.SetActive(true);
-    }
+	public float opacity = 1;
 
-    // For OnClick Event for Back Button (After Controls are shown)
-    public void HideControls()
-    {
-        // Hide Controls
-        controls.SetActive(false);
-        // Show Start Menu
-        startMenu.SetActive(true);
-    }
-
-    // For OnClick Event for Exit Button
-    public void ExitGame()
-    {
-        // Closes application (Note: will only work if the Application is built and exported, so it will NOT work in the Unity Project)
-        Application.Quit();
-    }
+	// For OnClick Event for Start Button
+	public void Update()
+	{
+		float increment = Time.deltaTime * (1 / transitionTime) * (transitionState == TransitionState.FadingIn ? -1 : 1);
+		opacity = Mathf.Clamp01(opacity + increment);
+		Color newColor = new Color(image.color.r, image.color.g, image.color.b, opacity);
+		image.color = newColor;
+	}
 }
