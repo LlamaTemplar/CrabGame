@@ -4,12 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+// This has to be a root object in the scene! Don't parent it to other GameObjects!
 public class LevelManager : MonoBehaviour
 {
-	//public TextMeshProUGUI gemScore;
-	//[HideInInspector]
-	//public int gemNum = 0;
-
 	private int sceneToLoad = -1;
 	
 	[SerializeField]

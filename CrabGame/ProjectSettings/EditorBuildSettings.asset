@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/DemoReleases/DemoRelease1.unity
     guid: e750b84899079ea42ba39a6bccca2d89
   - enabled: 1
-    path: Assets/Scenes/HyperLink.unity
+    path: Assets/Scenes/HyperlInk.unity
     guid: 6a589f72c41742f4d9ab91dafc6111c3
   m_configObjects: {}

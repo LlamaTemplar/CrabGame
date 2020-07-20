@@ -8,13 +8,12 @@ public class Gem : MonoBehaviour
     {
         var contact = collision.collider.tag;
 
-        print(contact);
-
         if(contact == "Player")
         {
-            //LevelManager levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
-            //levelManager.gemNum++;
-            GameObject.Destroy(this.gameObject);
+			ScoreManager gemManager = FindObjectOfType<ScoreManager>();
+			gemManager.AddGems(1);
+
+			Destroy(gameObject);
         }
     }
 }
