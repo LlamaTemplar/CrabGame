@@ -63,7 +63,7 @@ public class Arm : MonoBehaviour
             else
             {
                 knockedBack = false;
-                transform.parent.GetComponent<Unit>().isKnockedBack = knockedBack;
+                targetToKnock.transform.parent.GetComponent<Unit>().isKnockedBack = knockedBack;
                 StopCoroutine(MoveBack(targetToKnock));
                 targetToKnock = null;
             }
@@ -99,7 +99,7 @@ public class Arm : MonoBehaviour
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
                     attacking = false;
-                    //KnockBack(col.gameObject);
+                    KnockBack(col.gameObject);
                 }
             }
         }
@@ -120,7 +120,9 @@ public class Arm : MonoBehaviour
                 {
                     col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
                     attacking = false;
-                    //KnockBack(col.gameObject);
+                    
+                    KnockBack(col.gameObject);
+                    col.gameObject.transform.parent.GetComponent<Unit>().isKnockedBack = knockedBack;
                 }
             }
         }
@@ -177,7 +179,6 @@ public class Arm : MonoBehaviour
         targetPos = new Vector2(target.transform.parent.position.x + (diff.x * knockBackDist), target.transform.parent.position.y + (diff.y * knockBackDist));
         
         knockedBack = true;
-        transform.parent.gameObject.GetComponent<Unit>().isKnockedBack = knockedBack;
     }
 
     IEnumerator MoveBack(GameObject objToMove)

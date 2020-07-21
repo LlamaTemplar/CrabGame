@@ -6,12 +6,18 @@ public class MovePrototypeOne : MonoBehaviour
 	public PlayerRotationVariant turningMechanics = PlayerRotationVariant.Version1;
 
 	// Walking
-	public float walkSpeed = 6;
+	public float walkSpeed;
+	public float ogWalkSpeed = 6;
 	public float notStrafingPenalty = 0.67f;
 	public float whileRotatingPenalty = 0.5f;
 
 	// Rotating
 	public float rotateSpeed = 60; // In degrees per second
+
+	void Start()
+	{
+		walkSpeed = ogWalkSpeed;
+	}
 
 	// Update is called once per frame
 	void FixedUpdate()
@@ -43,8 +49,13 @@ public class MovePrototypeOne : MonoBehaviour
 
 		if (gameObject.GetComponent<Unit>().isKnockedBack)
 		{
-			hSmooth = 0f;
-			vSmooth = 0f;
+			//hSmooth = 0f;
+			//vSmooth = 0f;
+			walkSpeed = 0f;
+		}
+		else
+		{
+			walkSpeed = ogWalkSpeed;
 		}
 
 		transform.Translate(new Vector3(hSmooth * notStrafingPenalty, (isRotating ? vSmooth * whileRotatingPenalty : vSmooth), 0) * walkSpeed * deltaTime, Space.Self);
