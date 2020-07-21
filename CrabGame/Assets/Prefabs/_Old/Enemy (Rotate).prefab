@@ -194,8 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBarPrefab: {fileID: 4691941067899320986, guid: edf661f13690df04a874f5098a3eb1f2,
     type: 3}
-  hpBar: {fileID: 0}
-  parent: {fileID: 7864750413196637703}
+  parentUnit: {fileID: 7864750413196637703}
 --- !u!1 &7864750412987805550
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,12 +308,15 @@ MonoBehaviour:
   currentHP: 0
   loseArm: 0
   itemInArm: 0
-  damage: 10
+  currentDamage: 0
+  ogDamage: 10
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
+  knockBackDist: 0
+  speed: 4
 --- !u!1 &7864750413196637701
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,9 +368,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHP: 100
   currentHP: 0
-  healthBar: {fileID: 4691941067899320986, guid: edf661f13690df04a874f5098a3eb1f2,
-    type: 3}
   isBlocking: 0
+  isKnockedBack: 0
+  isWalking: 0
+  once: 0
+  isPunching: 0
 --- !u!114 &7864750413196637702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d3d68927054e54ebf7b5579d04b1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   sleepPoint: {fileID: 0}
   aggroRange: 10
   stoppingDistance: 4
@@ -511,7 +514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd57fa73dce94604db19448f3b77e978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyActions: {fileID: 0}
 --- !u!1 &7864750413264824442
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,9 +627,12 @@ MonoBehaviour:
   currentHP: 0
   loseArm: 0
   itemInArm: 0
-  damage: 10
+  currentDamage: 0
+  ogDamage: 10
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
+  knockBackDist: 0
+  speed: 4

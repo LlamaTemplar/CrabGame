@@ -59,6 +59,8 @@ public class EnemyMoveFreeMove : MonoBehaviour
 		// Apparently it would find the wrong one in the build
 		// Additionally, this script was looking for the wrong script (not your fault)
 		// I changed the type from PlayerMovement to MovePrototypeOne
+		//
+		// thanks
 
 		//player = GameObject.FindGameObjectWithTag("Player").GetComponent<MovePrototypeOne>();
 		player = GameObject.FindObjectOfType<MovePrototypeOne>();

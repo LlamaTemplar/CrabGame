@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 6513028871387379177}
   m_Layer: 9
   m_Name: Left Arm
-  m_TagString: Player
+  m_TagString: Player Arm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,12 +286,15 @@ MonoBehaviour:
   currentHP: 0
   loseArm: 0
   itemInArm: 0
-  damage: 10
+  currentDamage: 0
+  ogDamage: 10
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 9216
+    m_Bits: 1024
+  knockBackDist: 1
+  speed: 4
 --- !u!58 &6513028871387379177
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -322,8 +325,9 @@ GameObject:
   - component: {fileID: 6513028871384776646}
   - component: {fileID: 989214978747978595}
   - component: {fileID: 5065685254445465653}
+  - component: {fileID: 1742263570}
   m_Layer: 8
-  m_Name: SidewaysPrototype
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,6 +390,7 @@ MonoBehaviour:
   leftStartTime: 1
   blockCooldown: 0
   startBlockTime: 0.8
+  isBlocking: 0
   subBlockSprite: {fileID: 6393980642816455165}
 --- !u!114 &6513028871384776646
 MonoBehaviour:
@@ -419,6 +424,9 @@ MonoBehaviour:
   startingHP: 100
   currentHP: 0
   isBlocking: 0
+  isWalking: 0
+  once: 0
+  isPunching: 0
 --- !u!114 &5065685254445465653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +444,33 @@ MonoBehaviour:
   notStrafingPenalty: 0.3
   whileRotatingPenalty: 0.5
   rotateSpeed: 100
+--- !u!114 &1742263570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6513028871384776671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97290976fa14f7b41baa626ca85ccb7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clipName: Walking
+    clip: {fileID: 8300000, guid: dea911d693afc90478a463e466de8a09, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+  - clipName: Punching
+    clip: {fileID: 8300000, guid: 0180e252c33c79747a10f34aceb5c7d7, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
 --- !u!1 &6513028871737283037
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +485,7 @@ GameObject:
   - component: {fileID: 6513028871387379178}
   m_Layer: 9
   m_Name: Right Arm
-  m_TagString: Player
+  m_TagString: Player Arm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -533,12 +568,15 @@ MonoBehaviour:
   currentHP: 0
   loseArm: 0
   itemInArm: 0
-  damage: 10
+  currentDamage: 0
+  ogDamage: 10
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
+  knockBackDist: 1
+  speed: 4
 --- !u!58 &6513028871387379178
 CircleCollider2D:
   m_ObjectHideFlags: 0

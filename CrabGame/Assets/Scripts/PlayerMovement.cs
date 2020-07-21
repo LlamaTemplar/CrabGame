@@ -26,28 +26,28 @@ public class PlayerMovement : MonoBehaviour
 		float deltaTime = Time.deltaTime;
 
 		// changed this to raw, made controls more responsive
-		float h = Input.GetAxisRaw("Horizontal");
-		float v = Input.GetAxisRaw("Vertical");
+		float hRaw = Input.GetAxisRaw("Horizontal");
+		float vRaw = Input.GetAxisRaw("Vertical");
+
+		float hSmooth = Input.GetAxis("Horizontal");
+		float vSmooth = Input.GetAxis("Vertical");
 
 		float epsilon = 0.1f;
 
 		bool isRotating = false;
 		//if (turningMechanics == PlayerRotationVariant.Version1)
-			isRotating = Mathf.Abs(h) > epsilon && Mathf.Abs(v) > epsilon;
+			isRotating = Mathf.Abs(hRaw) > epsilon && Mathf.Abs(vRaw) > epsilon;
 		//if (turningMechanics == PlayerRotationVariant.Version2)
 		//	isRotating = Mathf.Abs(h) > epsilon && Mathf.Abs(v) > epsilon;
 
 		if (isRotating)
 		{
 			if (turningMechanics == PlayerRotationVariant.Version1)
-				transform.Rotate(0, 0, -1 * h * rotateSpeed * deltaTime);
+				transform.Rotate(0, 0, -1 * hRaw * rotateSpeed * deltaTime);
 			if (turningMechanics == PlayerRotationVariant.Version2)
-				transform.Rotate(0, 0, Mathf.Sign(v) * h * rotateSpeed * deltaTime);
+				transform.Rotate(0, 0, Mathf.Sign(vRaw) * hRaw * rotateSpeed * deltaTime);
 		}
 
-		transform.Translate(new Vector3(h, (isRotating ? v * whileRotatingPenalty : v) * notStrafingPenalty, 0) * walkSpeed * deltaTime, Space.Self);
-		
-
-
+		transform.Translate(new Vector3(hSmooth, (isRotating ? vSmooth * whileRotatingPenalty : vSmooth) * notStrafingPenalty, 0) * walkSpeed * deltaTime, Space.Self);
 	}
 }
