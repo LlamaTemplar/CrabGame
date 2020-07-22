@@ -399,18 +399,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 266630005}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &461746465 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1702925614431175680, guid: 4305d668eb7b9894ab9f1ccdaa501128,
-    type: 3}
-  m_PrefabInstance: {fileID: 150045788}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &784290587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -653,6 +641,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.data[2].clipName
+      value: Miss
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fe03780ef69b0f04bb21919252ead721, type: 3}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.data[3].clipName
+      value: Eating
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a3327d96775a2f4b8d6c78644aca251, type: 3}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.data[3].pitch
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
@@ -947,8 +971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2e9854035929b40a9cf6882b80c055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gemScore: {fileID: 461746465}
-  gemNum: 0
+  faderPrefab: {fileID: 0}
 --- !u!4 &1988703204
 Transform:
   m_ObjectHideFlags: 0
