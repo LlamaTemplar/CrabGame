@@ -169,12 +169,12 @@ PrefabInstance:
     - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
         type: 3}
       propertyPath: aggroRange
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
         type: 3}
       propertyPath: stoppingDistance
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8634744839828934127, guid: b895a6d172e059547a2b159510166410,
         type: 3}
