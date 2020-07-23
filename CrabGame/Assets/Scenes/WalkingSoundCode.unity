@@ -642,6 +642,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6513028871384776664, guid: 821a81fefd8464648b1511cf0885e618,
+        type: 3}
+      propertyPath: blockStartingDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513028871384776664, guid: 821a81fefd8464648b1511cf0885e618,
+        type: 3}
+      propertyPath: startBlockTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
       propertyPath: sounds.Array.size
       value: 4

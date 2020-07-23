@@ -56,6 +56,7 @@ public class Arm : MonoBehaviour
 
         if (targetToKnock != null)
         {
+            // targetpos - currentpos = abs(value) check if less than 0.1
             if (targetToKnock.transform.parent.position.x != targetPos.x && targetToKnock.transform.parent.position.y != targetPos.y)
             {
                 StartCoroutine(MoveBack(targetToKnock));
@@ -80,6 +81,7 @@ public class Arm : MonoBehaviour
         attacking = false;
     }
 
+    // Dmage Problem
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (gameObject.CompareTag("Player Arm"))
@@ -100,6 +102,7 @@ public class Arm : MonoBehaviour
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
                     attacking = false;
                     KnockBack(col.gameObject);
+                    col.gameObject.transform.parent.GetComponent<Unit>().isKnockedBack = knockedBack;
                 }
             }
         }
@@ -120,7 +123,6 @@ public class Arm : MonoBehaviour
                 {
                     col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
                     attacking = false;
-                    
                     KnockBack(col.gameObject);
                     col.gameObject.transform.parent.GetComponent<Unit>().isKnockedBack = knockedBack;
                 }
@@ -185,6 +187,7 @@ public class Arm : MonoBehaviour
     {
         if (knockedBack)
         {
+            // use a timer insetad of checking if the current pos is at target pos
             objToMove.transform.parent.position = Vector2.MoveTowards(objToMove.transform.parent.position, targetPos, speed * Time.deltaTime);
         }
         yield return new WaitForSeconds(0f);
