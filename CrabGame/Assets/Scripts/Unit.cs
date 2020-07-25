@@ -9,7 +9,6 @@ public class Unit : MonoBehaviour
     protected HealthBar healthBar;
 
     public bool isBlocking = false;
-    public bool isKnockedBack = false;
 
     // For Walking Sound
     private SoundPlayer soundPlayer;
@@ -18,6 +17,15 @@ public class Unit : MonoBehaviour
     public bool once = false;
     // For Punching Sound
     public bool isPunching = false;
+
+    // For Knock Back
+    [Range(0.1f, 1f)]
+    public float knockBackDist;
+    public float speed = 4f;
+    public bool isKnockedBack = false;
+    private Vector2 targetPos;
+    private float knockTime;
+    public float knockTimeLength = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +56,21 @@ public class Unit : MonoBehaviour
         CheckIfWalking();
         UpdateOldPosition();
         PlayWalkingSound(isWalking);
+
+        // use a timer insetad of checking if the current pos is at target pos
+        // targetpos - currentpos = abs(value) check if less than 0.1
+        if (isKnockedBack)
+        {
+            if (knockTime > 0)
+            {
+                KeepMoving(transform.position);
+                knockTime -= Time.deltaTime;
+            }
+            else
+            {
+                knockTime = knockTimeLength;
+            }
+        }
     }
 
 	protected virtual void Die()
@@ -124,5 +147,30 @@ public class Unit : MonoBehaviour
 
         soundPlayer.PlaySound("Punching");
         isPunching = true;
+    }
+
+    public void TakeKnockBack(Vector3 otherPos)
+    {
+        isKnockedBack = true;
+        Vector2 diff = transform.position - otherPos;
+        targetPos = new Vector2(transform.position.x + (diff.x * knockBackDist), transform.position.y + (diff.y * knockBackDist));
+    }
+
+    public void BeingKnockedBack()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+    }
+
+    private void KeepMoving(Vector2 unitObject)
+    {
+        if (Mathf.Abs(targetPos.x - unitObject.x) > 0.1 && Mathf.Abs(targetPos.y - unitObject.y) > 0.1)
+        {
+            BeingKnockedBack();
+        }
+        else
+        {
+            isKnockedBack = false;
+            knockTime = 0;
+        }
     }
 }

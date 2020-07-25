@@ -1635,6 +1635,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 4.11
       objectReference: {fileID: 0}
+    - target: {fileID: 1941599521139407853, guid: a970c3348da763b4d8b6fe9cd35c22df,
+        type: 3}
+      propertyPath: knockBackDist
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941599521139407853, guid: a970c3348da763b4d8b6fe9cd35c22df,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a970c3348da763b4d8b6fe9cd35c22df, type: 3}
 --- !u!4 &927924776 stripped
@@ -2465,6 +2475,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 989214978747978595, guid: 821a81fefd8464648b1511cf0885e618,
+        type: 3}
+      propertyPath: knockBackDist
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 989214978747978595, guid: 821a81fefd8464648b1511cf0885e618,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
 --- !u!1001 &1259069825
@@ -2695,6 +2715,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1404423523}
+    - target: {fileID: 1941599521139407853, guid: a970c3348da763b4d8b6fe9cd35c22df,
+        type: 3}
+      propertyPath: knockBackDist
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941599521139407853, guid: a970c3348da763b4d8b6fe9cd35c22df,
+        type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a970c3348da763b4d8b6fe9cd35c22df, type: 3}
 --- !u!4 &1303335364 stripped
@@ -3355,6 +3385,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 4.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941599521139407853, guid: a970c3348da763b4d8b6fe9cd35c22df,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941599521139407853, guid: a970c3348da763b4d8b6fe9cd35c22df,
+        type: 3}
+      propertyPath: knockBackDist
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a970c3348da763b4d8b6fe9cd35c22df, type: 3}
