@@ -96,6 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08192721d5e4e47458fa1c62552d4935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   zDistance: 10
-  lerpSpeed: 4
+  blendRatePosition: 4
+  blendRateRotation: 8
