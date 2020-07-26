@@ -19,7 +19,7 @@ public enum EnemyState
 public class EnemyMoveFreeMove : MonoBehaviour
 {
 	// changed type from playermovement to MovePrototype1
-	private MovePrototypeOne player;
+	private PlayerMovement player;
 
 	public GameObject sleepPoint;
 
@@ -63,7 +63,7 @@ public class EnemyMoveFreeMove : MonoBehaviour
 		// thanks
 
 		//player = GameObject.FindGameObjectWithTag("Player").GetComponent<MovePrototypeOne>();
-		player = GameObject.FindObjectOfType<MovePrototypeOne>();
+		player = FindObjectOfType<PlayerMovement>();
 	}
 
 	private void Update()

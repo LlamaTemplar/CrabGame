@@ -293,8 +293,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
-  knockBackDist: 1
-  speed: 4
 --- !u!58 &6513028871387379177
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -324,7 +322,6 @@ GameObject:
   - component: {fileID: 6513028871384776664}
   - component: {fileID: 6513028871384776646}
   - component: {fileID: 989214978747978595}
-  - component: {fileID: 5065685254445465653}
   - component: {fileID: 1742263570}
   m_Layer: 8
   m_Name: Player
@@ -390,6 +387,7 @@ MonoBehaviour:
   leftStartTime: 1
   blockCooldown: 0
   startBlockTime: 0.8
+  blockStartingDuration: 2
   isBlocking: 0
   subBlockSprite: {fileID: 6393980642816455165}
 --- !u!114 &6513028871384776646
@@ -399,7 +397,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6513028871384776671}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd6e003dd321f7b45984a47ed970b31e, type: 3}
   m_Name: 
@@ -424,28 +422,13 @@ MonoBehaviour:
   startingHP: 100
   currentHP: 0
   isBlocking: 0
-  isKnockedBack: 0
   isWalking: 0
   once: 0
   isPunching: 0
---- !u!114 &5065685254445465653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6513028871384776671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b1588051e5f6d47aba01906deb40c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turningMechanics: 0
-  walkSpeed: 6
-  ogWalkSpeed: 6
-  notStrafingPenalty: 0.3
-  whileRotatingPenalty: 0.5
-  rotateSpeed: 100
+  knockBackDist: 0
+  speed: 4
+  isKnockedBack: 0
+  knockTimeLength: 3
 --- !u!114 &1742263570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,8 +560,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
-  knockBackDist: 1
-  speed: 4
 --- !u!58 &6513028871387379178
 CircleCollider2D:
   m_ObjectHideFlags: 0
