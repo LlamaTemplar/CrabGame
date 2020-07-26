@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
 
 	void Update()
 	{
+		// Show/hide menu when user presses the Pause button
 		if (Input.GetButtonDown("Pause"))
 		{
 			SetState(!root.activeSelf);
@@ -56,6 +57,4 @@ public class PauseMenu : MonoBehaviour
 		else
 			Time.timeScale = 1.0f;
 	}
-
-
 }

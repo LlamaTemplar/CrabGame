@@ -8,11 +8,18 @@ public class StartScreen : MonoBehaviour
     public GameObject startMenu;
     public GameObject controls;
 
-    // For OnClick Event for Start Button
-    public void StartGame()
+	private LevelManager levelManager;
+
+	private void Awake()
+	{
+		levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+	}
+
+	// For OnClick Event for Start Button
+	public void StartGame()
     {
-        // Load the next Scene in the Build settings
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		// Load the next Scene in the Build settings
+		levelManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     // For OnClick Event for Controls Button
