@@ -87,12 +87,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee9a2d649c04db4cb2a8d9a28d772d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 302608205720606571}
   transitionTime: 0.5
-  fadeInSound: {fileID: 8300000, guid: 0180e252c33c79747a10f34aceb5c7d7, type: 3}
-  fadeOutSound: {fileID: 8300000, guid: 2f38ab0179724ae4cb4b95b4e62534af, type: 3}
-  sound: {fileID: 0}
   opacity: 1
+  fadeInSound: {fileID: 0}
+  fadeOutSound: {fileID: 8300000, guid: 50dfc88c4981d1c43901f21260d11645, type: 3}
 --- !u!82 &9105643598105082681
 AudioSource:
   m_ObjectHideFlags: 0

@@ -16,14 +16,6 @@ public class Arm : MonoBehaviour
     public float attackRadius;
     public LayerMask whatIsEnemy;
 
-    // Default is 1
-    [Range(1f,10f)]
-    public float knockBackDist;
-    public float speed = 4f;
-    private bool knockedBack = false;
-    private GameObject targetToKnock;
-    private Vector2 targetPos;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -53,21 +45,6 @@ public class Arm : MonoBehaviour
         {
             currentDamage = ogDamage;
         }
-
-        if (targetToKnock != null)
-        {
-            if (targetToKnock.transform.parent.position.x != targetPos.x && targetToKnock.transform.parent.position.y != targetPos.y)
-            {
-                StartCoroutine(MoveBack(targetToKnock));
-            }
-            else
-            {
-                knockedBack = false;
-                transform.parent.GetComponent<Unit>().isKnockedBack = knockedBack;
-                StopCoroutine(MoveBack(targetToKnock));
-                targetToKnock = null;
-            }
-        }
     }
 
     public void SetAttackingTrue()
@@ -80,6 +57,7 @@ public class Arm : MonoBehaviour
         attacking = false;
     }
 
+    // Dmage Problem
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (gameObject.CompareTag("Player Arm"))
@@ -99,7 +77,7 @@ public class Arm : MonoBehaviour
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
                     attacking = false;
-                    //KnockBack(col.gameObject);
+                    col.gameObject.GetComponentInParent<Unit>().TakeKnockBack(transform.parent.position);
                 }
             }
         }
@@ -120,7 +98,7 @@ public class Arm : MonoBehaviour
                 {
                     col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
                     attacking = false;
-                    //KnockBack(col.gameObject);
+                    col.gameObject.GetComponentInParent<Unit>().TakeKnockBack(transform.parent.position);
                 }
             }
         }
@@ -157,35 +135,5 @@ public class Arm : MonoBehaviour
         {
             currentHP -= dmg;
         }
-    }
-
-    private void KnockBack(GameObject target)
-    {
-        targetToKnock = target;
-        Vector2 diff = target.transform.parent.position - transform.position;
-
-        /*float dist = diff.magnitude;
-        // For testing, after hitting the play button, I changed the mass of the target parent and this object's parent to  10 to see changes
-        float forceMag = (target.GetComponentInParent<Rigidbody2D>().mass * gameObject.GetComponentInParent<Rigidbody2D>().mass) / Mathf.Pow(dist, 2);*/
-
-        /*Vector2 force = diff.normalized * forceMag;
-        // Technically works but Rb for all crabs must have Freeze Positions X and Y turned OFF (unchecked), don't know if thats a problem; Note that the changes 
-        // to components are not save and must be inputed manualy
-        target.GetComponentInParent<Rigidbody2D>().AddForce(force);*/
-       
-        //target.transform.parent.position = new Vector2(target.transform.parent.position.x + (diff.x * knockBackDist), target.transform.parent.position.y + (diff.y * knockBackDist));
-        targetPos = new Vector2(target.transform.parent.position.x + (diff.x * knockBackDist), target.transform.parent.position.y + (diff.y * knockBackDist));
-        
-        knockedBack = true;
-        transform.parent.gameObject.GetComponent<Unit>().isKnockedBack = knockedBack;
-    }
-
-    IEnumerator MoveBack(GameObject objToMove)
-    {
-        if (knockedBack)
-        {
-            objToMove.transform.parent.position = Vector2.MoveTowards(objToMove.transform.parent.position, targetPos, speed * Time.deltaTime);
-        }
-        yield return new WaitForSeconds(0f);
     }
 }

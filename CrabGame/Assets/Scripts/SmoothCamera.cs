@@ -27,6 +27,9 @@ public class SmoothCamera : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+		if (!target)
+			return;
+
 		// !!! If the target moves on FixedUpdate(), use FixedUpdate() here !!!
 		float deltaTime = Time.fixedDeltaTime;
 

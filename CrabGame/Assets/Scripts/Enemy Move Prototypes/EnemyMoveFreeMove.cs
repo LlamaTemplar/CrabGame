@@ -101,7 +101,15 @@ public class EnemyMoveFreeMove : MonoBehaviour
 			else
 				state = EnemyState.Aggro;
 
-			walkSpeed = useFastSpeed ? walkSpeedFast : walkSpeedSlow;
+			if (gameObject.GetComponent<Unit>().isKnockedBack)
+			{
+				walkSpeed = 0;
+			}
+			else
+			{
+				walkSpeed = useFastSpeed ? walkSpeedFast : walkSpeedSlow;
+			}
+			
 
 			if (state == EnemyState.Aggro)
 			{
