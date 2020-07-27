@@ -15,6 +15,7 @@ public class Arm : MonoBehaviour
     public bool attacking = false;
     public float attackRadius;
     public LayerMask whatIsEnemy;
+    public float dmgToStamina = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +71,6 @@ public class Arm : MonoBehaviour
                 }
             }
 
-            // Currently does not effect arms, it can if you want it to though
             if (col.gameObject.CompareTag("Enemy"))
             {
                 if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
@@ -91,7 +91,6 @@ public class Arm : MonoBehaviour
                 }
             }
 
-            // Currently does not effect arms, it can if you want it to though
             if (col.gameObject.CompareTag("Player"))
             {
                 if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == false)
@@ -99,6 +98,12 @@ public class Arm : MonoBehaviour
                     col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
                     attacking = false;
                     col.gameObject.GetComponentInParent<Unit>().TakeKnockBack(transform.parent.position);
+                }
+                else if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == true)
+                {
+                    col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
+                    attacking = false;
+                    print("hit");
                 }
             }
         }

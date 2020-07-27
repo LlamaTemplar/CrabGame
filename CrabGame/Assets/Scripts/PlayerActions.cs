@@ -25,8 +25,6 @@ public class PlayerActions : MonoBehaviour
     // Block variables
     public float blockCooldown;
     public float startBlockTime = 1.5f;
-    private float blockDuration;
-    public float blockStartingDuration = 2f;
     public bool isBlocking = false;
     // Will most likely be removed these 3 lines after adding animations
     private Vector3 rightBlockPos;
@@ -36,8 +34,6 @@ public class PlayerActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        blockDuration = blockStartingDuration;
-
         // Delays for the attacks
         rightDelay = rightStartDelay;
         leftDelay = leftStartDelay;
@@ -65,19 +61,19 @@ public class PlayerActions : MonoBehaviour
                 // If both arm keys are pressed and the both their delays are greater than 0
                 if ((Input.GetKey(KeyCode.K) && Input.GetKey(KeyCode.J)) && (rightDelay > 0 || leftDelay > 0))
                 {
-                    if (blockDuration > 0)
+
+                    if (gameObject.GetComponent<Player>().currentStamina > 0)
                     {
                         isBlocking = true;
                         // Blocking code
                         Blocking(isBlocking);
                     }
-                    else if (blockDuration <= 0)
+                    else
                     {
                         // Blocking cooldown begins counting down
                         blockCooldown = startBlockTime;
                         isBlocking = false;
 
-                        blockDuration = blockStartingDuration;
                         // Undoing block code (same code)
                         Blocking(isBlocking);
                     }
@@ -88,7 +84,6 @@ public class PlayerActions : MonoBehaviour
                     blockCooldown = startBlockTime;
                     isBlocking = false;
 
-                    blockDuration = blockStartingDuration;
                     // Undoing block code (same code)
                     Blocking(isBlocking);
                 }
@@ -238,7 +233,6 @@ public class PlayerActions : MonoBehaviour
             rightArm.transform.localPosition = rightBlockPos;
             leftArm.transform.localPosition = leftBlockPos;
             subBlockSprite.SetActive(true);
-            blockDuration -= Time.deltaTime;
         }
         else
         {

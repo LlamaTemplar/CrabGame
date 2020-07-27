@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
+    public int healingNum = 5;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var contact = collision.collider.tag;
@@ -12,7 +13,8 @@ public class Gem : MonoBehaviour
         {
 			ScoreManager gemManager = FindObjectOfType<ScoreManager>();
 			gemManager.AddGems(1);
-
+            collision.gameObject.GetComponent<Player>().PlayEatSound();
+            collision.gameObject.GetComponent<Player>().Heal(healingNum);
 			Destroy(gameObject);
         }
     }

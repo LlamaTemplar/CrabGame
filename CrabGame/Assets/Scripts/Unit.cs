@@ -7,6 +7,11 @@ public class Unit : MonoBehaviour
     public int startingHP = 100;
     public int currentHP;
     protected HealthBar healthBar;
+    // Stamina Bar uses Healthbar script
+    public int startingStamina = 70;
+    public float currentStamina;
+    public float staminaNum = 1f;
+    protected HealthBar staminaBar;
 
     public bool isBlocking = false;
 
@@ -31,6 +36,7 @@ public class Unit : MonoBehaviour
     void Start()
     {
         currentHP = startingHP;
+        currentStamina = startingStamina;
         if (healthBar == null)
         {
             print("Reference to Health Bar is Missing");
@@ -40,6 +46,17 @@ public class Unit : MonoBehaviour
         {
             healthBar.SetMaxHealth(startingHP);
             healthBar.SetHealth(currentHP);
+        }
+
+        if (staminaBar == null)
+        {
+            print("Reference to Stamina Bar is Missing");
+            print(gameObject);
+        }
+        else
+        {
+            staminaBar.SetMaxHealth(startingStamina);
+            staminaBar.SetHealth((int)currentStamina);
         }
 
         if (gameObject.GetComponent<SoundPlayer>() != null)
@@ -71,6 +88,21 @@ public class Unit : MonoBehaviour
                 knockTime = knockTimeLength;
             }
         }
+
+        if (staminaBar != null)
+        {
+            // If NOT blocking then regain Stamina
+            if (isBlocking == false && currentStamina < startingStamina)
+            {
+                currentStamina += staminaNum * Time.deltaTime;
+                staminaBar.SetHealth((int)currentStamina);
+            }
+            else if (isBlocking && currentStamina > 0)
+            {
+                currentStamina -= staminaNum * Time.deltaTime;
+                staminaBar.SetHealth((int)currentStamina);
+            }
+        }
     }
 
 	protected virtual void Die()
@@ -98,6 +130,31 @@ public class Unit : MonoBehaviour
     public HealthBar GetHealthBar()
     {
         return healthBar;
+    }
+
+    public void LoseStamina(float amount)
+    {
+        if (currentStamina >= amount)
+        {
+            currentStamina -= amount;
+        }
+        else
+        {
+            int diff = (int)(amount - currentStamina);
+            TakeDamage(diff);
+            currentStamina = 0f;
+        }
+        staminaBar.SetHealth((int)currentStamina);
+    }
+
+    public void SetStaminaBar(HealthBar staminaBar)
+    {
+        this.staminaBar = staminaBar;
+    }
+
+    public HealthBar GetStaminaBar()
+    {
+        return staminaBar;
     }
 
     private void CheckIfWalking()

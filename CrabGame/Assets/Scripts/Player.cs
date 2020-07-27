@@ -5,10 +5,13 @@ using UnityEngine;
 public class Player : Unit
 {
 	private LevelManager levelManager;
+	private SoundPlayer soundPlayer;
+	private bool isEating = false;
 
 	private void Awake()
 	{
 		healthBar = GameObject.FindGameObjectWithTag("Player Healthbar").GetComponent<HealthBar>();
+		staminaBar = GameObject.FindGameObjectWithTag("Player Staminabar").GetComponent<HealthBar>();
 		levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
 	}
 
@@ -23,5 +26,26 @@ public class Player : Unit
         // Que Game over screen
         print("Game Over");
 		levelManager.LoadScene(1);
+	}
+
+	public void Heal(int hp)
+	{
+		currentHP += hp;
+		if (currentHP > startingHP)
+		{
+			currentHP = startingHP;
+		}
+		GetHealthBar().SetHealth(currentHP);
+	}
+
+	public void PlayEatSound()
+	{
+		soundPlayer = gameObject.GetComponent<SoundPlayer>();
+		if (isEating)
+		{
+			soundPlayer.StopSound("Eating");
+		}
+		soundPlayer.PlaySound("Eating");
+		isEating = true;
 	}
 }
