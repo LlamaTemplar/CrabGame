@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Arm : MonoBehaviour
 {
+    private Collider2D armCollider;
     private int startingHP = 20;
     public float currentHP;
     public bool loseArm = false;
@@ -20,6 +21,8 @@ public class Arm : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        armCollider = GetComponent<Collider2D>();
+        armCollider.enabled = false;
         currentHP = startingHP;
         currentDamage = ogDamage;
     }
@@ -51,11 +54,13 @@ public class Arm : MonoBehaviour
     public void SetAttackingTrue()
     {
         attacking = true;
+        armCollider.enabled = true;
     }
 
     public void SetAttackingFalse()
     {
         attacking = false;
+        armCollider.enabled = false;
     }
 
     // Dmage Problem
@@ -67,7 +72,8 @@ public class Arm : MonoBehaviour
             {
                 if (attacking)
                 {
-                    currentDamage = 0;
+                    //currentDamage = 0;
+                    return;
                 }
             }
 
@@ -87,7 +93,8 @@ public class Arm : MonoBehaviour
             {
                 if (attacking)
                 {
-                    currentDamage = 0;
+                    //currentDamage = 0;
+                    return;
                 }
             }
 

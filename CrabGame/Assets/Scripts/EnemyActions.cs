@@ -28,7 +28,7 @@ public class EnemyActions : MonoBehaviour
 
     // Note that this is a shared cooldown for both blocking and attacking
     public float cooldown;
-    private float startCooldown = 3f;
+    public float startCooldown = 1f;
 
     public float attackDistance = 4;
     public bool isAttacking = false;
@@ -174,21 +174,12 @@ public class EnemyActions : MonoBehaviour
             if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == false)
             {
                 // Attack Animation
-                //print("Both Arms Attacking");
-                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
-                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
                 // Deal damge if player is in hitbox
-                // We don't want to attack with both arms, so randomly pick one arm
-                int randNum = Random.Range(0,2);
-                if (randNum == 0)
-                {
-                    rightArm.GetComponent<Arm>().SetAttackingTrue();
-                }
-                else
-                {
-                    leftArm.GetComponent<Arm>().SetAttackingTrue();
-                }
+                rightArm.GetComponent<Arm>().SetAttackingTrue();
+                leftArm.GetComponent<Arm>().SetAttackingTrue();
+                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
+                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
 
                 gameObject.GetComponent<Unit>().PlayPunchingSound();
             }
@@ -227,6 +218,7 @@ public class EnemyActions : MonoBehaviour
         if (currentAction == EnemyAction.Block)
         {
             currentAction = (EnemyAction)Random.Range(0, 2);
+            //currentAction = EnemyAction.Attack;
         }
     }
 

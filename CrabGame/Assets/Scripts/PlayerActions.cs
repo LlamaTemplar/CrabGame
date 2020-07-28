@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
+    // For Both Arms
+    private float incrementByNum = 0.02f;
+    private float currentIncrement = 0f;
+    private float incrementTotal = 0.08f;
+
     // Right Arm variables
     public GameObject rightArm;
     public float rightCooldown;
@@ -247,45 +252,67 @@ public class PlayerActions : MonoBehaviour
 
     void RightAttack()
     {
-        // If attacking then reset delay first so that attack only happens once and doesn't loop
-        rightDelay = rightStartDelay;
         // Double check if the Player is not blocking
         if (isBlocking == false)
         {
-            // Right Arm Attack animation
-
-            // Move arm hitbox into position to deal damage
-            rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
-
             // Deal damge if enemy is in hitbox
             rightArm.GetComponent<Arm>().SetAttackingTrue();
 
-            gameObject.GetComponent<Unit>().PlayPunchingSound();
+            // Right Arm Attack animation
 
-            // Begin cooldown
-            rightCooldown = rightStartTime;
+            // Move arm hitbox into position to deal damage
+            if (currentIncrement < incrementTotal)
+            {
+                currentIncrement += incrementByNum;
+                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + incrementByNum, rightArm.transform.localPosition.z);
+            }
+            else
+            {
+                ResetRightArm();
+            }
         }
+    }
+
+    void ResetRightArm()
+    {
+        gameObject.GetComponent<Unit>().PlayPunchingSound();
+        currentIncrement = 0f;
+        // If attacking then reset delay first so that attack only happens once and doesn't loop
+        rightDelay = rightStartDelay;
+        // Begin cooldown
+        rightCooldown = rightStartTime;
     }
 
     void LeftAttack()
     {
-        // If attacking then reset delay first so that attack only happens once and doesn't loop
-        leftDelay = leftStartDelay;
         // Double check if the Player is not blocking
         if (isBlocking == false)
         {
-            // Left Arm Attack animation
-
-            // Move arm hitbox into position to deal damage
-            leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
-
             // Deal damge if enemy is in hitbox
             leftArm.GetComponent<Arm>().SetAttackingTrue();
 
-            gameObject.GetComponent<Unit>().PlayPunchingSound();
+            // Left Arm Attack animation
 
-            // Begin cooldown
-            leftCooldown = leftStartTime;
+            // Move arm hitbox into position to deal damage
+            if (currentIncrement < incrementTotal)
+            {
+                currentIncrement += incrementByNum;
+                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + incrementByNum, leftArm.transform.localPosition.z);
+            }
+            else
+            {
+                ResetLeftArm();
+            }
         }
+    }
+
+    void ResetLeftArm()
+    {
+        gameObject.GetComponent<Unit>().PlayPunchingSound();
+        currentIncrement = 0f;
+        // If attacking then reset delay first so that attack only happens once and doesn't loop
+        leftDelay = leftStartDelay;
+        // Begin cooldown
+        leftCooldown = leftStartTime;
     }
 }

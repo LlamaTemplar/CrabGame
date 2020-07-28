@@ -177,7 +177,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.12
 --- !u!114 &98370770425922434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
+  dmgToStamina: 10
 --- !u!1 &1941599521139407855
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +253,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHP: 100
   currentHP: 0
+  startingStamina: 70
+  currentStamina: 0
+  staminaNum: 1
   isBlocking: 0
   isWalking: 0
   once: 0
@@ -281,6 +285,7 @@ MonoBehaviour:
   leftArm: {fileID: 620453800784115124}
   currentAction: 0
   cooldown: 0
+  startCooldown: 3
   attackDistance: 4
   isAttacking: 0
   blockDistance: 4
@@ -640,7 +645,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.12
 --- !u!114 &181145340871788935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,6 +668,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
+  dmgToStamina: 10
 --- !u!1 &8634744839438154863
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634744840111165614}
   m_Layer: 0
-  m_Name: Enemy (Free Move)
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
