@@ -6,14 +6,9 @@ public enum EnemyAction { Attack, Block, None };
 
 public class EnemyActions : MonoBehaviour
 {
-    // REMOVED Follow Player Code
-    /*private Vector3 startingPosition;
-    public Transform target;
-    private float speed = 2;
-    public bool isSleeping = false;
-    public bool aggro = false;
-    public float wakingDistance = 8;
-    public float stoppingDistance = 3;*/
+    private float incrementByNum = 0.02f;
+    private float currentIncrement = 0f;
+    private float incrementTotal = 0.08f;
 
     public Transform hitArea;
     public LayerMask whatIsPlayer;
@@ -74,41 +69,6 @@ public class EnemyActions : MonoBehaviour
             currentAction = EnemyAction.None;
         }
 
-        // REMOVED Follow Player Code
-        /*// If the Player is in wake up distance and we are not blocking...
-        if (Vector2.Distance(transform.position, target.position) <= wakingDistance && (isBlocking == false && isAttacking == false))
-        {
-            // Wake up the Enemy
-            isSleeping = false;
-            // While the player is not within stopping distacnce....
-            if (Vector2.Distance(transform.position, target.position) > stoppingDistance && (isBlocking == false && isAttacking == false))
-            {
-                // The enemy is aggroed to Player
-                aggro = true;
-                // Move the enemy to Player
-                transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            }
-            else // If within stopping distance then stop aggro
-            {
-                aggro = false;
-            }
-        }
-        else // If the player is not within waking distance...
-        {
-            // If the enmey moved away from starting position...
-            if (Vector2.Distance(transform.position, startingPosition) != 0)
-            {
-                aggro = false;
-                // Move enemy back to starting position
-                transform.position = Vector2.MoveTowards(transform.position, startingPosition, speed * Time.deltaTime);
-            }
-            else if (Vector2.Distance(transform.position, startingPosition) == 0)
-            {
-                // Put enemy to sleep
-                isSleeping = true;
-            }
-        }*/
-
         // If cooldown is not counting down...
         if (cooldown <= 0)
         {
@@ -119,14 +79,37 @@ public class EnemyActions : MonoBehaviour
                 // If current action is Attack
                 if (currentAction == EnemyAction.Attack)
                 {
-                    //Attack Code
-                    Attack();
+                    if (isBlocking == false)
+                    {
+                        // The enemy is attacking
+                        isAttacking = true;
+                    }
                 }
                 else if (currentAction == EnemyAction.Block)// If action is block
                 {
-                    // Block Code
-                    Block();
+                    if (isAttacking == false)
+                    {
+                        // This if statement should only be used once instead of looping
+                        if (isBlocking == false)
+                        {
+                            blockTimer = lengthOfBlock;
+                        }
+
+                        // The enemy is blocking
+                        isBlocking = true;
+                    }
                 }
+            }
+
+            if (isAttacking)
+            {
+                //Attack Code
+                Attack();
+            }
+            else if (isBlocking)
+            {
+                // Block Code
+                Block();
             }
         }
         else// After action start cooldown
@@ -165,53 +148,31 @@ public class EnemyActions : MonoBehaviour
 
     void Attack()
     {
-        // The enemy is attacking
-        isAttacking = true;
-        // Check if enemy has an arm for an attack
-        if (rightArm.GetComponent<Arm>().loseArm == false || leftArm.GetComponent<Arm>().loseArm == false)
+        // Deal damge if player is in hitbox
+        rightArm.GetComponent<Arm>().SetAttackingTrue();
+        leftArm.GetComponent<Arm>().SetAttackingTrue();
+
+        if (currentIncrement < incrementTotal)
         {
-            // If we have both arms, attack with both
-            if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == false)
-            {
-                // Attack Animation
-
-                // Deal damge if player is in hitbox
-                rightArm.GetComponent<Arm>().SetAttackingTrue();
-                leftArm.GetComponent<Arm>().SetAttackingTrue();
-                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
-                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
-
-                gameObject.GetComponent<Unit>().PlayPunchingSound();
-            }
-            else if (rightArm.GetComponent<Arm>().loseArm == true && leftArm.GetComponent<Arm>().loseArm == false)// If we lost right arm, attack with left
-            {
-                //Attack Animation
-               // print("Left Arm Attacking");
-                leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + 0.08f, leftArm.transform.localPosition.z);
-
-                //deal damge if player is in left arm hitbox
-                leftArm.GetComponent<Arm>().SetAttackingTrue();
-
-                gameObject.GetComponent<Unit>().PlayPunchingSound();
-            }
-            else if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == true)// If we lost left arm, attack with rightt
-            {
-                // Attack Animation
-                //print("Right Arm Attacking");
-                rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + 0.08f, rightArm.transform.localPosition.z);
-
-                // Deal damge if player is in right arm hitbox
-                rightArm.GetComponent<Arm>().SetAttackingTrue();
-
-                gameObject.GetComponent<Unit>().PlayPunchingSound();
-            }
-
-            // Start cooldown 
-            cooldown = startCooldown;
+            currentIncrement += incrementByNum;
+            rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + incrementByNum, rightArm.transform.localPosition.z);
+            leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + incrementByNum, leftArm.transform.localPosition.z);
         }
+        else
+        {
+            ResetAttack();
+        }
+    }
 
+    void ResetAttack()
+    {
+        gameObject.GetComponent<Unit>().PlayPunchingSound();
+        currentIncrement = 0f;
         // Enemy is no longer attacking 
         isAttacking = false;
+        // Start cooldown 
+        cooldown = startCooldown;
+
         // New random action
         currentAction = (EnemyAction)Random.Range(0, 2);
         // Increase Chance of Attacking
@@ -228,14 +189,7 @@ public class EnemyActions : MonoBehaviour
         if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == false)
         {
             gameObject.GetComponent<Enemy>().isBlocking = true;
-            // This if statement should only be used once instead of looping
-            if (isBlocking == false)
-            {
-                blockTimer = lengthOfBlock;
-            }
-
-            // The enemy is blocking
-            isBlocking = true;
+            
             subBlockSprite.SetActive(true);
             rightArm.transform.localPosition = rightBlockPos;
             leftArm.transform.localPosition = leftBlockPos;
