@@ -1,29 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public enum PlayerRotationVariant
-{
-	Version1,
-	Version2
-}
 
 public class PlayerMovement : MonoBehaviour
 {
-	public PlayerRotationVariant turningMechanics = PlayerRotationVariant.Version1;
-
 	// Walking
-	public float walkSpeed = 6;
-	public float notStrafingPenalty = 0.67f;
+	public float walkSpeed;
+	public float ogWalkSpeed = 6;
+	public float notStrafingPenalty = 0.3f;
 	public float whileRotatingPenalty = 0.5f;
 
 	// Rotating
-	public float rotateSpeed = 60; // In degrees per second
+	public float rotateSpeed = 100; // In degrees per second
+
+	void Start()
+	{
+		walkSpeed = ogWalkSpeed;
+	}
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
-		float deltaTime = Time.deltaTime;
+		float deltaTime = Time.fixedDeltaTime;
 
 		// changed this to raw, made controls more responsive
 		float hRaw = Input.GetAxisRaw("Horizontal");
@@ -35,19 +32,24 @@ public class PlayerMovement : MonoBehaviour
 		float epsilon = 0.1f;
 
 		bool isRotating = false;
-		//if (turningMechanics == PlayerRotationVariant.Version1)
-			isRotating = Mathf.Abs(hRaw) > epsilon && Mathf.Abs(vRaw) > epsilon;
-		//if (turningMechanics == PlayerRotationVariant.Version2)
-		//	isRotating = Mathf.Abs(h) > epsilon && Mathf.Abs(v) > epsilon;
+		isRotating = Mathf.Abs(hRaw) > epsilon && Mathf.Abs(vRaw) > epsilon;
 
 		if (isRotating)
 		{
-			if (turningMechanics == PlayerRotationVariant.Version1)
-				transform.Rotate(0, 0, -1 * hRaw * rotateSpeed * deltaTime);
-			if (turningMechanics == PlayerRotationVariant.Version2)
-				transform.Rotate(0, 0, Mathf.Sign(vRaw) * hRaw * rotateSpeed * deltaTime);
+			transform.Rotate(0, 0, -1 * hRaw * rotateSpeed * deltaTime);
 		}
 
-		transform.Translate(new Vector3(hSmooth, (isRotating ? vSmooth * whileRotatingPenalty : vSmooth) * notStrafingPenalty, 0) * walkSpeed * deltaTime, Space.Self);
+		if (gameObject.GetComponent<Unit>().isKnockedBack)
+		{
+			//hSmooth = 0f;
+			//vSmooth = 0f;
+			walkSpeed = 0f;
+		}
+		else
+		{
+			walkSpeed = ogWalkSpeed;
+		}
+
+		transform.Translate(new Vector3(hSmooth * notStrafingPenalty, (isRotating ? vSmooth * whileRotatingPenalty : vSmooth), 0) * walkSpeed * deltaTime, Space.Self);
 	}
 }
