@@ -2337,7 +2337,7 @@ ScriptedImporter:
     spriteID: f406ddaa501d02842b55b28bdb20cb74
     internalID: 0
     spriteBone:
-    - name: body_1
+    - name: claw_left
       position: {x: 149.82315, y: 2.9108276, z: 0}
       rotation: {x: 0, y: 0, z: -0.75489557, w: -0.6558451}
       length: 336.4314
@@ -2812,7 +2812,7 @@ ScriptedImporter:
     spriteID: 09fbfd16884e9964da74b723ba4b286a
     internalID: 0
     spriteBone:
-    - name: right_claw
+    - name: claw_right
       position: {x: 111.60834, y: 0.47921753, z: 0}
       rotation: {x: 0, y: 0, z: 0.65507334, w: 0.7555653}
       length: 337.34796
@@ -5851,7 +5851,7 @@ ScriptedImporter:
       rotation: {x: 0, y: -0, z: 0.85902035, w: 0.51194143}
       length: 234.24521
       parentId: 0
-    - name: right_claw
+    - name: claw_right
       position: {x: -58.15501, y: 237.95593, z: 0}
       rotation: {x: 0, y: -0, z: 0.99767923, w: 0.06808953}
       length: 337.348
@@ -5876,7 +5876,7 @@ ScriptedImporter:
       rotation: {x: 0, y: -0, z: -0.8543297, w: 0.5197314}
       length: 235.29878
       parentId: 0
-    - name: body_1
+    - name: claw_left
       position: {x: -57.75453, y: -237.83533, z: 0}
       rotation: {x: 0, y: -0, z: -0.9973314, w: 0.07300785}
       length: 336.43146
@@ -5972,7 +5972,7 @@ ScriptedImporter:
     index: 1
   - go: {fileID: -8068220734764467158, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 2
-  - go: {fileID: -7580359318787488857, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: -2748765484653311768, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 3
   - go: {fileID: 8237525249256062119, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 4
@@ -5982,7 +5982,7 @@ ScriptedImporter:
     index: 6
   - go: {fileID: 6288011056127436037, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 7
-  - go: {fileID: 7832434525187715278, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: 3880685347416131419, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 8
   generateGOHierarchy: 0
   textureAssetName: Crab_player
