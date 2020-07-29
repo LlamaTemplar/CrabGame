@@ -237,6 +237,8 @@ public class PlayerActions : MonoBehaviour
             // Blocking Animation
             rightArm.transform.localPosition = rightBlockPos;
             leftArm.transform.localPosition = leftBlockPos;
+            rightArm.GetComponent<Arm>().SetCollider(b);
+            leftArm.GetComponent<Arm>().SetCollider(b);
             subBlockSprite.SetActive(true);
         }
         else
@@ -246,6 +248,8 @@ public class PlayerActions : MonoBehaviour
             // Stop Blocking Animation
             rightArm.transform.localPosition = rightOGpos;
             leftArm.transform.localPosition = leftOGpos;
+            rightArm.GetComponent<Arm>().SetCollider(b);
+            leftArm.GetComponent<Arm>().SetCollider(b);
             subBlockSprite.SetActive(false);
         }
     }

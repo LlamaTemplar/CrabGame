@@ -547,6 +547,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBarPrefab: {fileID: 4691941067899320986, guid: edf661f13690df04a874f5098a3eb1f2,
     type: 3}
+  staminaBarPrefab: {fileID: 1841572529813971814, guid: 782fae48a1b27734aa865fe7bf3a0e64,
+    type: 3}
   parentUnit: {fileID: 5879448306060618534}
 --- !u!1 &8065800134819350708
 GameObject:

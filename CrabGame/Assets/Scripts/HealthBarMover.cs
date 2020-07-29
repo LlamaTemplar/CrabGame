@@ -6,11 +6,14 @@ public class HealthBarMover : MonoBehaviour
 {
 	public HealthBar hpBarPrefab;
 	private HealthBar hpBar;
+	public HealthBar staminaBarPrefab;
+	private HealthBar staminaBar;
 	public Unit parentUnit;
 
 	void Awake()
 	{
 		hpBar = Instantiate(hpBarPrefab);
+		staminaBar = Instantiate(staminaBarPrefab);
 
 		// Make it visible in the UI
 		hpBar.transform.SetParent(FindObjectOfType<Canvas>().transform);
@@ -18,6 +21,9 @@ public class HealthBarMover : MonoBehaviour
 		// Connect to Parent Unit
 		if (parentUnit.GetHealthBar() == null)
 			parentUnit.SetHealthBar(hpBar);
+
+		if (parentUnit.GetStaminaBar() == null)
+			parentUnit.SetStaminaBar(staminaBar);
 	}
 
     // Update is called once per frame

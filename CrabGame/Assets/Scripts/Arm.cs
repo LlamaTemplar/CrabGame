@@ -54,13 +54,20 @@ public class Arm : MonoBehaviour
     public void SetAttackingTrue()
     {
         attacking = true;
-        armCollider.enabled = true;
+        //armCollider.enabled = true;
+        SetCollider(attacking);
     }
 
     public void SetAttackingFalse()
     {
         attacking = false;
-        armCollider.enabled = false;
+        //armCollider.enabled = false;
+        SetCollider(attacking);
+    }
+
+    public void SetCollider(bool b)
+    {
+        armCollider.enabled = b;
     }
 
     // Dmage Problem
@@ -72,8 +79,8 @@ public class Arm : MonoBehaviour
             {
                 if (attacking)
                 {
-                    //currentDamage = 0;
-                    return;
+                    currentDamage = 0;
+                    //return;
                 }
             }
 
@@ -85,6 +92,12 @@ public class Arm : MonoBehaviour
                     attacking = false;
                     col.gameObject.GetComponentInParent<Unit>().TakeKnockBack(transform.parent.position);
                 }
+                else if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == true)
+                {
+                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
+                    attacking = false;
+                }
             }
         }
         else if (gameObject.CompareTag("Enemy Arm"))
@@ -93,8 +106,9 @@ public class Arm : MonoBehaviour
             {
                 if (attacking)
                 {
-                    //currentDamage = 0;
-                    return;
+                    currentDamage = 0;
+                    //print("hit");
+                    //return;
                 }
             }
 
@@ -108,9 +122,10 @@ public class Arm : MonoBehaviour
                 }
                 else if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == true)
                 {
+                    col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
                     col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
                     attacking = false;
-                    print("hit");
+                    //print("hit");
                 }
             }
         }
