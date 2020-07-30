@@ -1559,7 +1559,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: left eye
+  - name: sprite_eye_left
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1936,7 +1936,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 402, y: -241}
-  - name: right eye
+  - name: sprite_eye_right
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -2323,7 +2323,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 384, y: -241}
-  - name: left claw
+  - name: sprite_claw_left
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -2798,7 +2798,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -122, y: -103}
-  - name: right claw
+  - name: sprite_claw_right
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -3295,7 +3295,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -366, y: -103}
-  - name: leg left up
+  - name: sprite_leg_left_up
     originalName: 
     pivot: {x: 0.9917001, y: 0.23764667}
     alignment: 9
@@ -3771,7 +3771,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 616, y: -296}
-  - name: leg left low
+  - name: sprite_leg_left_low
     originalName: 
     pivot: {x: 0, y: 1}
     alignment: 1
@@ -4214,7 +4214,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 673, y: 4}
-  - name: leg right low
+  - name: sprite_leg_right_low
     originalName: 
     pivot: {x: 1, y: 1}
     alignment: 3
@@ -4678,7 +4678,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -189, y: 431}
-  - name: leg right up
+  - name: sprite_leg_right_up
     originalName: 
     pivot: {x: 0.01144787, y: 0.24559663}
     alignment: 9
@@ -5142,7 +5142,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -271, y: -22}
-  - name: body
+  - name: sprite_body
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -5771,64 +5771,64 @@ ScriptedImporter:
   characterMode: 1
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: left eye
-    spriteName: left eye
+  - name: sprite_eye_left
+    spriteName: sprite_eye_left
     isGroup: 0
     parentIndex: -1
     spriteID: 3a92321aa743a3f40a912e0c188490c5
     layerID: 12
     mosaicPosition: {x: 835, y: 191}
-  - name: right eye
-    spriteName: right eye
+  - name: sprite_eye_right
+    spriteName: sprite_eye_right
     isGroup: 0
     parentIndex: -1
     spriteID: df131912af821ce4c9369071a1e005d8
     layerID: 11
     mosaicPosition: {x: 910, y: 191}
-  - name: left claw
-    spriteName: left claw
+  - name: sprite_claw_left
+    spriteName: sprite_claw_left
     isGroup: 0
     parentIndex: -1
     spriteID: f406ddaa501d02842b55b28bdb20cb74
     layerID: 10
     mosaicPosition: {x: 4, y: 278}
-  - name: right claw
-    spriteName: right claw
+  - name: sprite_claw_right
+    spriteName: sprite_claw_right
     isGroup: 0
     parentIndex: -1
     spriteID: 09fbfd16884e9964da74b723ba4b286a
     layerID: 9
     mosaicPosition: {x: 274, y: 278}
-  - name: leg left up
-    spriteName: leg left up
+  - name: sprite_leg_left_up
+    spriteName: sprite_leg_left_up
     isGroup: 0
     parentIndex: -1
     spriteID: 46e679498baec9d4c8703d85dd8e1c5e
     layerID: 8
     mosaicPosition: {x: 616, y: 4}
-  - name: leg left low
-    spriteName: leg left low
+  - name: sprite_leg_left_low
+    spriteName: sprite_leg_left_low
     isGroup: 0
     parentIndex: -1
     spriteID: 34a6d27e60c6ccf4fb6eccf45539f689
     layerID: 7
     mosaicPosition: {x: 835, y: 4}
-  - name: leg right low
-    spriteName: leg right low
+  - name: sprite_leg_right_low
+    spriteName: sprite_leg_right_low
     isGroup: 0
     parentIndex: -1
     spriteID: 3c40dcd8a007e334f8418ba05a582471
     layerID: 6
     mosaicPosition: {x: 544, y: 431}
-  - name: leg right up
-    spriteName: leg right up
+  - name: sprite_leg_right_up
+    spriteName: sprite_leg_right_up
     isGroup: 0
     parentIndex: -1
     spriteID: f6e43e25844d65248b935fd7b44a127c
     layerID: 5
     mosaicPosition: {x: 544, y: 278}
-  - name: body
-    spriteName: body
+  - name: sprite_body
+    spriteName: sprite_body
     isGroup: 0
     parentIndex: -1
     spriteID: 627ce3c569a80d44c873a8cdd848f528
@@ -5966,23 +5966,23 @@ ScriptedImporter:
     dimension: {x: 0, y: 0}
     characterGroups: []
   boneGOs:
-  - go: {fileID: 9047031485889413558, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: 8724397544501899824, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 0
-  - go: {fileID: -7221796382491657274, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: 664833284740283354, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 1
-  - go: {fileID: -8068220734764467158, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: -7638742826364263832, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 2
-  - go: {fileID: -2748765484653311768, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: -3887552478819668283, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 3
-  - go: {fileID: 8237525249256062119, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: 475150096345041311, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 4
-  - go: {fileID: 832882432923902375, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: 6699542995134102259, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 5
-  - go: {fileID: 9049014235444938654, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: -5283174214082961141, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 6
-  - go: {fileID: 6288011056127436037, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: -5494438122236603557, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 7
-  - go: {fileID: 3880685347416131419, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
+  - go: {fileID: 1614004126452655970, guid: 0a8d2370f24004944b91c9b905e9b809, type: 3}
     index: 8
   generateGOHierarchy: 0
   textureAssetName: Crab_player
