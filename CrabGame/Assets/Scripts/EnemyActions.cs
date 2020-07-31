@@ -166,13 +166,13 @@ public class EnemyActions : MonoBehaviour
 
     void ResetAttack()
     {
-        if (rightArm.GetComponent<Arm>().GetTheEnemy() == null && leftArm.GetComponent<Arm>().GetTheEnemy() == null)
+        if (rightArm.GetComponent<Arm>().GetTheEnemy() != null && leftArm.GetComponent<Arm>().GetTheEnemy() != null)
         {
-            gameObject.GetComponent<Enemy>().PlayMissSound();
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
         }
         else
         {
-            gameObject.GetComponent<Unit>().PlayPunchingSound();
+            gameObject.GetComponent<Enemy>().PlayMissSound();
         }
         currentIncrement = 0f;
         // Enemy is no longer attacking 

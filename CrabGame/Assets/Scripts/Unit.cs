@@ -16,12 +16,14 @@ public class Unit : MonoBehaviour
     public bool isBlocking = false;
 
     // For Walking Sound
-    private SoundPlayer soundPlayer;
+    public SoundPlayer soundPlayer;
     private Vector3 oldPos;
     public bool isWalking = false;
     public bool once = false;
     // For Punching Sound
     public bool isPunching = false;
+    // For Being Hit Sound
+    private bool beenHit = false;
 
     // For Knock Back
     [Range(0.1f, 1f)]
@@ -113,6 +115,10 @@ public class Unit : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        if (dmg > 0)
+        {
+            PlayBeingHitSound();
+        }
         currentHP -= dmg;
         healthBar.SetHealth(currentHP);
 
@@ -204,6 +210,17 @@ public class Unit : MonoBehaviour
 
         soundPlayer.PlaySound("Punching");
         isPunching = true;
+    }
+
+    public void PlayBeingHitSound()
+    {
+        if (beenHit)
+        {
+            soundPlayer.StopSound("BeingHit");
+            beenHit = false;
+        }
+        soundPlayer.PlaySound("BeingHit");
+        beenHit = true;
     }
 
     public void TakeKnockBack(Vector3 otherPos)

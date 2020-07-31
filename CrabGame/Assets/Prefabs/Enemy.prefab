@@ -258,10 +258,11 @@ MonoBehaviour:
   currentStamina: 0
   staminaNum: 1
   isBlocking: 0
+  soundPlayer: {fileID: 0}
   isWalking: 0
   once: 0
   isPunching: 0
-  knockBackDist: 0
+  knockBackDist: 0.5
   speed: 4
   isKnockedBack: 0
   knockTimeLength: 3
@@ -360,12 +361,19 @@ MonoBehaviour:
   - clipName: Punching
     clip: {fileID: 8300000, guid: 11d673e931b53ef4991c04cfbad37d81, type: 3}
     audioMixerGroup: {fileID: 0}
-    volume: 1
+    volume: 0.2
     pitch: 1
     loop: 0
     playOnAwake: 0
   - clipName: Missing
     clip: {fileID: 8300000, guid: a32d5cd16c78731499eae1899243bd53, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: BeingHit
+    clip: {fileID: 8300000, guid: 1f3c203f2e006124388cbfe0ba119782, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
     pitch: 1

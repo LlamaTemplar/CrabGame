@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : Unit
 {
 	private LevelManager levelManager;
-	private SoundPlayer soundPlayer;
 	private bool isEating = false;
 	private bool missed = false;
 
@@ -14,7 +13,6 @@ public class Player : Unit
 		healthBar = GameObject.FindGameObjectWithTag("Player Healthbar").GetComponent<HealthBar>();
 		staminaBar = GameObject.FindGameObjectWithTag("Player Staminabar").GetComponent<HealthBar>();
 		levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
-		soundPlayer = gameObject.GetComponent<SoundPlayer>();
 	}
 
 	protected override void Die()
@@ -45,6 +43,7 @@ public class Player : Unit
 		if (isEating)
 		{
 			soundPlayer.StopSound("Eating");
+			isEating = false;
 		}
 		soundPlayer.PlaySound("Eating");
 		isEating = true;
@@ -55,6 +54,7 @@ public class Player : Unit
 		if (missed)
 		{
 			soundPlayer.StopSound("Missing");
+			missed = false;
 		}
 		soundPlayer.PlaySound("Missing");
 		missed = true;

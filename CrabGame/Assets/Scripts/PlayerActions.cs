@@ -280,14 +280,14 @@ public class PlayerActions : MonoBehaviour
     void ResetRightArm()
     {
         // Sounds are played here due to delay in punch, maybe move after art is imported
-        if (rightArm.GetComponent<Arm>().GetTheEnemy() == null)
+        if (rightArm.GetComponent<Arm>().GetTheEnemy() != null)
         {
-            gameObject.GetComponent<Player>().PlayMissSound();
-            //print(rightArm.GetComponent<Arm>().GetTheEnemy());
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
         }
         else
         {
-            gameObject.GetComponent<Unit>().PlayPunchingSound();
+            gameObject.GetComponent<Player>().PlayMissSound();
+            //print(rightArm.GetComponent<Arm>().GetTheEnemy());
         }
         currentIncrement = 0f;
         // If attacking then reset delay first so that attack only happens once and doesn't loop
@@ -323,14 +323,14 @@ public class PlayerActions : MonoBehaviour
     void ResetLeftArm()
     {
         // Sounds are played here due to delay in punch, maybe move after art is imported
-        if (leftArm.GetComponent<Arm>().GetTheEnemy() == null)
+        if (leftArm.GetComponent<Arm>().GetTheEnemy() != null)
         {
-            gameObject.GetComponent<Player>().PlayMissSound();
-            //print(leftArm.GetComponent<Arm>().GetTheEnemy());
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
         }
         else
         {
-            gameObject.GetComponent<Unit>().PlayPunchingSound();
+            gameObject.GetComponent<Player>().PlayMissSound();
+            //print(leftArm.GetComponent<Arm>().GetTheEnemy());
         }
         currentIncrement = 0f;
         // If attacking then reset delay first so that attack only happens once and doesn't loop
