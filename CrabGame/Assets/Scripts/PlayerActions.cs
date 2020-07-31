@@ -279,12 +279,22 @@ public class PlayerActions : MonoBehaviour
 
     void ResetRightArm()
     {
-        gameObject.GetComponent<Unit>().PlayPunchingSound();
+        // Sounds are played here due to delay in punch, maybe move after art is imported
+        if (rightArm.GetComponent<Arm>().GetTheEnemy() == null)
+        {
+            gameObject.GetComponent<Player>().PlayMissSound();
+            //print(rightArm.GetComponent<Arm>().GetTheEnemy());
+        }
+        else
+        {
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
+        }
         currentIncrement = 0f;
         // If attacking then reset delay first so that attack only happens once and doesn't loop
         rightDelay = rightStartDelay;
         // Begin cooldown
         rightCooldown = rightStartTime;
+        rightArm.GetComponent<Arm>().SetTheEnemyNull();
     }
 
     void LeftAttack()
@@ -312,11 +322,21 @@ public class PlayerActions : MonoBehaviour
 
     void ResetLeftArm()
     {
-        gameObject.GetComponent<Unit>().PlayPunchingSound();
+        // Sounds are played here due to delay in punch, maybe move after art is imported
+        if (leftArm.GetComponent<Arm>().GetTheEnemy() == null)
+        {
+            gameObject.GetComponent<Player>().PlayMissSound();
+            //print(leftArm.GetComponent<Arm>().GetTheEnemy());
+        }
+        else
+        {
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
+        }
         currentIncrement = 0f;
         // If attacking then reset delay first so that attack only happens once and doesn't loop
         leftDelay = leftStartDelay;
         // Begin cooldown
         leftCooldown = leftStartTime;
+        leftArm.GetComponent<Arm>().SetTheEnemyNull();
     }
 }

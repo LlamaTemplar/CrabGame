@@ -166,7 +166,14 @@ public class EnemyActions : MonoBehaviour
 
     void ResetAttack()
     {
-        gameObject.GetComponent<Unit>().PlayPunchingSound();
+        if (rightArm.GetComponent<Arm>().GetTheEnemy() == null && leftArm.GetComponent<Arm>().GetTheEnemy() == null)
+        {
+            gameObject.GetComponent<Enemy>().PlayMissSound();
+        }
+        else
+        {
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
+        }
         currentIncrement = 0f;
         // Enemy is no longer attacking 
         isAttacking = false;
@@ -181,6 +188,9 @@ public class EnemyActions : MonoBehaviour
             currentAction = (EnemyAction)Random.Range(0, 2);
             //currentAction = EnemyAction.Attack;
         }
+
+        rightArm.GetComponent<Arm>().SetTheEnemyNull();
+        leftArm.GetComponent<Arm>().SetTheEnemyNull();
     }
 
     void Block()

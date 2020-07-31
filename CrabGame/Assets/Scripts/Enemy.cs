@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
+	private SoundPlayer soundPlayer;
+	private bool missed = false;
+
+	void Start()
+	{
+		soundPlayer = gameObject.GetComponent<SoundPlayer>();
+	}
+
 	protected override void Die()
     {
 		base.Die();
@@ -12,4 +20,14 @@ public class Enemy : Unit
 
 		Destroy(gameObject);
     }
+
+	public void PlayMissSound()
+	{
+		if (missed)
+		{
+			soundPlayer.StopSound("Missing");
+		}
+		soundPlayer.PlaySound("Missing");
+		missed = true;
+	}
 }

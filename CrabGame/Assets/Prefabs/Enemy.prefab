@@ -201,6 +201,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   dmgToStamina: 10
+  theEnemy: {fileID: 0}
 --- !u!1 &1941599521139407855
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +359,13 @@ MonoBehaviour:
     playOnAwake: 0
   - clipName: Punching
     clip: {fileID: 8300000, guid: 11d673e931b53ef4991c04cfbad37d81, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: Missing
+    clip: {fileID: 8300000, guid: a32d5cd16c78731499eae1899243bd53, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
     pitch: 1
@@ -671,6 +679,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   dmgToStamina: 10
+  theEnemy: {fileID: 0}
 --- !u!1 &8634744839438154863
 GameObject:
   m_ObjectHideFlags: 0

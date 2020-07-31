@@ -18,6 +18,8 @@ public class Arm : MonoBehaviour
     public LayerMask whatIsEnemy;
     public float dmgToStamina = 10f;
 
+    public GameObject theEnemy = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,8 +77,10 @@ public class Arm : MonoBehaviour
     {
         if (gameObject.CompareTag("Player Arm"))
         {
+
             if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
             {
+                theEnemy = col.gameObject;
                 if (attacking)
                 {
                     currentDamage = 0;
@@ -86,6 +90,7 @@ public class Arm : MonoBehaviour
 
             if (col.gameObject.CompareTag("Enemy"))
             {
+                theEnemy = col.gameObject;
                 if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
@@ -104,6 +109,7 @@ public class Arm : MonoBehaviour
         {
             if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
             {
+                theEnemy = col.gameObject;
                 if (attacking)
                 {
                     currentDamage = 0;
@@ -114,6 +120,7 @@ public class Arm : MonoBehaviour
 
             if (col.gameObject.CompareTag("Player"))
             {
+                theEnemy = col.gameObject;
                 if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == false)
                 {
                     col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
@@ -131,30 +138,20 @@ public class Arm : MonoBehaviour
         }
     }
 
-    // Currently Not in use, but kept for reference
-    /*private void OnTriggerStay2D(Collider2D col)
+    public GameObject GetTheEnemy()
     {
-        if (gameObject.CompareTag("Player Arm"))
-        {
-            if (col.gameObject.CompareTag("Enemy"))
-            {
-                if (attacking)
-                {
-                    
-                }
-            }
-        }
-        else if (gameObject.CompareTag("Enemy Arm"))
-        {
-            if (col.gameObject.CompareTag("Player"))
-            {
-                if (attacking)
-                {
-                    
-                }
-            }
-        }
-    }*/
+        return theEnemy;
+    }
+
+    public void SetTheEnemyNull()
+    {
+        theEnemy = null;
+    }
+
+    private void OnCollisionStay(Collision col)
+    {
+        print(col);
+    }
 
     public void TakeDamamge(int dmg)
     {
