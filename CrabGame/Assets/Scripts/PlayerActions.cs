@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     // For Both Arms
-    private float incrementByNum = 0.02f;
+    private float incrementByNum = 0.01f;
     private float currentIncrement = 0f;
     private float incrementTotal = 0.08f;
 
@@ -128,6 +128,7 @@ public class PlayerActions : MonoBehaviour
                 {
                     //delay will count down
                     rightDelay -= Time.deltaTime;
+                    rightArm.GetComponent<Arm>().SetCollider(true);
                 }
             }
             else // If arm is lost or becomes lost during delay, reset delay and windup
@@ -189,6 +190,7 @@ public class PlayerActions : MonoBehaviour
                 {
                     // Delay will count down
                     leftDelay -= Time.deltaTime;
+                    leftArm.GetComponent<Arm>().SetCollider(true);
                 }
             }
             else // If arm is lost or becomes lost during delay, reset delay and windup
@@ -287,7 +289,6 @@ public class PlayerActions : MonoBehaviour
         rightDelay = rightStartDelay;
         // Begin cooldown
         rightCooldown = rightStartTime;
-        rightArm.GetComponent<Arm>().SetTheEnemyNull();
     }
 
     void LeftAttack()
@@ -323,6 +324,5 @@ public class PlayerActions : MonoBehaviour
         leftDelay = leftStartDelay;
         // Begin cooldown
         leftCooldown = leftStartTime;
-        leftArm.GetComponent<Arm>().SetTheEnemyNull();
     }
 }

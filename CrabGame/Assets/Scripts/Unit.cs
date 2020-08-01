@@ -73,7 +73,6 @@ public class Unit : MonoBehaviour
     void Update()
     {
         CheckIfWalking();
-        UpdateOldPosition();
         PlayWalkingSound(isWalking);
 
         // use a timer insetad of checking if the current pos is at target pos
@@ -107,7 +106,12 @@ public class Unit : MonoBehaviour
         }
     }
 
-	protected virtual void Die()
+    private void FixedUpdate()
+    {
+        UpdateOldPosition();
+    }
+
+    protected virtual void Die()
     {
 		// Que Game over screen
 		Destroy(healthBar.gameObject);

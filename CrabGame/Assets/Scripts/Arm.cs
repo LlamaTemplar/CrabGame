@@ -82,12 +82,11 @@ public class Arm : MonoBehaviour
                 if (attacking)
                 {
                     currentDamage = 0;
-                    //print(currentDamage);
-                    //return;
+                    print(currentDamage);
+                    return;
                 }
             }
-
-            if (col.gameObject.CompareTag("Enemy"))
+            else if (col.gameObject.CompareTag("Enemy"))
             {
                 theEnemy = col.gameObject;
                 if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
