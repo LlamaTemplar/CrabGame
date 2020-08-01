@@ -195,26 +195,23 @@ public class EnemyActions : MonoBehaviour
 
     void Block()
     {
-        // Check if enemy has both arms for an block
-        if (rightArm.GetComponent<Arm>().loseArm == false && leftArm.GetComponent<Arm>().loseArm == false)
-        {
-            gameObject.GetComponent<Enemy>().isBlocking = true;
-            
-            subBlockSprite.SetActive(true);
-            rightArm.transform.localPosition = rightBlockPos;
-            leftArm.transform.localPosition = leftBlockPos;
+        gameObject.GetComponent<Enemy>().isBlocking = true;
+        rightArm.GetComponent<Arm>().SetCollider(true);
+        leftArm.GetComponent<Arm>().SetCollider(true);
 
-            // Block Animation
-            //print("Blocking");
-        }
-        
+        subBlockSprite.SetActive(true);
+        rightArm.transform.localPosition = rightBlockPos;
+        leftArm.transform.localPosition = leftBlockPos;
+
+        // Block Animation
     }
 
     void Unblock()
     {
         // Undo blocking code
         gameObject.GetComponent<Enemy>().isBlocking = false;
-       // print("not blocking");
+        rightArm.GetComponent<Arm>().SetCollider(false);
+        leftArm.GetComponent<Arm>().SetCollider(false);
 
         // Enemy is no longer blocking 
         isBlocking = false;

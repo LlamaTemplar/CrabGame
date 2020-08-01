@@ -18,7 +18,7 @@ public class Arm : MonoBehaviour
     public LayerMask whatIsEnemy;
     public float dmgToStamina = 10f;
 
-    public GameObject theEnemy = null;
+    private GameObject theEnemy = null;
 
     // Start is called before the first frame update
     void Start()
@@ -77,13 +77,12 @@ public class Arm : MonoBehaviour
     {
         if (gameObject.CompareTag("Player Arm"))
         {
-
             if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
             {
-                theEnemy = col.gameObject;
                 if (attacking)
                 {
                     currentDamage = 0;
+                    //print(currentDamage);
                     //return;
                 }
             }
@@ -94,8 +93,8 @@ public class Arm : MonoBehaviour
                 if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
                     attacking = false;
-                    col.gameObject.GetComponentInParent<Unit>().TakeKnockBack(transform.parent.position);
                 }
                 else if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == true)
                 {
@@ -109,7 +108,6 @@ public class Arm : MonoBehaviour
         {
             if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
             {
-                theEnemy = col.gameObject;
                 if (attacking)
                 {
                     currentDamage = 0;
@@ -124,8 +122,8 @@ public class Arm : MonoBehaviour
                 if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == false)
                 {
                     col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Player>().TakeKnockBack(transform.parent.position);
                     attacking = false;
-                    col.gameObject.GetComponentInParent<Unit>().TakeKnockBack(transform.parent.position);
                 }
                 else if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == true)
                 {

@@ -115,10 +115,7 @@ public class Unit : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        if (dmg > 0)
-        {
-            PlayBeingHitSound();
-        }
+        PlayBeingHitSound();
         currentHP -= dmg;
         healthBar.SetHealth(currentHP);
 

@@ -19,7 +19,7 @@ public class Player : Unit
     {
 		base.Die();
 
-        // Death Animation
+		// Death Animation
 
         Destroy(gameObject);
         
@@ -58,5 +58,10 @@ public class Player : Unit
 		}
 		soundPlayer.PlaySound("Missing");
 		missed = true;
+	}
+
+	public void PlayDieSound()
+	{
+		soundPlayer.PlaySound("Die");
 	}
 }
