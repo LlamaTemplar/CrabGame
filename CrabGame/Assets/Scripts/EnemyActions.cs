@@ -123,8 +123,6 @@ public class EnemyActions : MonoBehaviour
             {
                 rightArm.transform.localPosition = rightOGpos;
                 leftArm.transform.localPosition = leftOGpos;
-                rightArm.GetComponent<Arm>().SetAttackingFalse();
-                leftArm.GetComponent<Arm>().SetAttackingFalse();
             }
 
         }
@@ -151,6 +149,8 @@ public class EnemyActions : MonoBehaviour
         // Deal damge if player is in hitbox
         rightArm.GetComponent<Arm>().SetAttackingTrue();
         leftArm.GetComponent<Arm>().SetAttackingTrue();
+        rightArm.GetComponent<Arm>().SetCollider(true);
+        leftArm.GetComponent<Arm>().SetCollider(true);
 
         if (currentIncrement < incrementTotal)
         {
@@ -166,6 +166,11 @@ public class EnemyActions : MonoBehaviour
 
     void ResetAttack()
     {
+        rightArm.GetComponent<Arm>().SetCollider(false);
+        leftArm.GetComponent<Arm>().SetCollider(false);
+        rightArm.GetComponent<Arm>().SetAttackingFalse();
+        leftArm.GetComponent<Arm>().SetAttackingFalse();
+
         gameObject.GetComponent<Unit>().PlayPunchingSound();
         currentIncrement = 0f;
         // Enemy is no longer attacking 

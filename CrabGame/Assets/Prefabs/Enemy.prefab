@@ -177,7 +177,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.14
 --- !u!114 &98370770425922434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +201,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   dmgToStamina: 10
-  theEnemy: {fileID: 0}
 --- !u!1 &1941599521139407855
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +662,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.14
 --- !u!114 &181145340871788935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,7 +686,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   dmgToStamina: 10
-  theEnemy: {fileID: 0}
 --- !u!1 &8634744839438154863
 GameObject:
   m_ObjectHideFlags: 0

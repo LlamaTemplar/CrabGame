@@ -46,25 +46,21 @@ public class Arm : MonoBehaviour
         {
             currentHP += Time.deltaTime;
         }
-
-        if (attacking == false)
-        {
-            currentDamage = ogDamage;
-        }
     }
 
     public void SetAttackingTrue()
     {
         attacking = true;
         //armCollider.enabled = true;
-        SetCollider(attacking);
+        //SetCollider(attacking);
     }
 
     public void SetAttackingFalse()
     {
         attacking = false;
         //armCollider.enabled = false;
-        SetCollider(attacking);
+        //SetCollider(attacking);
+        currentDamage = ogDamage;
     }
 
     public void SetCollider(bool b)
@@ -77,14 +73,12 @@ public class Arm : MonoBehaviour
     {
         if (gameObject.CompareTag("Player Arm"))
         {
+            //print(currentDamage);
             if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
             {
-                if (attacking)
-                {
-                    currentDamage = 0;
-                    print(currentDamage);
-                    return;
-                }
+                currentDamage = 0;
+                col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
+                //print(currentDamage);
             }
             else if (col.gameObject.CompareTag("Enemy"))
             {
@@ -95,27 +89,22 @@ public class Arm : MonoBehaviour
                     col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
                     attacking = false;
                 }
-                else if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == true)
+                /*else if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
                     col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
                     attacking = false;
-                }
+                }*/
             }
         }
         else if (gameObject.CompareTag("Enemy Arm"))
         {
             if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
             {
-                if (attacking)
-                {
-                    currentDamage = 0;
-                    //print("hit");
-                    //return;
-                }
+                currentDamage = 0;
+                col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
             }
-
-            if (col.gameObject.CompareTag("Player"))
+            else if (col.gameObject.CompareTag("Player"))
             {
                 theEnemy = col.gameObject;
                 if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == false)
@@ -124,13 +113,13 @@ public class Arm : MonoBehaviour
                     col.gameObject.GetComponentInParent<Player>().TakeKnockBack(transform.parent.position);
                     attacking = false;
                 }
-                else if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == true)
+                /*else if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
                 {
                     col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
                     col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
                     attacking = false;
                     //print("hit");
-                }
+                }*/
             }
         }
     }
@@ -143,11 +132,6 @@ public class Arm : MonoBehaviour
     public void SetTheEnemyNull()
     {
         theEnemy = null;
-    }
-
-    private void OnCollisionStay(Collision col)
-    {
-        print(col);
     }
 
     public void TakeDamamge(int dmg)

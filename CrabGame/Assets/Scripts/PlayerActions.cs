@@ -128,7 +128,6 @@ public class PlayerActions : MonoBehaviour
                 {
                     //delay will count down
                     rightDelay -= Time.deltaTime;
-                    rightArm.GetComponent<Arm>().SetCollider(true);
                 }
             }
             else // If arm is lost or becomes lost during delay, reset delay and windup
@@ -163,7 +162,6 @@ public class PlayerActions : MonoBehaviour
             if (rightCooldown < rightStartTime - 0.5f && isBlocking == false)
             {
                 rightArm.transform.localPosition = rightOGpos;
-                rightArm.GetComponent<Arm>().SetAttackingFalse();
             }
         }
 
@@ -190,7 +188,6 @@ public class PlayerActions : MonoBehaviour
                 {
                     // Delay will count down
                     leftDelay -= Time.deltaTime;
-                    leftArm.GetComponent<Arm>().SetCollider(true);
                 }
             }
             else // If arm is lost or becomes lost during delay, reset delay and windup
@@ -225,7 +222,6 @@ public class PlayerActions : MonoBehaviour
             if (leftCooldown < leftStartTime - 0.5f && isBlocking == false)
             {
                 leftArm.transform.localPosition = leftOGpos;
-                leftArm.GetComponent<Arm>().SetAttackingFalse();
             }
         }
     }
@@ -263,6 +259,7 @@ public class PlayerActions : MonoBehaviour
         {
             // Deal damge if enemy is in hitbox
             rightArm.GetComponent<Arm>().SetAttackingTrue();
+            rightArm.GetComponent<Arm>().SetCollider(true);
 
             // Right Arm Attack animation
 
@@ -281,6 +278,9 @@ public class PlayerActions : MonoBehaviour
 
     void ResetRightArm()
     {
+        rightArm.GetComponent<Arm>().SetCollider(false);
+        rightArm.GetComponent<Arm>().SetAttackingFalse();
+        
         // Sounds are played here due to delay in punch, maybe move after art is imported
         gameObject.GetComponent<Unit>().PlayPunchingSound();
 
@@ -298,6 +298,7 @@ public class PlayerActions : MonoBehaviour
         {
             // Deal damge if enemy is in hitbox
             leftArm.GetComponent<Arm>().SetAttackingTrue();
+            leftArm.GetComponent<Arm>().SetCollider(true);
 
             // Left Arm Attack animation
 
@@ -316,6 +317,9 @@ public class PlayerActions : MonoBehaviour
 
     void ResetLeftArm()
     {
+        leftArm.GetComponent<Arm>().SetCollider(false);
+        leftArm.GetComponent<Arm>().SetAttackingFalse();
+        
         // Sounds are played here due to delay in punch, maybe move after art is imported
         gameObject.GetComponent<Unit>().PlayPunchingSound();
 
