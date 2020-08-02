@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Arm : MonoBehaviour
 {
+    private Collider2D armCollider;
     private int startingHP = 20;
     public float currentHP;
     public bool loseArm = false;
@@ -15,10 +16,15 @@ public class Arm : MonoBehaviour
     public bool attacking = false;
     public float attackRadius;
     public LayerMask whatIsEnemy;
+    public float dmgToStamina = 10f;
+
+    private GameObject theEnemy = null;
 
     // Start is called before the first frame update
     void Start()
     {
+        armCollider = GetComponent<Collider2D>();
+        armCollider.enabled = false;
         currentHP = startingHP;
         currentDamage = ogDamage;
     }
@@ -40,21 +46,26 @@ public class Arm : MonoBehaviour
         {
             currentHP += Time.deltaTime;
         }
-
-        if (attacking == false)
-        {
-            currentDamage = ogDamage;
-        }
     }
 
     public void SetAttackingTrue()
     {
         attacking = true;
+        //armCollider.enabled = true;
+        //SetCollider(attacking);
     }
 
     public void SetAttackingFalse()
     {
         attacking = false;
+        //armCollider.enabled = false;
+        //SetCollider(attacking);
+        currentDamage = ogDamage;
+    }
+
+    public void SetCollider(bool b)
+    {
+        armCollider.enabled = b;
     }
 
     // Dmage Problem
@@ -62,72 +73,66 @@ public class Arm : MonoBehaviour
     {
         if (gameObject.CompareTag("Player Arm"))
         {
+            //print(currentDamage);
             if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
             {
-                if (attacking)
-                {
-                    currentDamage = 0;
-                }
+                currentDamage = 0;
+                col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
+                //print(currentDamage);
             }
-
-            // Currently does not effect arms, it can if you want it to though
-            if (col.gameObject.CompareTag("Enemy"))
+            else if (col.gameObject.CompareTag("Enemy"))
             {
+                theEnemy = col.gameObject;
                 if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
                     attacking = false;
-                    col.gameObject.GetComponentInParent<Unit>().TakeKnockBack(transform.parent.position);
                 }
+                /*else if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
+                {
+                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
+                    attacking = false;
+                }*/
             }
         }
         else if (gameObject.CompareTag("Enemy Arm"))
         {
             if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
             {
-                if (attacking)
-                {
-                    currentDamage = 0;
-                }
+                currentDamage = 0;
+                col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
             }
-
-            // Currently does not effect arms, it can if you want it to though
-            if (col.gameObject.CompareTag("Player"))
+            else if (col.gameObject.CompareTag("Player"))
             {
+                theEnemy = col.gameObject;
                 if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == false)
                 {
                     col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Player>().TakeKnockBack(transform.parent.position);
                     attacking = false;
-                    col.gameObject.GetComponentInParent<Unit>().TakeKnockBack(transform.parent.position);
                 }
+                /*else if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
+                {
+                    col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
+                    attacking = false;
+                    //print("hit");
+                }*/
             }
         }
     }
 
-    // Currently Not in use, but kept for reference
-    /*private void OnTriggerStay2D(Collider2D col)
+    public GameObject GetTheEnemy()
     {
-        if (gameObject.CompareTag("Player Arm"))
-        {
-            if (col.gameObject.CompareTag("Enemy"))
-            {
-                if (attacking)
-                {
-                    
-                }
-            }
-        }
-        else if (gameObject.CompareTag("Enemy Arm"))
-        {
-            if (col.gameObject.CompareTag("Player"))
-            {
-                if (attacking)
-                {
-                    
-                }
-            }
-        }
-    }*/
+        return theEnemy;
+    }
+
+    public void SetTheEnemyNull()
+    {
+        theEnemy = null;
+    }
 
     public void TakeDamamge(int dmg)
     {

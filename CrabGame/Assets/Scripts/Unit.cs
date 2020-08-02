@@ -7,16 +7,23 @@ public class Unit : MonoBehaviour
     public int startingHP = 100;
     public int currentHP;
     protected HealthBar healthBar;
+    // Stamina Bar uses Healthbar script
+    public int startingStamina = 70;
+    public float currentStamina;
+    public float staminaNum = 1f;
+    protected HealthBar staminaBar;
 
     public bool isBlocking = false;
 
     // For Walking Sound
-    private SoundPlayer soundPlayer;
+    public SoundPlayer soundPlayer;
     private Vector3 oldPos;
     public bool isWalking = false;
     public bool once = false;
     // For Punching Sound
     public bool isPunching = false;
+    // For Being Hit Sound
+    private bool beenHit = false;
 
     // For Knock Back
     [Range(0.1f, 1f)]
@@ -31,6 +38,7 @@ public class Unit : MonoBehaviour
     void Start()
     {
         currentHP = startingHP;
+        currentStamina = startingStamina;
         if (healthBar == null)
         {
             print("Reference to Health Bar is Missing");
@@ -40,6 +48,17 @@ public class Unit : MonoBehaviour
         {
             healthBar.SetMaxHealth(startingHP);
             healthBar.SetHealth(currentHP);
+        }
+
+        if (staminaBar == null)
+        {
+            print("Reference to Stamina Bar is Missing");
+            print(gameObject);
+        }
+        else
+        {
+            staminaBar.SetMaxHealth(startingStamina);
+            staminaBar.SetHealth((int)currentStamina);
         }
 
         if (gameObject.GetComponent<SoundPlayer>() != null)
@@ -54,7 +73,6 @@ public class Unit : MonoBehaviour
     void Update()
     {
         CheckIfWalking();
-        UpdateOldPosition();
         PlayWalkingSound(isWalking);
 
         // use a timer insetad of checking if the current pos is at target pos
@@ -71,9 +89,29 @@ public class Unit : MonoBehaviour
                 knockTime = knockTimeLength;
             }
         }
+
+        if (staminaBar != null)
+        {
+            // If NOT blocking then regain Stamina
+            if (isBlocking == false && currentStamina < startingStamina)
+            {
+                currentStamina += staminaNum * Time.deltaTime;
+                staminaBar.SetHealth((int)currentStamina);
+            }
+            else if (isBlocking && currentStamina > 0)
+            {
+                currentStamina -= staminaNum * Time.deltaTime;
+                staminaBar.SetHealth((int)currentStamina);
+            }
+        }
     }
 
-	protected virtual void Die()
+    private void FixedUpdate()
+    {
+        UpdateOldPosition();
+    }
+
+    protected virtual void Die()
     {
 		// Que Game over screen
 		Destroy(healthBar.gameObject);
@@ -81,6 +119,7 @@ public class Unit : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        PlayBeingHitSound();
         currentHP -= dmg;
         healthBar.SetHealth(currentHP);
 
@@ -98,6 +137,31 @@ public class Unit : MonoBehaviour
     public HealthBar GetHealthBar()
     {
         return healthBar;
+    }
+
+    public void LoseStamina(float amount)
+    {
+        if (currentStamina >= amount)
+        {
+            currentStamina -= amount;
+        }
+        else
+        {
+            int diff = (int)(amount - currentStamina);
+            TakeDamage(diff);
+            currentStamina = 0f;
+        }
+        staminaBar.SetHealth((int)currentStamina);
+    }
+
+    public void SetStaminaBar(HealthBar staminaBar)
+    {
+        this.staminaBar = staminaBar;
+    }
+
+    public HealthBar GetStaminaBar()
+    {
+        return staminaBar;
     }
 
     private void CheckIfWalking()
@@ -147,6 +211,17 @@ public class Unit : MonoBehaviour
 
         soundPlayer.PlaySound("Punching");
         isPunching = true;
+    }
+
+    public void PlayBeingHitSound()
+    {
+        if (beenHit)
+        {
+            soundPlayer.StopSound("BeingHit");
+            beenHit = false;
+        }
+        soundPlayer.PlaySound("BeingHit");
+        beenHit = true;
     }
 
     public void TakeKnockBack(Vector3 otherPos)

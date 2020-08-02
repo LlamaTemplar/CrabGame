@@ -293,6 +293,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
+  dmgToStamina: 10
 --- !u!58 &6513028871387379177
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -308,7 +309,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.14
 --- !u!1 &6513028871384776671
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +388,6 @@ MonoBehaviour:
   leftStartTime: 1
   blockCooldown: 0
   startBlockTime: 0.8
-  blockStartingDuration: 2
   isBlocking: 0
   subBlockSprite: {fileID: 6393980642816455165}
 --- !u!114 &6513028871384776646
@@ -402,8 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6e003dd321f7b45984a47ed970b31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turningMechanics: 0
   walkSpeed: 6
+  ogWalkSpeed: 6
   notStrafingPenalty: 0.3
   whileRotatingPenalty: 0.5
   rotateSpeed: 100
@@ -421,11 +421,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHP: 100
   currentHP: 0
+  startingStamina: 70
+  currentStamina: 0
+  staminaNum: 5
   isBlocking: 0
+  soundPlayer: {fileID: 0}
   isWalking: 0
   once: 0
   isPunching: 0
-  knockBackDist: 0
+  knockBackDist: 1
   speed: 4
   isKnockedBack: 0
   knockTimeLength: 3
@@ -451,6 +455,34 @@ MonoBehaviour:
     playOnAwake: 0
   - clipName: Punching
     clip: {fileID: 8300000, guid: 0180e252c33c79747a10f34aceb5c7d7, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: Eating
+    clip: {fileID: 8300000, guid: ececbc4563e260d499e0edab93ea41dd, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: Missing
+    clip: {fileID: 8300000, guid: fe03780ef69b0f04bb21919252ead721, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: BeingHit
+    clip: {fileID: 8300000, guid: f6ce2ceadbdf5ae4c92cd7401cbf03b4, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: Die
+    clip: {fileID: 8300000, guid: 6b82c995fc6c78a428400b8eb0df64d3, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
     pitch: 1
@@ -560,6 +592,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
+  dmgToStamina: 10
 --- !u!58 &6513028871387379178
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -575,4 +608,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.14

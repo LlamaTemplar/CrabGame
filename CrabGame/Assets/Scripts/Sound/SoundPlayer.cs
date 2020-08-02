@@ -5,6 +5,9 @@ using UnityEngine.Audio;
 
 public class SoundPlayer : MonoBehaviour
 {
+    // disable warnings for unassigned variables
+    #pragma warning disable 649
+
     AudioSource audioSource;
     SoundManager soundManager;
 
@@ -19,6 +22,7 @@ public class SoundPlayer : MonoBehaviour
     struct Sound
     {
         
+
         private AudioSource _source;
         /// <summary>
         /// Reference to the <c>AudioSource</c>
@@ -31,7 +35,6 @@ public class SoundPlayer : MonoBehaviour
                 {
                     _source = value;
                     _source.clip = clip;
-                    _source.pitch = pitch;
                     _source.volume = volume;
                     _source.playOnAwake = playOnAwake;
                     _source.loop = loop;
@@ -45,12 +48,13 @@ public class SoundPlayer : MonoBehaviour
 
         [Range(0, 1f)]
         public float volume;
-        [Range(0, 3f)]
-        public float pitch;
 
         public bool loop;
         public bool playOnAwake;
+
     }
+    
+    #pragma warning restore 649
 
     private void Awake()
     {
