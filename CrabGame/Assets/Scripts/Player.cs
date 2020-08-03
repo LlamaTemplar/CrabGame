@@ -60,8 +60,9 @@ public class Player : Unit
 		missed = true;
 	}
 
-	public void PlayDieSound()
+	// Kept for reference, implemented in DeathSoundPlayer
+	/*public void PlayDieSound()
 	{
 		soundPlayer.PlaySound("Die");
-	}
+	}*/
 }

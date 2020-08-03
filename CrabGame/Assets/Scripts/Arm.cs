@@ -51,15 +51,11 @@ public class Arm : MonoBehaviour
     public void SetAttackingTrue()
     {
         attacking = true;
-        //armCollider.enabled = true;
-        //SetCollider(attacking);
     }
 
     public void SetAttackingFalse()
     {
         attacking = false;
-        //armCollider.enabled = false;
-        //SetCollider(attacking);
         currentDamage = ogDamage;
     }
 
@@ -68,17 +64,16 @@ public class Arm : MonoBehaviour
         armCollider.enabled = b;
     }
 
-    // Dmage Problem
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (gameObject.CompareTag("Player Arm"))
         {
-            //print(currentDamage);
             if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
             {
+                theEnemy = col.gameObject;
                 currentDamage = 0;
+                // Hey Cole, we can play a sound for when you punch someone guarding here
                 col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
-                //print(currentDamage);
             }
             else if (col.gameObject.CompareTag("Enemy"))
             {
@@ -89,19 +84,15 @@ public class Arm : MonoBehaviour
                     col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
                     attacking = false;
                 }
-                /*else if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
-                {
-                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
-                    col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
-                    attacking = false;
-                }*/
             }
         }
         else if (gameObject.CompareTag("Enemy Arm"))
         {
             if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
             {
+                theEnemy = col.gameObject;
                 currentDamage = 0;
+                // Hey Cole, we can play a sound for when you punch someone guarding here
                 col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
             }
             else if (col.gameObject.CompareTag("Player"))
@@ -113,13 +104,6 @@ public class Arm : MonoBehaviour
                     col.gameObject.GetComponentInParent<Player>().TakeKnockBack(transform.parent.position);
                     attacking = false;
                 }
-                /*else if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
-                {
-                    col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
-                    col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
-                    attacking = false;
-                    //print("hit");
-                }*/
             }
         }
     }

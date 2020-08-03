@@ -252,6 +252,18 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    void PlaySounds(GameObject arm)
+    {
+        if (arm.GetComponent<Arm>().GetTheEnemy() != null)
+        {
+            gameObject.GetComponent<Unit>().PlayPunchingSound();
+        }
+        else
+        {
+            gameObject.GetComponent<Player>().PlayMissSound();
+        }
+    }
+
     void RightAttack()
     {
         // Double check if the Player is not blocking
@@ -266,6 +278,10 @@ public class PlayerActions : MonoBehaviour
             // Move arm hitbox into position to deal damage
             if (currentIncrement < incrementTotal)
             {
+                if (currentIncrement == 0)
+                {
+                    gameObject.GetComponent<Unit>().PlayPunchingSound();
+                }
                 currentIncrement += incrementByNum;
                 rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + incrementByNum, rightArm.transform.localPosition.z);
             }
@@ -280,9 +296,12 @@ public class PlayerActions : MonoBehaviour
     {
         rightArm.GetComponent<Arm>().SetCollider(false);
         rightArm.GetComponent<Arm>().SetAttackingFalse();
-        
-        // Sounds are played here due to delay in punch, maybe move after art is imported
-        gameObject.GetComponent<Unit>().PlayPunchingSound();
+
+        if (rightArm.GetComponent<Arm>().GetTheEnemy() == null)
+        {
+            gameObject.GetComponent<Player>().PlayMissSound();
+        }
+        rightArm.GetComponent<Arm>().SetTheEnemyNull();
 
         currentIncrement = 0f;
         // If attacking then reset delay first so that attack only happens once and doesn't loop
@@ -305,6 +324,10 @@ public class PlayerActions : MonoBehaviour
             // Move arm hitbox into position to deal damage
             if (currentIncrement < incrementTotal)
             {
+                if (currentIncrement == 0)
+                {
+                    gameObject.GetComponent<Unit>().PlayPunchingSound();
+                }
                 currentIncrement += incrementByNum;
                 leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + incrementByNum, leftArm.transform.localPosition.z);
             }
@@ -319,9 +342,12 @@ public class PlayerActions : MonoBehaviour
     {
         leftArm.GetComponent<Arm>().SetCollider(false);
         leftArm.GetComponent<Arm>().SetAttackingFalse();
-        
-        // Sounds are played here due to delay in punch, maybe move after art is imported
-        gameObject.GetComponent<Unit>().PlayPunchingSound();
+
+        if (leftArm.GetComponent<Arm>().GetTheEnemy() == null)
+        {
+            gameObject.GetComponent<Player>().PlayMissSound();
+        }
+        leftArm.GetComponent<Arm>().SetTheEnemyNull();
 
         currentIncrement = 0f;
         // If attacking then reset delay first so that attack only happens once and doesn't loop
