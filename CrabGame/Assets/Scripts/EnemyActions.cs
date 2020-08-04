@@ -147,11 +147,11 @@ public class EnemyActions : MonoBehaviour
     void Attack()
     {
         // Deal damge if player is in hitbox
-        rightArm.GetComponent<Arm>().SetAttackingTrue();
-        leftArm.GetComponent<Arm>().SetAttackingTrue();
         rightArm.GetComponent<Arm>().SetCollider(true);
         leftArm.GetComponent<Arm>().SetCollider(true);
-
+        rightArm.GetComponent<Arm>().SetAttackingTrue();
+        leftArm.GetComponent<Arm>().SetAttackingTrue();
+        
         if (currentIncrement < incrementTotal)
         {
             currentIncrement += incrementByNum;

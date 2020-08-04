@@ -11,7 +11,8 @@ public class Enemy : Unit
 		base.Die();
 
 		// Death Animation
-
+		GameObject deathPlayer = GameObject.Find("Death Sound Player");
+		deathPlayer.GetComponent<DeathSoundPlayer>().SetEnemyDied(true);
 		Destroy(gameObject);
     }
 

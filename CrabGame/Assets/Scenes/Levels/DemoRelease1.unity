@@ -2552,6 +2552,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742263570, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 085e4b6aefb31534b8b77c9464da5bd2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 821a81fefd8464648b1511cf0885e618, type: 3}
 --- !u!1001 &1259069825
@@ -4772,6 +4776,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2144856472}
+  - component: {fileID: 2144856474}
+  - component: {fileID: 2144856473}
   m_Layer: 0
   m_Name: Death Sound Player
   m_TagString: Untagged
@@ -4793,6 +4799,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2144856473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144856471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97290976fa14f7b41baa626ca85ccb7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clipName: EnemyDeath
+    clip: {fileID: 8300000, guid: 5730e6e27eea6304cbf58bc54c70031c, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: PlayerDeath
+    clip: {fileID: 8300000, guid: 6b82c995fc6c78a428400b8eb0df64d3, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+--- !u!114 &2144856474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144856471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55149ba15f57c254a8b6ea8068669054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPlayer: {fileID: 2144856473}
 --- !u!1001 &1702925613681912095
 PrefabInstance:
   m_ObjectHideFlags: 0
