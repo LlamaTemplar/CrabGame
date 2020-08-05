@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
+	private bool missed = false;
+
 	protected override void Die()
     {
 		base.Die();
 
 		// Death Animation
-
+		GameObject deathPlayer = GameObject.Find("Death Sound Player");
+		deathPlayer.GetComponent<DeathSoundPlayer>().SetEnemyDied(true);
 		Destroy(gameObject);
     }
+
+	public void PlayMissSound()
+	{
+		if (missed)
+		{
+			soundPlayer.StopSound("Missing");
+			missed = false;
+		}
+		soundPlayer.PlaySound("Missing");
+		missed = true;
+	}
 }

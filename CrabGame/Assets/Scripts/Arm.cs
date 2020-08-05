@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Arm : MonoBehaviour
 {
+    private Collider2D armCollider;
     private int startingHP = 20;
     public float currentHP;
     public bool loseArm = false;
@@ -15,18 +16,15 @@ public class Arm : MonoBehaviour
     public bool attacking = false;
     public float attackRadius;
     public LayerMask whatIsEnemy;
+    public float dmgToStamina = 10f;
 
-    // Default is 1
-    [Range(1f,10f)]
-    public float knockBackDist;
-    public float speed = 4f;
-    private bool knockedBack = false;
-    private GameObject targetToKnock;
-    private Vector2 targetPos;
+    private GameObject theEnemy = null;
 
     // Start is called before the first frame update
     void Start()
     {
+        armCollider = GetComponent<Collider2D>();
+        armCollider.enabled = false;
         currentHP = startingHP;
         currentDamage = ogDamage;
     }
@@ -48,26 +46,6 @@ public class Arm : MonoBehaviour
         {
             currentHP += Time.deltaTime;
         }
-
-        if (attacking == false)
-        {
-            currentDamage = ogDamage;
-        }
-
-        if (targetToKnock != null)
-        {
-            if (targetToKnock.transform.parent.position.x != targetPos.x && targetToKnock.transform.parent.position.y != targetPos.y)
-            {
-                StartCoroutine(MoveBack(targetToKnock));
-            }
-            else
-            {
-                knockedBack = false;
-                transform.parent.GetComponent<Unit>().isKnockedBack = knockedBack;
-                StopCoroutine(MoveBack(targetToKnock));
-                targetToKnock = null;
-            }
-        }
     }
 
     public void SetAttackingTrue()
@@ -78,6 +56,12 @@ public class Arm : MonoBehaviour
     public void SetAttackingFalse()
     {
         attacking = false;
+        currentDamage = ogDamage;
+    }
+
+    public void SetCollider(bool b)
+    {
+        armCollider.enabled = b;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -86,20 +70,19 @@ public class Arm : MonoBehaviour
         {
             if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
             {
-                if (attacking)
-                {
-                    currentDamage = 0;
-                }
+                theEnemy = col.gameObject;
+                currentDamage = 0;
+                // Hey Cole, we can play a sound for when you punch someone guarding here
+                col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
             }
-
-            // Currently does not effect arms, it can if you want it to though
-            if (col.gameObject.CompareTag("Enemy"))
+            else if (col.gameObject.CompareTag("Enemy"))
             {
+                theEnemy = col.gameObject;
                 if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
                     attacking = false;
-                    //KnockBack(col.gameObject);
                 }
             }
         }
@@ -107,49 +90,33 @@ public class Arm : MonoBehaviour
         {
             if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
             {
-                if (attacking)
-                {
-                    currentDamage = 0;
-                }
+                theEnemy = col.gameObject;
+                currentDamage = 0;
+                // Hey Cole, we can play a sound for when you punch someone guarding here
+                col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
             }
-
-            // Currently does not effect arms, it can if you want it to though
-            if (col.gameObject.CompareTag("Player"))
+            else if (col.gameObject.CompareTag("Player"))
             {
+                theEnemy = col.gameObject;
                 if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking == false)
                 {
                     col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Player>().TakeKnockBack(transform.parent.position);
                     attacking = false;
-                    //KnockBack(col.gameObject);
                 }
             }
         }
     }
 
-    // Currently Not in use, but kept for reference
-    /*private void OnTriggerStay2D(Collider2D col)
+    public GameObject GetTheEnemy()
     {
-        if (gameObject.CompareTag("Player Arm"))
-        {
-            if (col.gameObject.CompareTag("Enemy"))
-            {
-                if (attacking)
-                {
-                    
-                }
-            }
-        }
-        else if (gameObject.CompareTag("Enemy Arm"))
-        {
-            if (col.gameObject.CompareTag("Player"))
-            {
-                if (attacking)
-                {
-                    
-                }
-            }
-        }
-    }*/
+        return theEnemy;
+    }
+
+    public void SetTheEnemyNull()
+    {
+        theEnemy = null;
+    }
 
     public void TakeDamamge(int dmg)
     {
@@ -157,35 +124,5 @@ public class Arm : MonoBehaviour
         {
             currentHP -= dmg;
         }
-    }
-
-    private void KnockBack(GameObject target)
-    {
-        targetToKnock = target;
-        Vector2 diff = target.transform.parent.position - transform.position;
-
-        /*float dist = diff.magnitude;
-        // For testing, after hitting the play button, I changed the mass of the target parent and this object's parent to  10 to see changes
-        float forceMag = (target.GetComponentInParent<Rigidbody2D>().mass * gameObject.GetComponentInParent<Rigidbody2D>().mass) / Mathf.Pow(dist, 2);*/
-
-        /*Vector2 force = diff.normalized * forceMag;
-        // Technically works but Rb for all crabs must have Freeze Positions X and Y turned OFF (unchecked), don't know if thats a problem; Note that the changes 
-        // to components are not save and must be inputed manualy
-        target.GetComponentInParent<Rigidbody2D>().AddForce(force);*/
-       
-        //target.transform.parent.position = new Vector2(target.transform.parent.position.x + (diff.x * knockBackDist), target.transform.parent.position.y + (diff.y * knockBackDist));
-        targetPos = new Vector2(target.transform.parent.position.x + (diff.x * knockBackDist), target.transform.parent.position.y + (diff.y * knockBackDist));
-        
-        knockedBack = true;
-        transform.parent.gameObject.GetComponent<Unit>().isKnockedBack = knockedBack;
-    }
-
-    IEnumerator MoveBack(GameObject objToMove)
-    {
-        if (knockedBack)
-        {
-            objToMove.transform.parent.position = Vector2.MoveTowards(objToMove.transform.parent.position, targetPos, speed * Time.deltaTime);
-        }
-        yield return new WaitForSeconds(0f);
     }
 }

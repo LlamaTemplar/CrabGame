@@ -5,10 +5,13 @@ using UnityEngine;
 public class Player : Unit
 {
 	private LevelManager levelManager;
+	private bool isEating = false;
+	private bool missed = false;
 
 	private void Awake()
 	{
 		healthBar = GameObject.FindGameObjectWithTag("Player Healthbar").GetComponent<HealthBar>();
+		staminaBar = GameObject.FindGameObjectWithTag("Player Staminabar").GetComponent<HealthBar>();
 		levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
 	}
 
@@ -16,7 +19,7 @@ public class Player : Unit
     {
 		base.Die();
 
-        // Death Animation
+		// Death Animation
 
         Destroy(gameObject);
         
@@ -24,4 +27,42 @@ public class Player : Unit
         print("Game Over");
 		levelManager.LoadScene(1);
 	}
+
+	public void Heal(int hp)
+	{
+		currentHP += hp;
+		if (currentHP > startingHP)
+		{
+			currentHP = startingHP;
+		}
+		GetHealthBar().SetHealth(currentHP);
+	}
+
+	public void PlayEatSound()
+	{
+		if (isEating)
+		{
+			soundPlayer.StopSound("Eating");
+			isEating = false;
+		}
+		soundPlayer.PlaySound("Eating");
+		isEating = true;
+	}
+
+	public void PlayMissSound()
+	{
+		if (missed)
+		{
+			soundPlayer.StopSound("Missing");
+			missed = false;
+		}
+		soundPlayer.PlaySound("Missing");
+		missed = true;
+	}
+
+	// Kept for reference, implemented in DeathSoundPlayer
+	/*public void PlayDieSound()
+	{
+		soundPlayer.PlaySound("Die");
+	}*/
 }

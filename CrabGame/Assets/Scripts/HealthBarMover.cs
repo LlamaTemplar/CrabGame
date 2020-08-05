@@ -6,30 +6,36 @@ public class HealthBarMover : MonoBehaviour
 {
 	public HealthBar hpBarPrefab;
 	private HealthBar hpBar;
-	public Unit parent;
+	public HealthBar staminaBarPrefab;
+	private HealthBar staminaBar;
+	public Unit parentUnit;
 
 	void Awake()
 	{
 		hpBar = Instantiate(hpBarPrefab);
+		staminaBar = Instantiate(staminaBarPrefab);
+
+		// Make it visible in the UI
 		hpBar.transform.SetParent(FindObjectOfType<Canvas>().transform);
-		if (parent.GetHealthBar() == null)
-			parent.SetHealthBar(hpBar);
+
+		// Connect to Parent Unit
+		if (parentUnit.GetHealthBar() == null)
+			parentUnit.SetHealthBar(hpBar);
+
+		if (parentUnit.GetStaminaBar() == null)
+			parentUnit.SetStaminaBar(staminaBar);
 	}
 
     // Update is called once per frame
     void Update()
     {
-		UpdateHPBarPosAndVis();
+		UpdateHealthBarPosition();
 	}
 
-	// Update HPBar position and enemy/ally state
-	private void UpdateHPBarPosAndVis()
+	// Update HPBar position
+	private void UpdateHealthBarPosition()
 	{
-		// Position bar
 		Vector3 barPosition = new Vector3(transform.position.x, transform.position.y + 1, 0);
-
-		if (!hpBar.gameObject.activeSelf)
-			hpBar.gameObject.SetActive(true);
 
 		RectTransform rect = hpBar.GetComponent<RectTransform>();
 

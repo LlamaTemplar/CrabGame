@@ -9,6 +9,7 @@ TagManager:
   - Level Manager
   - Player Arm
   - Enemy Arm
+  - Player Staminabar
   layers:
   - Default
   - TransparentFX

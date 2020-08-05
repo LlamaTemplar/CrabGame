@@ -293,8 +293,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
-  knockBackDist: 1
-  speed: 4
+  dmgToStamina: 10
 --- !u!58 &6513028871387379177
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -310,7 +309,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.14
 --- !u!1 &6513028871384776671
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +323,6 @@ GameObject:
   - component: {fileID: 6513028871384776664}
   - component: {fileID: 6513028871384776646}
   - component: {fileID: 989214978747978595}
-  - component: {fileID: 5065685254445465653}
   - component: {fileID: 1742263570}
   m_Layer: 8
   m_Name: Player
@@ -346,7 +344,6 @@ Transform:
   m_Children:
   - {fileID: 5808665835304905985}
   - {fileID: 6369545946092152655}
-  - {fileID: 5216150546674437256}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -400,13 +397,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6513028871384776671}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd6e003dd321f7b45984a47ed970b31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turningMechanics: 0
   walkSpeed: 6
+  ogWalkSpeed: 6
   notStrafingPenalty: 0.3
   whileRotatingPenalty: 0.5
   rotateSpeed: 100
@@ -424,27 +421,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHP: 100
   currentHP: 0
+  startingStamina: 70
+  currentStamina: 0
+  staminaNum: 5
   isBlocking: 0
+  soundPlayer: {fileID: 0}
   isWalking: 0
   once: 0
   isPunching: 0
---- !u!114 &5065685254445465653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6513028871384776671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b1588051e5f6d47aba01906deb40c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turningMechanics: 0
-  walkSpeed: 6
-  notStrafingPenalty: 0.3
-  whileRotatingPenalty: 0.5
-  rotateSpeed: 100
+  knockBackDist: 1
+  speed: 4
+  isKnockedBack: 0
+  knockTimeLength: 3
 --- !u!114 &1742263570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,14 +450,36 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dea911d693afc90478a463e466de8a09, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
     loop: 1
     playOnAwake: 0
   - clipName: Punching
-    clip: {fileID: 8300000, guid: 0180e252c33c79747a10f34aceb5c7d7, type: 3}
+    clip: {fileID: 8300000, guid: 085e4b6aefb31534b8b77c9464da5bd2, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 0.5
+    loop: 0
+    playOnAwake: 0
+  - clipName: Eating
+    clip: {fileID: 8300000, guid: ececbc4563e260d499e0edab93ea41dd, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: Missing
+    clip: {fileID: 8300000, guid: fe03780ef69b0f04bb21919252ead721, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: BeingHit
+    clip: {fileID: 8300000, guid: f6ce2ceadbdf5ae4c92cd7401cbf03b4, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    loop: 0
+    playOnAwake: 0
+  - clipName: Die
+    clip: {fileID: 8300000, guid: 6b82c995fc6c78a428400b8eb0df64d3, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
     loop: 0
     playOnAwake: 0
 --- !u!1 &6513028871737283037
@@ -576,8 +586,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
-  knockBackDist: 1
-  speed: 4
+  dmgToStamina: 10
 --- !u!58 &6513028871387379178
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -593,79 +602,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.12
---- !u!1001 &1729755035
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6513028871384776667}
-    m_Modifications:
-    - target: {fileID: 5216150547159366510, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_Name
-      value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 46807750df27d864eacfa0a73e72ee24, type: 3}
---- !u!4 &5216150546674437256 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5216150547159366419, guid: 46807750df27d864eacfa0a73e72ee24,
-    type: 3}
-  m_PrefabInstance: {fileID: 1729755035}
-  m_PrefabAsset: {fileID: 0}
+  m_Radius: 0.14
