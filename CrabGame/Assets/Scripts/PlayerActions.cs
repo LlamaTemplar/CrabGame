@@ -299,7 +299,7 @@ public class PlayerActions : MonoBehaviour
 
         if (rightArm.GetComponent<Arm>().GetTheEnemy() == null)
         {
-            gameObject.GetComponent<Player>().PlayMissSound();
+            gameObject.GetComponent<Unit>().PlayMissSound();
         }
         rightArm.GetComponent<Arm>().SetTheEnemyNull();
 
@@ -345,7 +345,7 @@ public class PlayerActions : MonoBehaviour
 
         if (leftArm.GetComponent<Arm>().GetTheEnemy() == null)
         {
-            gameObject.GetComponent<Player>().PlayMissSound();
+            gameObject.GetComponent<Unit>().PlayMissSound();
         }
         leftArm.GetComponent<Arm>().SetTheEnemyNull();
 

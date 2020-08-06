@@ -24,6 +24,8 @@ public class Unit : MonoBehaviour
     public bool isPunching = false;
     // For Being Hit Sound
     private bool beenHit = false;
+    // FOr Missing Sound
+    private bool missed = false;
 
     // For Knock Back
     [Range(0.1f, 1f)]
@@ -74,7 +76,7 @@ public class Unit : MonoBehaviour
     {
         CheckIfWalking();
         PlayWalkingSound(isWalking);
-
+        
         // use a timer insetad of checking if the current pos is at target pos
         // targetpos - currentpos = abs(value) check if less than 0.1
         if (isKnockedBack)
@@ -166,6 +168,7 @@ public class Unit : MonoBehaviour
 
     private void CheckIfWalking()
     {
+        
         if (oldPos != transform.position)
         {
             isWalking = true;
@@ -188,16 +191,14 @@ public class Unit : MonoBehaviour
             if (once == false)
             {
                 soundPlayer.PlaySound("Walking");
+                print("Player Walk");
                 once = true;
             }
         }
         else
         {
-            if (once == true)
-            {
-                soundPlayer.StopSound("Walking");
-                once = false;
-            }
+            soundPlayer.StopSound("Walking");
+            once = false;
         }
     }
 
@@ -247,5 +248,17 @@ public class Unit : MonoBehaviour
             isKnockedBack = false;
             knockTime = 0;
         }
+    }
+
+    public void PlayMissSound()
+    {
+        if (missed)
+        {
+            soundPlayer.StopSound("Missing");
+            missed = false;
+        }
+        print("Miss Sound Played");
+        soundPlayer.PlaySound("Missing");
+        missed = true;
     }
 }
