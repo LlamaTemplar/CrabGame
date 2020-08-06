@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     // For Both Arms
-    private float incrementByNum = 0.01f;
+    private float incrementByNum = 0.2f;
     private float currentIncrement = 0f;
-    private float incrementTotal = 0.08f;
+    private float incrementTotal = 2f;
 
     // Right Arm variables
     public GameObject rightArm;
