@@ -68,7 +68,7 @@ public class Arm : MonoBehaviour
     {
         if (gameObject.CompareTag("Player Arm"))
         {
-            if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
+            if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().currentAction == EnemyAction.Block)
             {
                 theEnemy = col.gameObject;
                 currentDamage = 0;
@@ -78,7 +78,7 @@ public class Arm : MonoBehaviour
             else if (col.gameObject.CompareTag("Enemy"))
             {
                 theEnemy = col.gameObject;
-                if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
+                if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().currentAction != EnemyAction.Block)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
                     col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);

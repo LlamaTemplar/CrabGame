@@ -26,16 +26,16 @@ public class EnemyActions : MonoBehaviour
     public float startCooldown = 1f;
 
     public float attackDistance = 4;
-    public bool isAttacking = false;
 
     public float blockDistance = 4;
-    public bool isBlocking = false;
     public float blockTimer = -1;
     private float lengthOfBlock = 2.5f;
     // Will most likely be removed these 3 lines after adding animations
     private Vector3 rightBlockPos;
     private Vector3 leftBlockPos;
     public GameObject subBlockSprite;
+
+    private bool once;
 
     // Start is called before the first frame update
     void Start()
@@ -59,54 +59,15 @@ public class EnemyActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If action is block, but if we don't have both arms to block, then just attack
-        if (currentAction == EnemyAction.Block && (rightArm.GetComponent<Arm>().loseArm == true || leftArm.GetComponent<Arm>().loseArm == true))
-        {
-            currentAction = EnemyAction.Attack;
-        }
-        else if (rightArm.GetComponent<Arm>().loseArm == true && leftArm.GetComponent<Arm>().loseArm == true)// If both arms are lost then crab can't do anything
-        {
-            currentAction = EnemyAction.None;
-        }
-
         // If cooldown is not counting down...
         if (cooldown <= 0)
         {
-            cooldown = 0;
-            // If the Player is Range...
-            if (canAct == true)
-            {
-                // If current action is Attack
-                if (currentAction == EnemyAction.Attack)
-                {
-                    if (isBlocking == false)
-                    {
-                        // The enemy is attacking
-                        isAttacking = true;
-                    }
-                }
-                else if (currentAction == EnemyAction.Block)// If action is block
-                {
-                    if (isAttacking == false)
-                    {
-                        // This if statement should only be used once instead of looping
-                        if (isBlocking == false)
-                        {
-                            blockTimer = lengthOfBlock;
-                        }
-
-                        // The enemy is blocking
-                        isBlocking = true;
-                    }
-                }
-            }
-
-            if (isAttacking)
+            if (currentAction == EnemyAction.Attack)
             {
                 //Attack Code
                 Attack();
             }
-            else if (isBlocking)
+            else if (currentAction == EnemyAction.Block)
             {
                 // Block Code
                 Block();
@@ -124,20 +85,14 @@ public class EnemyActions : MonoBehaviour
                 rightArm.transform.localPosition = rightOGpos;
                 leftArm.transform.localPosition = leftOGpos;
             }
-
         }
 
         // Blocktimer begins when its greater than 0
-        if (blockTimer > 0 && isBlocking == true)
+        if (blockTimer > 0 && currentAction == EnemyAction.Block)
         {
             blockTimer -= Time.deltaTime;
-            if (rightArm.GetComponent<Arm>().loseArm == true || leftArm.GetComponent<Arm>().loseArm == true)
-            {
-                blockTimer = 0;
-                isBlocking = false;
-            }
         }
-        else if(blockTimer <= 0 && isBlocking == true)// Unblock when timer is 0
+        else if(blockTimer < 0 && currentAction == EnemyAction.Block)// Unblock when timer is 0
         {
             blockTimer = 0;
             Unblock();
@@ -173,23 +128,21 @@ public class EnemyActions : MonoBehaviour
 
         gameObject.GetComponent<Unit>().PlayPunchingSound();
         currentIncrement = 0f;
-        // Enemy is no longer attacking 
-        isAttacking = false;
+
         // Start cooldown 
         cooldown = startCooldown;
 
         // New random action
         currentAction = (EnemyAction)Random.Range(0, 2);
-        // Increase Chance of Attacking
-        if (currentAction == EnemyAction.Block)
-        {
-            currentAction = (EnemyAction)Random.Range(0, 2);
-            //currentAction = EnemyAction.Attack;
-        }
     }
 
     void Block()
     {
+        if (once == false)
+        {
+            blockTimer = lengthOfBlock;
+            once = true;
+        }
         gameObject.GetComponent<Enemy>().isBlocking = true;
         rightArm.GetComponent<Arm>().SetCollider(true);
         leftArm.GetComponent<Arm>().SetCollider(true);
@@ -203,20 +156,19 @@ public class EnemyActions : MonoBehaviour
 
     void Unblock()
     {
+        once = false;
         // Undo blocking code
         gameObject.GetComponent<Enemy>().isBlocking = false;
         rightArm.GetComponent<Arm>().SetCollider(false);
         leftArm.GetComponent<Arm>().SetCollider(false);
 
-        // Enemy is no longer blocking 
-        isBlocking = false;
         subBlockSprite.SetActive(false);
         rightArm.transform.localPosition = rightOGpos;
         leftArm.transform.localPosition = leftOGpos;
 
         // Start cooldown 
         cooldown = startCooldown;
-        // Change ACtion to Attack, We don't want it to block immdiately again
-        currentAction = EnemyAction.Attack;
+        // New random action
+        currentAction = (EnemyAction)Random.Range(0, 2);
     }
 }
