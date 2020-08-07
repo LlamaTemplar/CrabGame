@@ -539,6 +539,39 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1098365983}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1179680645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1793090821695322659, guid: a4cec788140598e42be33e4dea1f71fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2938545436445950831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1179680649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179680645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b831729bf7846e448c704a94993450f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!111 &1179680650
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179680645}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1607216725
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +837,7 @@ PrefabInstance:
     - target: {fileID: 6513028871384776671, guid: 821a81fefd8464648b1511cf0885e618,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6513028871384776667, guid: 821a81fefd8464648b1511cf0885e618,
         type: 3}
@@ -929,6 +962,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938545435041801214, guid: a4cec788140598e42be33e4dea1f71fc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.285714
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938545435041801211, guid: a4cec788140598e42be33e4dea1f71fc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938545436350119508, guid: a4cec788140598e42be33e4dea1f71fc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4cec788140598e42be33e4dea1f71fc, type: 3}

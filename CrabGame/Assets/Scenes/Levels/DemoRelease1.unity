@@ -5018,6 +5018,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player with Art
       objectReference: {fileID: 0}
+    - target: {fileID: 2938545436605979923, guid: a4cec788140598e42be33e4dea1f71fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2938545436605979922, guid: a4cec788140598e42be33e4dea1f71fc,
         type: 3}
       propertyPath: m_LocalPosition.x

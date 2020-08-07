@@ -15,6 +15,8 @@ public class Unit : MonoBehaviour
 
     public bool isBlocking = false;
 
+    private Animator animator;
+
     // For Walking Sound
     public SoundPlayer soundPlayer;
     private Vector3 oldPos;
@@ -68,6 +70,12 @@ public class Unit : MonoBehaviour
         else
             print("This GameObject Doesn't have a Sound Player Component");
 
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
+        {
+            print("animator is missing");
+        }
+
         oldPos = transform.position;
     }
 
@@ -106,10 +114,22 @@ public class Unit : MonoBehaviour
                 staminaBar.SetHealth((int)currentStamina);
             }
         }
+        //UpdateOldPosition();
     }
 
     private void FixedUpdate()
     {
+        if (animator != null)
+        {
+            if (isWalking)
+            {
+                animator.SetBool("IsMove", true);
+            }
+            else
+            {
+                animator.SetBool("IsMove", false);
+            }
+        }
         UpdateOldPosition();
     }
 
@@ -191,7 +211,7 @@ public class Unit : MonoBehaviour
             if (once == false)
             {
                 soundPlayer.PlaySound("Walking");
-                print("Player Walk");
+                print("Walking");
                 once = true;
             }
         }
