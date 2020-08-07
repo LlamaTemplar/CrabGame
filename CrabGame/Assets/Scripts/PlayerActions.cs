@@ -258,6 +258,7 @@ public class PlayerActions : MonoBehaviour
             rightArm.GetComponent<Arm>().SetCollider(b);
             leftArm.GetComponent<Arm>().SetCollider(b);
             subBlockSprite.SetActive(false);
+            SetAnimations("block", false);
             SetAnimatorSpeed(1f);
         }
     }
