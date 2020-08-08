@@ -12,7 +12,7 @@ public class Gem : MonoBehaviour
         if(contact == "Player")
         {
 			ScoreManager gemManager = FindObjectOfType<ScoreManager>();
-			gemManager.AddGems(1);
+			gemManager.RemoveAlgae(1);
             collision.gameObject.GetComponent<Player>().PlayEatSound();
             collision.gameObject.GetComponent<Player>().Heal(healingNum);
 			Destroy(gameObject);

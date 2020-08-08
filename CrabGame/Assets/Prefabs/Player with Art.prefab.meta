@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:CrabGame/Assets/Prefabs/Player with Art.prefab.meta
 guid: a4cec788140598e42be33e4dea1f71fc
 PrefabImporter:
+=======
+guid: 693ba46859aa6674688fcdff03a7afad
+DefaultImporter:
+>>>>>>> levels:CrabGame/Assets/Scenes/Levels/Level02.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
