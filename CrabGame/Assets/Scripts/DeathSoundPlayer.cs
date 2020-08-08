@@ -7,6 +7,7 @@ public class DeathSoundPlayer : MonoBehaviour
     public SoundPlayer soundPlayer;
     private bool enemyDied = false;
     private GameObject player;
+    private bool playerOnce = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,10 @@ public class DeathSoundPlayer : MonoBehaviour
             PlayEnemyDeathSound();
         }
 
-        if (player == null)
+        if (player == null && playerOnce == false)
         {
+            playerOnce = true;
+            print("Player Death Sound Played");
             soundPlayer.PlaySound("PlayerDeath");
         }
     }
@@ -44,6 +47,7 @@ public class DeathSoundPlayer : MonoBehaviour
         {
             soundPlayer.StopSound("EnemyDeath");
         }
+        print("Enemy Death Sound Played");
         soundPlayer.PlaySound("EnemyDeath");
         enemyDied = false;
     }

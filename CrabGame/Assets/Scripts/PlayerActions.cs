@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     // For Both Arms
-    private float incrementByNum = 0.01f;
+    private float incrementByNum = 0.2f;
     private float currentIncrement = 0f;
-    private float incrementTotal = 0.08f;
+    private float incrementTotal = 2f;
+    private Animator animator;
+    public Animation animation;
 
     // Right Arm variables
     public GameObject rightArm;
@@ -50,6 +52,12 @@ public class PlayerActions : MonoBehaviour
         // Store Block positions
         rightBlockPos = new Vector3(rightArm.transform.localPosition.x - 0.05f, rightArm.transform.localPosition.y, rightArm.transform.localPosition.z);
         leftBlockPos = new Vector3(leftArm.transform.localPosition.x + 0.05f, leftArm.transform.localPosition.y, leftArm.transform.localPosition.z);
+
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
+        {
+            print("animator is missing");
+        }
     }
 
     // Update is called once per frame
@@ -238,6 +246,7 @@ public class PlayerActions : MonoBehaviour
             rightArm.GetComponent<Arm>().SetCollider(b);
             leftArm.GetComponent<Arm>().SetCollider(b);
             subBlockSprite.SetActive(true);
+            SetAnimations("block",true);
         }
         else
         {
@@ -249,6 +258,8 @@ public class PlayerActions : MonoBehaviour
             rightArm.GetComponent<Arm>().SetCollider(b);
             leftArm.GetComponent<Arm>().SetCollider(b);
             subBlockSprite.SetActive(false);
+            SetAnimations("block", false);
+            SetAnimatorSpeed(1f);
         }
     }
 
@@ -281,6 +292,7 @@ public class PlayerActions : MonoBehaviour
                 if (currentIncrement == 0)
                 {
                     gameObject.GetComponent<Unit>().PlayPunchingSound();
+                    SetAnimations("right", true);
                 }
                 currentIncrement += incrementByNum;
                 rightArm.transform.localPosition = new Vector3(rightArm.transform.localPosition.x, rightArm.transform.localPosition.y + incrementByNum, rightArm.transform.localPosition.z);
@@ -299,7 +311,7 @@ public class PlayerActions : MonoBehaviour
 
         if (rightArm.GetComponent<Arm>().GetTheEnemy() == null)
         {
-            gameObject.GetComponent<Player>().PlayMissSound();
+            gameObject.GetComponent<Unit>().PlayMissSound();
         }
         rightArm.GetComponent<Arm>().SetTheEnemyNull();
 
@@ -327,6 +339,7 @@ public class PlayerActions : MonoBehaviour
                 if (currentIncrement == 0)
                 {
                     gameObject.GetComponent<Unit>().PlayPunchingSound();
+                    SetAnimations("left",true);
                 }
                 currentIncrement += incrementByNum;
                 leftArm.transform.localPosition = new Vector3(leftArm.transform.localPosition.x, leftArm.transform.localPosition.y + incrementByNum, leftArm.transform.localPosition.z);
@@ -345,7 +358,7 @@ public class PlayerActions : MonoBehaviour
 
         if (leftArm.GetComponent<Arm>().GetTheEnemy() == null)
         {
-            gameObject.GetComponent<Player>().PlayMissSound();
+            gameObject.GetComponent<Unit>().PlayMissSound();
         }
         leftArm.GetComponent<Arm>().SetTheEnemyNull();
 
@@ -354,5 +367,29 @@ public class PlayerActions : MonoBehaviour
         leftDelay = leftStartDelay;
         // Begin cooldown
         leftCooldown = leftStartTime;
+    }
+
+    public void SetAnimations(string anim, bool b)
+    {
+        if (animator != null)
+        {
+            if (anim.Equals("left"))
+            {
+                animator.SetBool("IsAttack_LeftClaw", b);
+            }
+            else if(anim.Equals("right"))
+            {
+                animator.SetBool("IsAttack_RightClaw", b);
+            }
+            else if (anim.Equals("block"))
+            {
+                animator.SetBool("IsDefend",b);
+            }
+        }
+    }
+
+    public void SetAnimatorSpeed(float num)
+    {
+        animator.SetFloat("BlockAniSpd",num);
     }
 }
