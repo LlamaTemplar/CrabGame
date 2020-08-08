@@ -69,7 +69,7 @@ public class PlayerActions : MonoBehaviour
         {
             blockCooldown = 0;
             // Check if we still have both arms for blocking
-            if (leftArm.GetComponent<Arm>().loseArm == false && rightArm.GetComponent<Arm>().loseArm == false)
+            if (leftArm.GetComponent<Arm>().lostArm == false && rightArm.GetComponent<Arm>().lostArm == false)
             {
                 // If both arm keys are pressed and the both their delays are greater than 0
                 if ((Input.GetKey(KeyCode.K) && Input.GetKey(KeyCode.J)) && (rightDelay > 0 || leftDelay > 0))
@@ -118,7 +118,7 @@ public class PlayerActions : MonoBehaviour
         {
             rightCooldown = 0;
             // Check if we still have right arm
-            if (rightArm.GetComponent<Arm>().loseArm == false)
+            if (rightArm.GetComponent<Arm>().lostArm == false)
             {
                 // When key is pressed and the delay is at starting number and we are NOT blocking and the left arm is NOT winding up for attack
                 if (Input.GetKeyDown(KeyCode.K) && rightDelay == rightStartDelay && isBlocking == false && leftWindUp == false)
@@ -178,7 +178,7 @@ public class PlayerActions : MonoBehaviour
         {
             leftCooldown = 0;
             // Check if we still have left arm
-            if (leftArm.GetComponent<Arm>().loseArm == false)
+            if (leftArm.GetComponent<Arm>().lostArm == false)
             {
                 // When key is pressed and the delay is at starting number and we are NOT blocking and the right arm is NOT winding up for attack
                 if (Input.GetKeyDown(KeyCode.J) && leftDelay == leftStartDelay && isBlocking == false && rightWindUp == false)
