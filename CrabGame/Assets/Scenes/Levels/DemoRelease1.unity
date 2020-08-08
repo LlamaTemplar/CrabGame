@@ -577,11 +577,7 @@ Transform:
   - {fileID: 1149865867}
   - {fileID: 892255997}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
-  m_RootOrder: 11
-=======
   m_RootOrder: 9
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &449519117 stripped
 Transform:
@@ -807,11 +803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
-  m_RootOrder: 10
-=======
   m_RootOrder: 8
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &510874947
 PrefabInstance:
@@ -1331,11 +1323,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
-  m_RootOrder: 5
-=======
   m_RootOrder: 3
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &874805169
 PrefabInstance:
@@ -1602,11 +1590,7 @@ Transform:
   - {fileID: 1387307319}
   - {fileID: 2117113007}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
-  m_RootOrder: 3
-=======
   m_RootOrder: 1
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &970536307 stripped
 Transform:
@@ -2321,11 +2305,7 @@ RectTransform:
   - {fileID: 1841125196}
   - {fileID: 6232598999946472850}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
-  m_RootOrder: 4
-=======
   m_RootOrder: 2
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3201,11 +3181,7 @@ PrefabInstance:
     - target: {fileID: 7180708919373996980, guid: 0498c1c347d952243ab3ec33bce4d06d,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< Updated upstream
-      value: 6
-=======
       value: 4
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 7180708919373996980, guid: 0498c1c347d952243ab3ec33bce4d06d,
         type: 3}
@@ -3912,11 +3888,7 @@ PrefabInstance:
     - target: {fileID: 6493811793290197484, guid: 369713fc8de09dd41b3b30bddceb5b52,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< Updated upstream
-      value: 9
-=======
       value: 7
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6493811793290197484, guid: 369713fc8de09dd41b3b30bddceb5b52,
         type: 3}
@@ -4161,11 +4133,7 @@ Transform:
   - {fileID: 1278086966}
   - {fileID: 927924776}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
-  m_RootOrder: 7
-=======
   m_RootOrder: 5
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1979903441 stripped
 Transform:
@@ -4223,11 +4191,7 @@ PrefabInstance:
     - target: {fileID: 6078058020006227876, guid: cedd7e3b37b8ed94585863820b7efcd3,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< Updated upstream
-      value: 2
-=======
       value: 4
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 6078058020006227876, guid: cedd7e3b37b8ed94585863820b7efcd3,
         type: 3}
@@ -4701,11 +4665,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
-  m_RootOrder: 12
-=======
   m_RootOrder: 10
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2144856473
 MonoBehaviour:
@@ -5043,11 +5003,7 @@ PrefabInstance:
     - target: {fileID: 2422185456385883407, guid: e78a886f5aa919847a28dfeceb6ef7bd,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< Updated upstream
-      value: 8
-=======
       value: 6
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 2422185456385883407, guid: e78a886f5aa919847a28dfeceb6ef7bd,
         type: 3}

@@ -16,14 +16,4 @@ public class Enemy : Unit
 		Destroy(gameObject);
     }
 
-	public void PlayMissSound()
-	{
-		if (missed)
-		{
-			soundPlayer.StopSound("Missing");
-			missed = false;
-		}
-		soundPlayer.PlaySound("Missing");
-		missed = true;
-	}
 }
