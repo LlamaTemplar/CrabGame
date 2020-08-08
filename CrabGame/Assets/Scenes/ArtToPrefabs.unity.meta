@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:CrabGame/Assets/Scenes/ArtToPrefabs.unity.meta
 guid: e2c646636e7b606479ddc72b808417a6
+=======
+guid: 9f6a512b3407f89469a0dcce11314eb6
+>>>>>>> levels:CrabGame/Assets/Scenes/Levels/Level01.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
