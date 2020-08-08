@@ -4,7 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Enemy
+  - Player Healthbar
+  - Level Manager
   - Player Arm
+  - Enemy Arm
+  - Player Staminabar
+  - Camera Target
   layers:
   - Default
   - TransparentFX
@@ -14,12 +20,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Player Arm
+  - Enemy
+  - Enemy Arm
+  - Item
+  - Obstacle
   - 
   - 
   - 
@@ -41,4 +47,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 3927095255
+    locked: 0
+  - name: Wall
+    uniqueID: 2631139511
+    locked: 0
+  - name: Player
+    uniqueID: 3034121987
+    locked: 0
+  - name: CrabEnemy
+    uniqueID: 843964099
     locked: 0
