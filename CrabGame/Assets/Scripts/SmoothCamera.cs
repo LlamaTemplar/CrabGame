@@ -18,7 +18,7 @@ public class SmoothCamera : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		target = GameObject.FindGameObjectWithTag("Player").transform;
+		target = GameObject.FindGameObjectWithTag("Camera Target").transform;
 
 		// The camera always has to be a certain distance away in order to see anything
 		transform.position = target.position + Vector3.back * zDistance;

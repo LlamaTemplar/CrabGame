@@ -190,17 +190,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2118fccd8cd2d0c4f95dc7559560a10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 0
-  loseArm: 0
+  startingHP: 20
+  lostArm: 0
   itemInArm: 0
-  currentDamage: 0
-  ogDamage: 20
+  damage: 5
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
-  dmgToStamina: 10
+  dmgToStamina: 5
 --- !u!1 &1941599521139407855
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,14 +284,16 @@ MonoBehaviour:
   rightArm: {fileID: 8065800134819350708}
   leftArm: {fileID: 620453800784115124}
   currentAction: 0
-  cooldown: 0
-  startCooldown: 3
-  attackDistance: 4
-  isAttacking: 0
-  blockDistance: 4
-  isBlocking: 0
-  blockTimer: 0
+  actionTimer: -1
+  cooldownMin: 0.6
+  cooldownMax: 1.6
+  attackDistance: 5
+  blockTimer: -1
+  minBlockLength: 0.5
+  maxBlockLength: 1.5
   subBlockSprite: {fileID: 489163196171786216}
+  attacksInARow: 0
+  maxAttacksInARow: 2
 --- !u!50 &2472081839370865889
 Rigidbody2D:
   serializedVersion: 4
@@ -327,8 +328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sleepPoint: {fileID: 8634744839438154863}
-  aggroRange: 5
-  stoppingDistance: 2.5
+  aggroRange: 7
+  stoppingDistance: 2.3
   movementMechanics: 1
   useAggro: 1
   chasePastAggroRange: 1
@@ -354,28 +355,24 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c7a87ae5c18b89d45b8712db6a457d6e, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
     loop: 1
     playOnAwake: 0
   - clipName: Punching
     clip: {fileID: 8300000, guid: 11d673e931b53ef4991c04cfbad37d81, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 0.2
-    pitch: 1
     loop: 0
     playOnAwake: 0
   - clipName: Missing
     clip: {fileID: 8300000, guid: a32d5cd16c78731499eae1899243bd53, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
     loop: 0
     playOnAwake: 0
   - clipName: BeingHit
     clip: {fileID: 8300000, guid: 1f3c203f2e006124388cbfe0ba119782, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
     loop: 0
     playOnAwake: 0
 --- !u!1 &5347575390658328799
@@ -675,17 +672,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2118fccd8cd2d0c4f95dc7559560a10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 0
-  loseArm: 0
+  startingHP: 20
+  lostArm: 0
   itemInArm: 0
-  currentDamage: 0
-  ogDamage: 20
+  damage: 5
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
-  dmgToStamina: 10
+  dmgToStamina: 5
 --- !u!1 &8634744839438154863
 GameObject:
   m_ObjectHideFlags: 0

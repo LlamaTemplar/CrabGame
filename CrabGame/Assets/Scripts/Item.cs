@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
         if (transform.parent != null)
         {
             // If the player lost an arm while the item is Parented to it...
-            if (transform.parent.GetComponent<Arm>().loseArm == true)
+            if (transform.parent.GetComponent<Arm>().lostArm == true)
             {
                 // Destroy the item
                 Destroy(gameObject);
@@ -40,7 +40,7 @@ public class Item : MonoBehaviour
         if (col.gameObject.tag == "Player" && col.gameObject.name.Contains("Arm"))
         {
             // If the arm still has HP and isn't holding anything...
-            if (col.gameObject.GetComponent<Arm>().itemInArm == false && col.gameObject.GetComponent<Arm>().loseArm == false)
+            if (col.gameObject.GetComponent<Arm>().itemInArm == false && col.gameObject.GetComponent<Arm>().lostArm == false)
             {
                 // Turn off Collider(because it will use the arms colliders)
                 gameObject.GetComponent<Collider2D>().enabled = false;

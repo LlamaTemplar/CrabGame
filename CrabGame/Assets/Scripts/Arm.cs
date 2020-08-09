@@ -7,7 +7,7 @@ public class Arm : MonoBehaviour
     private Collider2D armCollider;
     private int startingHP = 20;
     public float currentHP;
-    public bool loseArm = false;
+    public bool lostArm = false;
     public bool itemInArm = false;
 
     // Change damage value between player and enemies
@@ -34,15 +34,15 @@ public class Arm : MonoBehaviour
     {
         if (currentHP <= 0)
         {
-            loseArm = true;
+            lostArm = true;
         }
         else if (currentHP >= startingHP)
         {
             currentHP = startingHP;
-            loseArm = false;
+            lostArm = false;
         }
 
-        if (loseArm)
+        if (lostArm)
         {
             currentHP += Time.deltaTime;
         }
@@ -68,7 +68,7 @@ public class Arm : MonoBehaviour
     {
         if (gameObject.CompareTag("Player Arm"))
         {
-            if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
+            if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().currentAction == EnemyAction.Block)
             {
                 theEnemy = col.gameObject;
                 currentDamage = 0;
@@ -78,7 +78,7 @@ public class Arm : MonoBehaviour
             else if (col.gameObject.CompareTag("Enemy"))
             {
                 theEnemy = col.gameObject;
-                if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
+                if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().currentAction != EnemyAction.Block)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
                     col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
@@ -120,7 +120,7 @@ public class Arm : MonoBehaviour
 
     public void TakeDamamge(int dmg)
     {
-        if (loseArm == false)
+        if (lostArm == false)
         {
             currentHP -= dmg;
         }

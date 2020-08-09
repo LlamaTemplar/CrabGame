@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6078058020006227879}
   - component: {fileID: 6078058020006227878}
   m_Layer: 0
-  m_Name: Aglae
+  m_Name: Algae
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b59b4801e35874fafae02eb323ad50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healingNum: 15
 --- !u!58 &6078058020006227878
 CircleCollider2D:
   m_ObjectHideFlags: 0

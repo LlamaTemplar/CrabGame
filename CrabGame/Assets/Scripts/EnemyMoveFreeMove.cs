@@ -66,11 +66,11 @@ public class EnemyMoveFreeMove : MonoBehaviour
 		player = FindObjectOfType<PlayerMovement>();
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
-		if(player != null)
+		if (player != null)
 		{
-			float deltaTime = Time.deltaTime;
+			float deltaTime = Time.fixedDeltaTime;
 
 			Vector3 dif = (player.transform.position - transform.position);
 			float dist = Vector3.SqrMagnitude(dif);
@@ -81,6 +81,7 @@ public class EnemyMoveFreeMove : MonoBehaviour
 			Vector3 sleepDif = (sleepPoint.transform.position - transform.position);
 			float sleepDist = Vector3.SqrMagnitude(sleepDif);
 
+			// Should the enemy only chase sometimes
 			if (useAggro)
 			{
 				if ((chasePastAggroRange ? dist : aggroDist) < aggroRange * aggroRange)
@@ -101,6 +102,7 @@ public class EnemyMoveFreeMove : MonoBehaviour
 			else
 				state = EnemyState.Aggro;
 
+			// Stop moving while knocked back
 			if (gameObject.GetComponent<Unit>().isKnockedBack)
 			{
 				walkSpeed = 0;
@@ -108,8 +110,7 @@ public class EnemyMoveFreeMove : MonoBehaviour
 			else
 			{
 				walkSpeed = useFastSpeed ? walkSpeedFast : walkSpeedSlow;
-			}
-			
+			}	
 
 			if (state == EnemyState.Aggro)
 			{
