@@ -190,10 +190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2118fccd8cd2d0c4f95dc7559560a10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHP: 20
+  currentHP: 0
   lostArm: 0
   itemInArm: 0
-  damage: 5
+  currentDamage: 0
+  ogDamage: 5
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
@@ -287,7 +288,6 @@ MonoBehaviour:
   actionTimer: -1
   cooldownMin: 0.6
   cooldownMax: 1.6
-  attackDistance: 5
   blockTimer: -1
   minBlockLength: 0.5
   maxBlockLength: 1.5
@@ -672,10 +672,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2118fccd8cd2d0c4f95dc7559560a10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHP: 20
+  currentHP: 0
   lostArm: 0
   itemInArm: 0
-  damage: 5
+  currentDamage: 0
+  ogDamage: 5
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:

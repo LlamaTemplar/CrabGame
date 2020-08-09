@@ -17,7 +17,7 @@ public class ScoreManager : MonoBehaviour
 
 	private void Awake()
 	{
-		if (algaeScore == null) algaeScore = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
+		if (algaeScore == null) algaeScore = GameObject.FindGameObjectWithTag("Score Text").GetComponent<TextMeshProUGUI>();
 
 		levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
 	}
