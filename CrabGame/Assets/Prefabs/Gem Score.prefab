@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1702925614431175680}
   m_Layer: 5
   m_Name: Gem Text (TMP)
-  m_TagString: Untagged
+  m_TagString: Score Text
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

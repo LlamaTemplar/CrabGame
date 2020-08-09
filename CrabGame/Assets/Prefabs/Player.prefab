@@ -283,11 +283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2118fccd8cd2d0c4f95dc7559560a10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 0
-  loseArm: 0
+  startingHP: 20
+  lostArm: 0
   itemInArm: 0
-  currentDamage: 0
-  ogDamage: 40
+  damage: 10
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:
@@ -326,7 +325,7 @@ GameObject:
   - component: {fileID: 1742263570}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Camera Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -450,42 +449,36 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dea911d693afc90478a463e466de8a09, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
     loop: 1
     playOnAwake: 0
   - clipName: Punching
-    clip: {fileID: 8300000, guid: 0180e252c33c79747a10f34aceb5c7d7, type: 3}
+    clip: {fileID: 8300000, guid: 085e4b6aefb31534b8b77c9464da5bd2, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 0.5
-    pitch: 1
     loop: 0
     playOnAwake: 0
   - clipName: Eating
     clip: {fileID: 8300000, guid: ececbc4563e260d499e0edab93ea41dd, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
     loop: 0
     playOnAwake: 0
   - clipName: Missing
     clip: {fileID: 8300000, guid: fe03780ef69b0f04bb21919252ead721, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
     loop: 0
     playOnAwake: 0
   - clipName: BeingHit
     clip: {fileID: 8300000, guid: f6ce2ceadbdf5ae4c92cd7401cbf03b4, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
     loop: 0
     playOnAwake: 0
   - clipName: Die
     clip: {fileID: 8300000, guid: 6b82c995fc6c78a428400b8eb0df64d3, type: 3}
     audioMixerGroup: {fileID: 0}
     volume: 1
-    pitch: 1
     loop: 0
     playOnAwake: 0
 --- !u!1 &6513028871737283037
@@ -582,11 +575,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2118fccd8cd2d0c4f95dc7559560a10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 0
-  loseArm: 0
+  startingHP: 20
+  lostArm: 0
   itemInArm: 0
-  currentDamage: 0
-  ogDamage: 40
+  damage: 10
   attacking: 0
   attackRadius: 0.4
   whatIsEnemy:

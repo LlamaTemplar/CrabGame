@@ -6,7 +6,6 @@ public class Player : Unit
 {
 	private LevelManager levelManager;
 	private bool isEating = false;
-	private bool missed = false;
 
 	private void Awake()
 	{
@@ -45,23 +44,8 @@ public class Player : Unit
 			soundPlayer.StopSound("Eating");
 			isEating = false;
 		}
+		print("Eating Sound played");
 		soundPlayer.PlaySound("Eating");
 		isEating = true;
-	}
-
-	public void PlayMissSound()
-	{
-		if (missed)
-		{
-			soundPlayer.StopSound("Missing");
-			missed = false;
-		}
-		soundPlayer.PlaySound("Missing");
-		missed = true;
-	}
-
-	public void PlayDieSound()
-	{
-		soundPlayer.PlaySound("Die");
 	}
 }

@@ -10,6 +10,8 @@ TagManager:
   - Player Arm
   - Enemy Arm
   - Player Staminabar
+  - Camera Target
+  - Score Text
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class Arm : MonoBehaviour
     private Collider2D armCollider;
     private int startingHP = 20;
     public float currentHP;
-    public bool loseArm = false;
+    public bool lostArm = false;
     public bool itemInArm = false;
 
     // Change damage value between player and enemies
@@ -34,15 +34,15 @@ public class Arm : MonoBehaviour
     {
         if (currentHP <= 0)
         {
-            loseArm = true;
+            lostArm = true;
         }
         else if (currentHP >= startingHP)
         {
             currentHP = startingHP;
-            loseArm = false;
+            lostArm = false;
         }
 
-        if (loseArm)
+        if (lostArm)
         {
             currentHP += Time.deltaTime;
         }
@@ -51,15 +51,11 @@ public class Arm : MonoBehaviour
     public void SetAttackingTrue()
     {
         attacking = true;
-        //armCollider.enabled = true;
-        //SetCollider(attacking);
     }
 
     public void SetAttackingFalse()
     {
         attacking = false;
-        //armCollider.enabled = false;
-        //SetCollider(attacking);
         currentDamage = ogDamage;
     }
 
@@ -68,40 +64,35 @@ public class Arm : MonoBehaviour
         armCollider.enabled = b;
     }
 
-    // Dmage Problem
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (gameObject.CompareTag("Player Arm"))
         {
-            //print(currentDamage);
-            if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
+            if (col.gameObject.CompareTag("Enemy Arm") && col.gameObject.GetComponentInParent<EnemyActions>().currentAction == EnemyAction.Block)
             {
+                theEnemy = col.gameObject;
                 currentDamage = 0;
+                // Hey Cole, we can play a sound for when you punch someone guarding here
                 col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
-                //print(currentDamage);
             }
             else if (col.gameObject.CompareTag("Enemy"))
             {
                 theEnemy = col.gameObject;
-                if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking == false)
+                if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().currentAction != EnemyAction.Block)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
                     col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
                     attacking = false;
                 }
-                /*else if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().isBlocking)
-                {
-                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
-                    col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
-                    attacking = false;
-                }*/
             }
         }
         else if (gameObject.CompareTag("Enemy Arm"))
         {
             if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
             {
+                theEnemy = col.gameObject;
                 currentDamage = 0;
+                // Hey Cole, we can play a sound for when you punch someone guarding here
                 col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
             }
             else if (col.gameObject.CompareTag("Player"))
@@ -113,13 +104,6 @@ public class Arm : MonoBehaviour
                     col.gameObject.GetComponentInParent<Player>().TakeKnockBack(transform.parent.position);
                     attacking = false;
                 }
-                /*else if (attacking && col.gameObject.GetComponentInParent<PlayerActions>().isBlocking)
-                {
-                    col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
-                    col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
-                    attacking = false;
-                    //print("hit");
-                }*/
             }
         }
     }
@@ -136,7 +120,7 @@ public class Arm : MonoBehaviour
 
     public void TakeDamamge(int dmg)
     {
-        if (loseArm == false)
+        if (lostArm == false)
         {
             currentHP -= dmg;
         }
