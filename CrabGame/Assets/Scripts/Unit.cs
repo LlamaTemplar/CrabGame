@@ -73,7 +73,8 @@ public class Unit : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         if (animator == null)
         {
-            print("animator is missing");
+            // no animator yet
+            //print("animator is missing");
         }
 
         oldPos = transform.position;
