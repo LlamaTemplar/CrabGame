@@ -328,8 +328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sleepPoint: {fileID: 8634744839438154863}
-  aggroRange: 7
-  stoppingDistance: 2.3
+  aggroRange: 5
+  stoppingDistance: 2
   movementMechanics: 1
   useAggro: 1
   chasePastAggroRange: 1

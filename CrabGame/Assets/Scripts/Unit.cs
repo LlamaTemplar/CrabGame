@@ -211,7 +211,7 @@ public class Unit : MonoBehaviour
             if (once == false)
             {
                 soundPlayer.PlaySound("Walking");
-                print("Walking");
+                //print("Walking");
                 once = true;
             }
         }
@@ -277,7 +277,7 @@ public class Unit : MonoBehaviour
             soundPlayer.StopSound("Missing");
             missed = false;
         }
-        print("Miss Sound Played");
+        //print("Miss Sound Played");
         soundPlayer.PlaySound("Missing");
         missed = true;
     }
