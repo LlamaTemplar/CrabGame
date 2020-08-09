@@ -3389,16 +3389,6 @@ PrefabInstance:
       propertyPath: knockBackDist
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 98370770425922434, guid: a970c3348da763b4d8b6fe9cd35c22df,
-        type: 3}
-      propertyPath: ogDamage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 181145340871788935, guid: a970c3348da763b4d8b6fe9cd35c22df,
-        type: 3}
-      propertyPath: ogDamage
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7850706812690089019, guid: a970c3348da763b4d8b6fe9cd35c22df,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3920,6 +3910,11 @@ PrefabInstance:
       propertyPath: gemNumCondition
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6493811793290197493, guid: 369713fc8de09dd41b3b30bddceb5b52,
+        type: 3}
+      propertyPath: AlgaeRootObject
+      value: 
+      objectReference: {fileID: 400433583}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 369713fc8de09dd41b3b30bddceb5b52, type: 3}
 --- !u!1001 &1893815262
@@ -5103,6 +5098,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938545436605980142, guid: a4cec788140598e42be33e4dea1f71fc,
+        type: 3}
+      propertyPath: rightStartTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938545436605980142, guid: a4cec788140598e42be33e4dea1f71fc,
+        type: 3}
+      propertyPath: leftStartTime
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4cec788140598e42be33e4dea1f71fc, type: 3}
