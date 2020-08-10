@@ -89,15 +89,7 @@ public class Unit : MonoBehaviour
         // targetpos - currentpos = abs(value) check if less than 0.1
         if (isKnockedBack)
         {
-            if (knockTime > 0)
-            {
-                KeepMoving(transform.position);
-                knockTime -= Time.deltaTime;
-            }
-            else
-            {
-                knockTime = knockTimeLength;
-            }
+            KeepMoving(transform.position);
         }
 
         if (staminaBar != null)
@@ -259,14 +251,23 @@ public class Unit : MonoBehaviour
 
     private void KeepMoving(Vector2 unitObject)
     {
-        if (Mathf.Abs(targetPos.x - unitObject.x) > 0.1 && Mathf.Abs(targetPos.y - unitObject.y) > 0.1)
+        if (knockTime > 0)
         {
-            BeingKnockedBack();
+            knockTime -= Time.deltaTime;
+            if (Mathf.Abs(targetPos.x - unitObject.x) > 0.1 && Mathf.Abs(targetPos.y - unitObject.y) > 0.1)
+            {
+                BeingKnockedBack();
+            }
+            else
+            {
+                isKnockedBack = false;
+                knockTime = 0;
+            }
         }
         else
         {
+            knockTime = knockTimeLength;
             isKnockedBack = false;
-            knockTime = 0;
         }
     }
 

@@ -9,7 +9,6 @@ public class PlayerActions : MonoBehaviour
     private float currentIncrement = 0f;
     private float incrementTotal = 2f;
     private Animator animator;
-    public Animation animation;
 
     // Right Arm variables
     public GameObject rightArm;
