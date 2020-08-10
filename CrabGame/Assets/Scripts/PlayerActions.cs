@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
+
+    private Player player;
+    private bool isAttacking = false;
+    
+
     // For Both Arms
     private float incrementByNum = 0.2f;
     private float currentIncrement = 0f;
     private float incrementTotal = 2f;
     private Animator animator;
-    public Animation animation;
 
     // Right Arm variables
     public GameObject rightArm;
@@ -41,22 +45,28 @@ public class PlayerActions : MonoBehaviour
     struct PlayerArm
     {
         public GameObject arm;
-        public float coolDown;
-        public float windUp;
-        public float delay;
+        public float postAttackCoolDown;
+        //public bool windUp;
+        public float punchExtentsion;
+        public float timeToCancelAttack;
         public Vector3 startingPos;
     }
 
     PlayerArm[] arms = new PlayerArm[2];
+    private PlayerArm attackingArm;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GetComponent<Player>();
+
         // left arm
-        arms[0].delay = leftStartDelay;
+        arms[0].timeToCancelAttack = 0.2f;
+        arms[0].punchExtentsion = arms[0].timeToCancelAttack;
         arms[0].startingPos = leftArm.transform.localPosition;
         // right arm
-        arms[1].delay = rightStartDelay;
+        arms[1].timeToCancelAttack = 0.2f;
+        arms[1].punchExtentsion = arms[1].timeToCancelAttack;
         arms[1].startingPos = rightArm.transform.localPosition;
 
         // Delays for the attacks
@@ -95,6 +105,31 @@ public class PlayerActions : MonoBehaviour
         {
             blockCooldown -= Time.deltaTime;
         }
+
+
+        // assuming only one is true
+        var leftAttack = HasLeftPunchInput();
+        var rightAttack = HasRightPunchInput();
+        var attackInput = leftAttack || rightAttack;
+        var attackingArm = leftAttack ? arms[0] : arms[1];
+
+        
+        if (isAttacking)
+        {
+            // increment punchExtension
+
+            // check for block
+                // block
+                // reset punchExtension
+
+            // attack();
+        } 
+        else if (attackInput && CheckCanAttack(attackingArm)) // start attack
+        {
+            this.attackingArm = attackingArm;
+            isAttacking = true;   
+        }
+
 
         // Checks if the right arm button is pressed and if the cooldowntime is at 0
         if (rightCooldown <= 0)
@@ -229,8 +264,23 @@ public class PlayerActions : MonoBehaviour
         return Input.GetKeyDown(KeyCode.K) && rightDelay == rightStartDelay && isBlocking == false && leftWindUp == false;
     }
 
+    bool CheckCanAttack(PlayerArm arm)
+    {
+        if(arm.postAttackCoolDown >= 0)
+        {
+            return false;
+        }
+        else if(arm.punchExtentsion != arm.timeToCancelAttack)
+        {
+            return false;
+        }
+        else if(isBlocking == true)
+        {
+            return false;
+        }
 
-
+        return true;
+    }
 
     bool HasBlockInput()
     {
@@ -266,7 +316,7 @@ public class PlayerActions : MonoBehaviour
     // Check if the player can start blocking
     bool CheckCanBlock()
     {      
-        if (gameObject.GetComponent<Player>().currentStamina < 0)
+        if (player.currentStamina < 0)
         {
             return false;
         }
@@ -274,7 +324,7 @@ public class PlayerActions : MonoBehaviour
         {
             return false;
         }
-        else if(rightDelay <= 0 || leftDelay <= 0)
+        else if (rightDelay <= 0 || leftDelay <= 0)
         {
             return false;
         }
