@@ -6,6 +6,8 @@ public class EventCaller : MonoBehaviour
 {
     private PlayerActions playerActions;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +23,13 @@ public class EventCaller : MonoBehaviour
     public void SetLeftPunchFalse()
     {
         playerActions.SetAnimations("left",false);
+        playerActions.isAttacking = false;
     }
 
     public void SetRightPunchFalse()
     {
         playerActions.SetAnimations("right", false);
+        playerActions.isAttacking = false;
     }
 
     public void PauseBlock()

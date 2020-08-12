@@ -82,6 +82,7 @@ public class Unit : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+
     {
         CheckIfWalking();
         PlayWalkingSound(isWalking);
@@ -115,11 +116,7 @@ public class Unit : MonoBehaviour
                 staminaBar.SetHealth((int)currentStamina);
             }
         }
-        //UpdateOldPosition();
-    }
-
-    private void FixedUpdate()
-    {
+        
         if (animator != null)
         {
             if (isWalking)
@@ -131,7 +128,14 @@ public class Unit : MonoBehaviour
                 animator.SetBool("IsMove", false);
             }
         }
+        
         UpdateOldPosition();
+    }
+
+    private void FixedUpdate()
+    {
+        
+       // UpdateOldPosition();
     }
 
     protected virtual void Die()
