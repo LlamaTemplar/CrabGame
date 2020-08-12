@@ -23,13 +23,13 @@ public class EventCaller : MonoBehaviour
     public void SetLeftPunchFalse()
     {
         playerActions.SetAnimations("left",false);
-        playerActions.isAttacking = false;
+        playerActions.DestoryHitBlock();
     }
 
     public void SetRightPunchFalse()
     {
         playerActions.SetAnimations("right", false);
-        playerActions.isAttacking = false;
+        playerActions.DestoryHitBlock();
     }
 
     public void PauseBlock()

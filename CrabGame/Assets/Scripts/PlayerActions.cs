@@ -12,6 +12,8 @@ public class PlayerActions : MonoBehaviour
     public float punchExtentsion;
     public float timeToCancelAttack = 0.2f;
     private HitBox hitBox;
+    private string hitBoxName = "HitBox";
+    private int damage = 40;
 
     // For Both Arms
     private float incrementByNum = 0.2f;
@@ -190,9 +192,18 @@ public class PlayerActions : MonoBehaviour
     {
         // need to check if destoryed later..no errors on playtime!
         hitBox = new GameObject().AddComponent<HitBox>();
+        hitBox.gameObject.name = "hitBox";
         hitBox.transform.parent = this.transform;
         hitBox.transform.position = transform.position + transform.right;
-        hitBox.InitializeHitBox(LayerMask.GetMask("Enemy"));
+        hitBox.transform.rotation = this.transform.rotation;
+        hitBox.InitializeHitBox(damage, LayerMask.GetMask("Enemy"));
+    }
+
+    public void DestoryHitBlock()
+    {
+        Destroy(hitBox.gameObject);
+        isAttacking = false;
+        punchExtentsion = timeToCancelAttack;
     }
 
     bool HasBlockInput()
