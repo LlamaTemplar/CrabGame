@@ -198,7 +198,9 @@ public class PlayerActions : MonoBehaviour
 
     public void DestoryHitBlock()
     {
-        Destroy(hitBox.gameObject);
+        // BUG: sometimes hitbox would be null for some reason and this method gets called
+        // playeractions would stop working afterwards
+        if(hitBox) Destroy(hitBox.gameObject);
         isAttacking = false;
         punchExtentsion = timeToCancelAttack;
     }
