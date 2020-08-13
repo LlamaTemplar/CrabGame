@@ -44,7 +44,7 @@ public class Player : Unit
 			soundPlayer.StopSound("Eating");
 			isEating = false;
 		}
-		print("Eating Sound played");
+		//print("Eating Sound played");
 		soundPlayer.PlaySound("Eating");
 		isEating = true;
 	}

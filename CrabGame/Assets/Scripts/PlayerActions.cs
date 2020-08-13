@@ -1,9 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerActions : MonoBehaviour
 {
+
+    private Player player;
+    public bool isAttacking = false;
+    public float postAttackCoolDown;
+    public float punchExtentsion;
+    public float timeToCancelAttack = 0.2f;
+    private HitBox hitBox;
+    private string hitBoxName = "HitBox";
+    private int damage = 40;
+
     // For Both Arms
     private float incrementByNum = 0.2f;
     private float currentIncrement = 0f;
@@ -37,12 +48,40 @@ public class PlayerActions : MonoBehaviour
     private Vector3 leftBlockPos; 
     public GameObject subBlockSprite;
 
+    struct PlayerArm
+    {
+        public GameObject arm;     
+        //public bool windUp;
+        
+        
+        public Vector3 startingPos;
+        public ArmSide side;
+    }
+
+    PlayerArm[] arms = new PlayerArm[2];
+    enum ArmSide {Left, Right};
+    private PlayerArm attackingArm;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        player = GetComponent<Player>();
+
+        punchExtentsion = timeToCancelAttack;
+
+
+        arms[0].side = ArmSide.Left;
+        arms[0].startingPos = leftArm.transform.localPosition;
+
+        arms[1].side = ArmSide.Right;
+        arms[1].startingPos = rightArm.transform.localPosition;
+
         // Delays for the attacks
-        rightDelay = rightStartDelay;
-        leftDelay = leftStartDelay;
+        //rightDelay = rightStartDelay;
+        //leftDelay = leftStartDelay;
 
         // Store original Local Positions (Might also be removed after adding animation)
         rightOGpos = rightArm.transform.localPosition;
@@ -62,204 +101,178 @@ public class PlayerActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Block code
-        // Checks if cooldown is 0
-        if (blockCooldown <= 0)
+        //// New Code Uwu
+
+        if (HasBlockInput() && CheckCanBlock())
         {
-            blockCooldown = 0;
-            // Check if we still have both arms for blocking
-            if (leftArm.GetComponent<Arm>().lostArm == false && rightArm.GetComponent<Arm>().lostArm == false)
-            {
-                // If both arm keys are pressed and the both their delays are greater than 0
-                if ((Input.GetKey(KeyCode.K) && Input.GetKey(KeyCode.J)) && (rightDelay > 0 || leftDelay > 0))
-                {
-
-                    if (gameObject.GetComponent<Player>().currentStamina > 0)
-                    {
-                        isBlocking = true;
-                        // Blocking code
-                        Blocking(isBlocking);
-                    }
-                    else
-                    {
-                        // Blocking cooldown begins counting down
-                        blockCooldown = startBlockTime;
-                        isBlocking = false;
-
-                        // Undoing block code (same code)
-                        Blocking(isBlocking);
-                    }
-                }
-                else if ((Input.GetKeyUp(KeyCode.K) || Input.GetKeyUp(KeyCode.J)) && isBlocking == true) // While blocking, when keys are released undo blocking
-                {
-                    // Blocking cooldown begins counting down
-                    blockCooldown = startBlockTime;
-                    isBlocking = false;
-
-                    // Undoing block code (same code)
-                    Blocking(isBlocking);
-                }
-            }
-            else // If arm(s) is missing while blocking then undo blocking
-            {
-                isBlocking = false;
-                Blocking(isBlocking);
-            }
+            // shouldn't be called every frame
+            Block();
         }
-        else
+        else if (isBlocking && (HasBlockReleaseInput() || !CheckCanBlock()))
         {
-            // Blocking cooldown is counting down
+            ReleaseBlock();
+        }
+        else if (blockCooldown > 0) // on cooldown
+        {
             blockCooldown -= Time.deltaTime;
         }
 
-        // Checks if the right arm button is pressed and if the cooldowntime is at 0
-        if (rightCooldown <= 0)
+        // assuming only one is true
+        var leftAttack = HasLeftPunchInput();
+        var rightAttack = HasRightPunchInput();
+        var attackInput = leftAttack || rightAttack;
+        var attackingArm = leftAttack ? arms[0] : arms[1];
+        
+        if (isAttacking && !isBlocking)
         {
-            rightCooldown = 0;
-            // Check if we still have right arm
-            if (rightArm.GetComponent<Arm>().lostArm == false)
-            {
-                // When key is pressed and the delay is at starting number and we are NOT blocking and the left arm is NOT winding up for attack
-                if (Input.GetKeyDown(KeyCode.K) && rightDelay == rightStartDelay && isBlocking == false && leftWindUp == false)
-                {
-                    // If block is NOT on cooldown...
-                    if (blockCooldown == 0)
-                    {
-                        // The wind up is true
-                        rightWindUp = true;
-                    }
-                }
+            punchExtentsion += Time.deltaTime; // reset this...
 
-                // While wind up is true (i don't like while loops)
-                if (rightWindUp == true)
-                {
-                    //delay will count down
-                    rightDelay -= Time.deltaTime;
-                }
-            }
-            else // If arm is lost or becomes lost during delay, reset delay and windup
-            {
-                rightDelay = rightStartDelay;
-                rightWindUp = false;
-            }
-
-            // If delay counts down to 0 and Player "is not" blocking, commence attack
-            if (rightDelay <= 0 && isBlocking == false)
-            {
-                rightDelay = 0;
-                // Reset windup
-                rightWindUp = false;
-
-                // Attack code for right arm
-                RightAttack();
-            }
-            else if (rightDelay <= 0 && isBlocking == true) // If delay counts down to 0 and Player "is" blocking, just reset the delay and make windUp false
-            {
-                rightDelay = rightStartDelay;
-                rightWindUp = false;
-            }
+            if (punchExtentsion > timeToCancelAttack && hitBox == null) 
+                CreateHitBox();
+        } 
+        // shouldn't be able to start after an attack is cancel
+        else if (attackInput && CheckCanAttack(attackingArm)) // start attack
+        {
+            this.attackingArm = attackingArm;
+            isAttacking = true;
+            StartAttack();
         }
-        else // If cooldown is not 0 then begin countdown (can't attack unless cooldown is at 0)
+        else // on cooldown
         {
-            // Cooldown counting down
-            rightCooldown -= Time.deltaTime;
-
-            // Move rightarm back to orignal position after 0.5f secs
-            // Note that the arm is visible to help visualize, when animation is added, turn off sprite
-            if (rightCooldown < rightStartTime - 0.5f && isBlocking == false)
-            {
-                rightArm.transform.localPosition = rightOGpos;
-            }
+            postAttackCoolDown -= Time.deltaTime;
         }
 
-        // Checks if the left arm button is pressed and if the cooldowntime is at 0
-        if (leftCooldown <= 0)
+    }
+
+    bool HasLeftPunchInput()
+    {
+        return Input.GetKeyDown(KeyCode.J);
+    }
+
+    bool HasRightPunchInput()
+    {
+        return Input.GetKeyDown(KeyCode.K);
+    }
+
+    bool CheckCanAttack(PlayerArm arm)
+    {
+        if(postAttackCoolDown > 0)
         {
-            leftCooldown = 0;
-            // Check if we still have left arm
-            if (leftArm.GetComponent<Arm>().lostArm == false)
-            {
-                // When key is pressed and the delay is at starting number and we are NOT blocking and the right arm is NOT winding up for attack
-                if (Input.GetKeyDown(KeyCode.J) && leftDelay == leftStartDelay && isBlocking == false && rightWindUp == false)
-                {
-                    // If block is NOT on cooldown...
-                    if (blockCooldown == 0)
-                    {
-                        // The wind up is true
-                        leftWindUp = true;
-                    }
-                }
-
-                // While wind up is true (i don't like while loops)
-                if (leftWindUp == true)
-                {
-                    // Delay will count down
-                    leftDelay -= Time.deltaTime;
-                }
-            }
-            else // If arm is lost or becomes lost during delay, reset delay and windup
-            {
-                leftDelay = leftStartDelay;
-                leftWindUp = false;
-            }
-
-            // If delay counts down to 0 and Player "is not" blocking, commence attack
-            if (leftDelay <=0 && isBlocking == false)
-            {
-                leftDelay = 0;
-                // Reset windup
-                leftWindUp = false;
-
-                // Attack code for left arm
-                LeftAttack();
-            }
-            else if (leftDelay <= 0 && isBlocking == true)// If delay counts down to 0 and Player "is" blocking, just reset the delay and make windUp false
-            {
-                leftDelay = leftStartDelay;
-                leftWindUp = false;
-            }
+            return false;
         }
-        else // If cooldown is not 0 then begin countdown (can't attack unless cooldown is at 0)
+        else if(punchExtentsion != timeToCancelAttack)
         {
-            // Cooldown counting down
-            leftCooldown -= Time.deltaTime;
+            return false;
+        }
+        else if(isBlocking == true)
+        {
+            return false;
+        }
 
-            // Move Leftarm back to orignal position after 0.5f secs
-            // Note that the arm is visible to help visualize, when animation is added, turn off sprite
-            if (leftCooldown < leftStartTime - 0.5f && isBlocking == false)
-            {
-                leftArm.transform.localPosition = leftOGpos;
-            }
+        return true;
+    }
+
+    void StartAttack()
+    {
+        gameObject.GetComponent<Unit>().PlayPunchingSound();
+
+        if(attackingArm.side == ArmSide.Right)
+        {
+            SetAnimations("right", true);
+        } else
+        {
+            SetAnimations("left", true);
         }
     }
 
-    void Blocking(bool b)
+    void CreateHitBox()
     {
-        if (b == true)
+        // need to check if destoryed later..no errors on playtime!
+        hitBox = new GameObject().AddComponent<HitBox>();
+        hitBox.gameObject.name = "hitBox";
+        hitBox.transform.parent = this.transform;
+        hitBox.transform.position = transform.position + transform.right;
+        hitBox.transform.rotation = this.transform.rotation;
+        hitBox.InitializeHitBox(damage, LayerMask.GetMask("Enemy"));
+    }
+
+    public void DestoryHitBlock()
+    {
+        // BUG: sometimes hitbox would be null for some reason and this method gets called
+        // playeractions would stop working afterwards
+        if(hitBox) Destroy(hitBox.gameObject);
+        isAttacking = false;
+        punchExtentsion = timeToCancelAttack;
+    }
+
+    bool HasBlockInput()
+    {
+        
+        // If both arm keys are pressed and the both their delays are greater than 0
+        return Input.GetKey(KeyCode.K) && Input.GetKey(KeyCode.J);
+    }
+
+    bool HasBlockReleaseInput()
+    {
+        // While blocking, when keys are released undo blocking
+        return Input.GetKeyUp(KeyCode.K) || Input.GetKeyUp(KeyCode.J);
+    }
+
+    void ReleaseBlock()
+    {
+        // Blocking cooldown begins counting down
+        blockCooldown = startBlockTime;
+        isBlocking = false;
+        var b = false;
+
+        // Make player bool false, to prevent taking damage
+        gameObject.GetComponent<Player>().isBlocking = b;
+        // Stop Blocking Animation
+        rightArm.transform.localPosition = rightOGpos;
+        leftArm.transform.localPosition = leftOGpos;
+        rightArm.GetComponent<Arm>().SetCollider(b);
+        leftArm.GetComponent<Arm>().SetCollider(b);
+        subBlockSprite.SetActive(false);
+        SetAnimations("block", false);
+        SetAnimatorSpeed(1f);
+    }
+
+    // Check if the player can start blocking
+    bool CheckCanBlock()
+    {      
+        if (player.currentStamina < 0)
         {
-            // Make player bool true, to prevent taking damage
-            gameObject.GetComponent<Player>().isBlocking = b;
-            // Blocking Animation
-            rightArm.transform.localPosition = rightBlockPos;
-            leftArm.transform.localPosition = leftBlockPos;
-            rightArm.GetComponent<Arm>().SetCollider(b);
-            leftArm.GetComponent<Arm>().SetCollider(b);
-            subBlockSprite.SetActive(true);
-            SetAnimations("block",true);
+
+            return false;
         }
-        else
+        else if (blockCooldown > 0)
         {
-            // Make player bool false, to prevent taking damage
-            gameObject.GetComponent<Player>().isBlocking = b;
-            // Stop Blocking Animation
-            rightArm.transform.localPosition = rightOGpos;
-            leftArm.transform.localPosition = leftOGpos;
-            rightArm.GetComponent<Arm>().SetCollider(b);
-            leftArm.GetComponent<Arm>().SetCollider(b);
-            subBlockSprite.SetActive(false);
-            SetAnimations("block", false);
-            SetAnimatorSpeed(1f);
+
+            return false;
         }
+        else if (punchExtentsion > timeToCancelAttack) 
+        {
+            return false;
+        } 
+
+
+        return true;
+    }
+
+    void Block()
+    {
+        isBlocking = true;
+        var b = true;
+
+        // Make player bool true, to prevent taking damage
+        gameObject.GetComponent<Player>().isBlocking = b;
+        // Blocking Animation
+        rightArm.transform.localPosition = rightBlockPos;
+        leftArm.transform.localPosition = leftBlockPos;
+        rightArm.GetComponent<Arm>().SetCollider(b);
+        leftArm.GetComponent<Arm>().SetCollider(b);
+        subBlockSprite.SetActive(true);
+        SetAnimations("block",true);
     }
 
     void PlaySounds(GameObject arm)
@@ -383,6 +396,10 @@ public class PlayerActions : MonoBehaviour
             else if (anim.Equals("block"))
             {
                 animator.SetBool("IsDefend",b);
+            }
+            else if (anim.Equals("IsMove"))
+            {
+                animator.SetBool(anim, b);
             }
         }
     }

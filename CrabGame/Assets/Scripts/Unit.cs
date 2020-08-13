@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 public class Unit : MonoBehaviour
 {
@@ -20,7 +23,10 @@ public class Unit : MonoBehaviour
     // For Walking Sound
     public SoundPlayer soundPlayer;
     private Vector3 oldPos;
-    public bool isWalking = false;
+    [SerializeField]
+    private bool isWalking = false;
+    [SerializeField]
+    private bool prevIsWalking;
     public bool once = false;
     // For Punching Sound
     public bool isPunching = false;
@@ -73,17 +79,16 @@ public class Unit : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         if (animator == null)
         {
-            print("animator is missing");
+            // no animator yet
+            //print("animator is missing");
         }
 
         oldPos = transform.position;
     }
-
+    
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        CheckIfWalking();
-        PlayWalkingSound(isWalking);
         
         // use a timer insetad of checking if the current pos is at target pos
         // targetpos - currentpos = abs(value) check if less than 0.1
@@ -106,23 +111,22 @@ public class Unit : MonoBehaviour
                 staminaBar.SetHealth((int)currentStamina);
             }
         }
-        //UpdateOldPosition();
-    }
-
-    private void FixedUpdate()
-    {
+        
         if (animator != null)
         {
-            if (isWalking)
+            isWalking = CheckIfWalking();
+            
+            if (prevIsWalking != isWalking)
             {
-                animator.SetBool("IsMove", true);
+                animator.SetBool("IsMove", isWalking);
+                PlayWalkingSound(isWalking);
             }
-            else
-            {
-                animator.SetBool("IsMove", false);
-            }
+
+            prevIsWalking = isWalking;
+            oldPos = transform.position;
         }
-        UpdateOldPosition();
+        
+        
     }
 
     protected virtual void Die()
@@ -178,17 +182,10 @@ public class Unit : MonoBehaviour
         return staminaBar;
     }
 
-    private void CheckIfWalking()
+    private bool CheckIfWalking()
     {
-        
-        if (oldPos != transform.position)
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
-        }
+        return transform.position != oldPos;
+
     }
 
     private void UpdateOldPosition()
@@ -203,7 +200,7 @@ public class Unit : MonoBehaviour
             if (once == false)
             {
                 soundPlayer.PlaySound("Walking");
-                print("Walking");
+                //print("Walking");
                 once = true;
             }
         }
@@ -278,7 +275,7 @@ public class Unit : MonoBehaviour
             soundPlayer.StopSound("Missing");
             missed = false;
         }
-        print("Miss Sound Played");
+        //print("Miss Sound Played");
         soundPlayer.PlaySound("Missing");
         missed = true;
     }
