@@ -1604,6 +1604,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2938545436605980143, guid: a4cec788140598e42be33e4dea1f71fc,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938545436605980143, guid: a4cec788140598e42be33e4dea1f71fc,
+        type: 3}
+      propertyPath: ogWalkSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2938545436605979920, guid: a4cec788140598e42be33e4dea1f71fc,
         type: 3}
       propertyPath: soundPlayer

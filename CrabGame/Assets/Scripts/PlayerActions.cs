@@ -158,17 +158,14 @@ public class PlayerActions : MonoBehaviour
     {
         if(postAttackCoolDown > 0)
         {
-            print("a");
             return false;
         }
         else if(punchExtentsion != timeToCancelAttack)
         {
-            print("b");
             return false;
         }
         else if(isBlocking == true)
         {
-            print("c");
             return false;
         }
 
@@ -397,6 +394,10 @@ public class PlayerActions : MonoBehaviour
             else if (anim.Equals("block"))
             {
                 animator.SetBool("IsDefend",b);
+            }
+            else if (anim.Equals("IsMove"))
+            {
+                animator.SetBool(anim, b);
             }
         }
     }
