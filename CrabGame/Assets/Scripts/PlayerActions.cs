@@ -123,7 +123,7 @@ public class PlayerActions : MonoBehaviour
 
     void StartAttackAnim()
     {
-        gameObject.GetComponent<Unit>().PlayPunchingSound();
+        //gameObject.GetComponent<Unit>().PlayPunchingSound();
 
         if(attackingArm.side == ArmSide.Right)
         {
@@ -142,6 +142,8 @@ public class PlayerActions : MonoBehaviour
         hitBox.transform.parent = this.transform;
         hitBox.transform.position = transform.position + transform.right;
         hitBox.transform.rotation = this.transform.rotation;
+        //hitBox.transform.Rotate(0,0,-90);
+        print(damage);
         hitBox.InitializeHitBox(damage, LayerMask.GetMask("Enemy"));
     }
 

@@ -29,13 +29,10 @@ public class EnemyActions2 : MonoBehaviour
     public float cooldownMin = 1f;
     public float cooldownMax = 1.5f;
 
-    private bool once = false;
     public float blockTimer = -1;
     public float minBlockLength = 0.5f;
     public float maxBlockLength = 1.5f;
     //public bool isBlocking = false; 
-
-    public float dist;
 
     // Start is called before the first frame update
     void Start()
@@ -43,10 +40,12 @@ public class EnemyActions2 : MonoBehaviour
         enemy = GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<Player>();
         //currentAction = (Action)Random.Range(0, 2);
-        currentAction = Action.Attack;
+        currentAction = Action.Block;
 
         //punchExtentsion = timeToCancelAttack;
         punchExtentsion = 0;
+
+        blockTimer = Random.Range(minBlockLength, maxBlockLength);
 
         animator = GetComponentInChildren<Animator>();
         if (animator == null)
@@ -58,51 +57,53 @@ public class EnemyActions2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsTargetInRange())
-            print("Player is near");
-        //// New Code
-        if (IsTargetInRange() && CheckCanBlock())
+        if (actionTimer <= 0)
         {
-            // shouldn't be called every frame
-            Block();
-        }
-        else if (enemy.isBlocking && (CurrentBlockTime() <= 0 || !CheckCanBlock()))
-        {
-            ReleaseBlock();
-        }
-        else if (actionTimer > 0) // on cooldown
-        {
-            actionTimer -= Time.deltaTime;
-        }
-
-        if (isAttacking && !enemy.isBlocking)
-        {
-            punchExtentsion += Time.deltaTime; // reset this...
-
-            if (punchExtentsion > timeToCancelAttack && hitBox == null)
+            //// New Code
+            if (IsTargetInRange() && CheckCanBlock())
             {
-                CreateHitBox();
-                StartAttackAnim();
+                // shouldn't be called every frame
+                Block();
+            }
+            else if (enemy.isBlocking && (blockTimer <= 0 || !CheckCanBlock()))
+            {
+                ReleaseBlock();
+            }
+
+            if (isAttacking && !enemy.isBlocking)
+            {
+                punchExtentsion += Time.deltaTime; // reset this...
+
+                if (punchExtentsion > timeToCancelAttack && hitBox == null)
+                {
+                    CreateHitBox();
+                    StartAttackAnim();
+                }
+            }
+            // shouldn't be able to start after an attack is cancel
+            else if (IsTargetInRange() && CheckCanAttack()) // start attack
+            {
+                isAttacking = true;
             }
         }
-        // shouldn't be able to start after an attack is cancel
-        else if (IsTargetInRange() && CheckCanAttack()) // start attack
+        else
         {
-            isAttacking = true;
+            actionTimer -= Time.deltaTime;
         }
     }
 
     bool IsTargetInRange()
     {
-        Vector3 dif = (player.transform.position - transform.position);
-        dist = Vector3.SqrMagnitude(dif);
+        Vector3 dif = new Vector3();
+        if (player != null)
+        {
+            dif = (player.transform.position - transform.position);
+        }
+        //Vector3 dif = (player.transform.position - transform.position);
+        float dist = Vector3.SqrMagnitude(dif);
         float stoppingDistance = 4.1f;
 
-        if (Vector3.Dot(transform.up, player.transform.right) >= 0)
-        {
-            return false;
-        }
-        else if (dist > stoppingDistance)
+        if (dist > stoppingDistance)
         {
             return false;
         } 
@@ -110,39 +111,26 @@ public class EnemyActions2 : MonoBehaviour
         return true;
     }
 
-    float CurrentBlockTime()
-    {
-        // Blocktimer begins when its greater than 0
-        if (currentAction == Action.Block && enemy.isBlocking)
-        {
-            if (blockTimer > 0)
-            {
-                blockTimer -= Time.deltaTime;
-            }
-            else if (blockTimer < 0)// Unblock when timer is 0
-            {
-                blockTimer = 0;
-            }
-        }
-        return blockTimer;
-    }
-
     bool CheckCanAttack()
     {
         if (actionTimer > 0)
         {
+            //print("attack: a");
             return false;
         }
         else if (punchExtentsion > 0)
         {
+            //print("attack: b");
             return false;
         }
         else if (enemy.isBlocking == true)
         {
+            //print("attack: c");
             return false;
         }
         else if (currentAction != Action.Attack)
         {
+            //print("attack: d");
             return false;
         }
 
@@ -151,7 +139,7 @@ public class EnemyActions2 : MonoBehaviour
 
     void StartAttackAnim()
     {
-        gameObject.GetComponent<Unit>().PlayPunchingSound();
+        //gameObject.GetComponent<Unit>().PlayPunchingSound();
         int randArm = Random.Range(0,2);
 
         if (randArm == 0)
@@ -182,7 +170,7 @@ public class EnemyActions2 : MonoBehaviour
         if (hitBox) Destroy(hitBox.gameObject);
         isAttacking = false;
         punchExtentsion = 0;
-
+        actionTimer = Random.Range(cooldownMin, cooldownMax);
         PickNewAction();
     }
 
@@ -191,18 +179,27 @@ public class EnemyActions2 : MonoBehaviour
     {
         if (enemy.currentStamina < 0)
         {
+            //print("block: a");
+            return false;
+        }
+        else if (blockTimer <= 0)
+        {
+            //print("block: b");
             return false;
         }
         else if (actionTimer > 0)
         {
+            //print("block: c");
             return false;
         }
         else if (punchExtentsion > timeToCancelAttack)
         {
+            //print("block: d");
             return false;
         }
         else if (currentAction != Action.Block)
         {
+            //print("block: e");
             return false;
         }
 
@@ -211,13 +208,6 @@ public class EnemyActions2 : MonoBehaviour
 
     void Block()
     {
-        // UwU
-        if (once == false)
-        {
-            blockTimer = Random.Range(minBlockLength, maxBlockLength);
-            once = true;
-        }
-
         //isBlocking = true;
         isAttacking = false;
         punchExtentsion = 0;
@@ -226,15 +216,21 @@ public class EnemyActions2 : MonoBehaviour
         enemy.isBlocking = true;
         // Blocking Animation
         SetAnimations("block", true);
+
+        if (blockTimer > 0)
+        {
+            blockTimer -= Time.deltaTime;
+        }
     }
 
     void ReleaseBlock()
     {
+        blockTimer = Random.Range(minBlockLength, maxBlockLength);
         // Blocking cooldown begins counting down
         //actionTimer = actionCooldown;
         // Generate a cooldown between a min and max value
         actionTimer = Random.Range(cooldownMin, cooldownMax);
-        once = false;
+
         //isBlocking = false;
 
         // Make player bool false, to prevent taking damage
