@@ -5,31 +5,48 @@ using UnityEngine;
 public class EventCaller : MonoBehaviour
 {
     private PlayerActions playerActions;
-
-
+    private EnemyActions enemyActions;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerActions = GetComponentInParent<PlayerActions>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        if (gameObject.CompareTag("Player"))
+        {
+            playerActions = GetComponentInParent<PlayerActions>();
+        }
+        else
+        {
+            enemyActions = GetComponentInParent<EnemyActions>();
+        }
         
     }
 
     public void SetLeftPunchFalse()
     {
-        playerActions.SetAnimations("left",false);
-        playerActions.DestoryHitBlock();
+        if (gameObject.CompareTag("Player"))
+        {
+            playerActions.SetAnimations("left",false);
+            playerActions.DestroyHitBox();
+        }
+        else
+        {
+            //enemyActions.SetAnimations("left", false);
+            //enemyActions.DestoryHitBlock();
+        }
     }
 
     public void SetRightPunchFalse()
     {
-        playerActions.SetAnimations("right", false);
-        playerActions.DestoryHitBlock();
+        if (gameObject.CompareTag("Player"))
+        {
+            playerActions.SetAnimations("right", false);
+            playerActions.DestroyHitBox();
+        }
+        else
+        {
+            //enemyActions.SetAnimations("right", false);
+            //enemyActions.DestoryHitBlock();
+        }
     }
 
     public void PauseBlock()

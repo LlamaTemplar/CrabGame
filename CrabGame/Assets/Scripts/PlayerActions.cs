@@ -5,34 +5,21 @@ using UnityEngine.Events;
 
 public class PlayerActions : MonoBehaviour
 {
-
     private Player player;
     public bool isAttacking = false;
-    public float postAttackCoolDown;
     public float punchExtentsion;
-    public float timeToCancelAttack = 0.2f;
+    public float timeToCancelAttack = 0.05f;
     private HitBox hitBox;
-    private string hitBoxName = "HitBox";
+    private string hitBoxName = "hitBox";
     private int damage = 40;
 
-    // For Both Arms
+    // For Animations
     private Animator animator;
 
-    // Right Arm variables
-    public GameObject rightArm;
-    public float rightCooldown;
-    public float rightStartTime = 1f;
-
-    // Left Arm variables 
-    public GameObject leftArm;
-    public float leftCooldown;
-    public float leftStartTime = 1f;
-
     // Block variables
-    public float blockCooldown;
-    public float startBlockTime = 1.5f;
+    public float actionCooldownTimer;
+    public float actionCooldown = 1f;
     public bool isBlocking = false;
-    // Will most likely be removed these 3 lines after adding animations
 
     struct PlayerArm
     {
@@ -49,7 +36,8 @@ public class PlayerActions : MonoBehaviour
     {
         player = GetComponent<Player>();
 
-        punchExtentsion = timeToCancelAttack;
+        //punchExtentsion = timeToCancelAttack;
+        punchExtentsion = 0;
 
 
         arms[0].side = ArmSide.Left;
@@ -66,8 +54,7 @@ public class PlayerActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //// New Code Uwu
-
+        //// New Code
         if (HasBlockInput() && CheckCanBlock())
         {
             // shouldn't be called every frame
@@ -77,9 +64,9 @@ public class PlayerActions : MonoBehaviour
         {
             ReleaseBlock();
         }
-        else if (blockCooldown > 0) // on cooldown
+        else if (actionCooldownTimer > 0) // on cooldown
         {
-            blockCooldown -= Time.deltaTime;
+            actionCooldownTimer -= Time.deltaTime;
         }
 
         // assuming only one is true
@@ -87,24 +74,22 @@ public class PlayerActions : MonoBehaviour
         var rightAttack = HasRightPunchInput();
         var attackInput = leftAttack || rightAttack;
         var attackingArm = leftAttack ? arms[0] : arms[1];
-        
+
         if (isAttacking && !isBlocking)
         {
             punchExtentsion += Time.deltaTime; // reset this...
 
-            if (punchExtentsion > timeToCancelAttack && hitBox == null) 
+            if (punchExtentsion > timeToCancelAttack && hitBox == null)
+            {
                 CreateHitBox();
+                StartAttackAnim();
+            }
         } 
         // shouldn't be able to start after an attack is cancel
-        else if (attackInput && CheckCanAttack(attackingArm)) // start attack
+        else if (attackInput && CheckCanAttack()) // start attack
         {
             this.attackingArm = attackingArm;
             isAttacking = true;
-            StartAttack();
-        }
-        else // on cooldown
-        {
-            postAttackCoolDown -= Time.deltaTime;
         }
     }
 
@@ -118,13 +103,13 @@ public class PlayerActions : MonoBehaviour
         return Input.GetKeyDown(KeyCode.K);
     }
 
-    bool CheckCanAttack(PlayerArm arm)
+    bool CheckCanAttack()
     {
-        if(postAttackCoolDown > 0)
+        if (actionCooldownTimer > 0)
         {
             return false;
         }
-        else if(punchExtentsion != timeToCancelAttack)
+        else if(punchExtentsion > 0)
         {
             return false;
         }
@@ -136,7 +121,7 @@ public class PlayerActions : MonoBehaviour
         return true;
     }
 
-    void StartAttack()
+    void StartAttackAnim()
     {
         gameObject.GetComponent<Unit>().PlayPunchingSound();
 
@@ -153,25 +138,24 @@ public class PlayerActions : MonoBehaviour
     {
         // need to check if destoryed later..no errors on playtime!
         hitBox = new GameObject().AddComponent<HitBox>();
-        hitBox.gameObject.name = "hitBox";
+        hitBox.gameObject.name = hitBoxName;
         hitBox.transform.parent = this.transform;
         hitBox.transform.position = transform.position + transform.right;
         hitBox.transform.rotation = this.transform.rotation;
         hitBox.InitializeHitBox(damage, LayerMask.GetMask("Enemy"));
     }
 
-    public void DestoryHitBlock()
+    public void DestroyHitBox()
     {
         // BUG: sometimes hitbox would be null for some reason and this method gets called
         // playeractions would stop working afterwards
         if(hitBox) Destroy(hitBox.gameObject);
         isAttacking = false;
-        punchExtentsion = timeToCancelAttack;
+        punchExtentsion = 0;
     }
 
     bool HasBlockInput()
     {
-        
         // If both arm keys are pressed and the both their delays are greater than 0
         return Input.GetKey(KeyCode.K) && Input.GetKey(KeyCode.J);
     }
@@ -182,31 +166,15 @@ public class PlayerActions : MonoBehaviour
         return Input.GetKeyUp(KeyCode.K) || Input.GetKeyUp(KeyCode.J);
     }
 
-    void ReleaseBlock()
-    {
-        // Blocking cooldown begins counting down
-        blockCooldown = startBlockTime;
-        isBlocking = false;
-        var b = false;
-
-        // Make player bool false, to prevent taking damage
-        gameObject.GetComponent<Player>().isBlocking = b;
-        // Stop Blocking Animation
-        SetAnimations("block", false);
-        SetAnimatorSpeed(1f);
-    }
-
     // Check if the player can start blocking
     bool CheckCanBlock()
     {      
         if (player.currentStamina < 0)
         {
-
             return false;
         }
-        else if (blockCooldown > 0)
+        else if (actionCooldownTimer > 0)
         {
-
             return false;
         }
         else if (punchExtentsion > timeToCancelAttack) 
@@ -214,19 +182,35 @@ public class PlayerActions : MonoBehaviour
             return false;
         } 
 
-
         return true;
     }
 
     void Block()
     {
         isBlocking = true;
+        isAttacking = false;
+        punchExtentsion = 0;
         var b = true;
 
         // Make player bool true, to prevent taking damage
         gameObject.GetComponent<Player>().isBlocking = b;
         // Blocking Animation
         SetAnimations("block",true);
+    }
+
+    void ReleaseBlock()
+    {
+        // Blocking cooldown begins counting down
+        actionCooldownTimer = actionCooldown;
+        isBlocking = false;
+        
+        var b = false;
+
+        // Make player bool false, to prevent taking damage
+        gameObject.GetComponent<Player>().isBlocking = b;
+        // Stop Blocking Animation
+        SetAnimations("block", false);
+        SetAnimatorSpeed(1f);
     }
 
     void PlaySounds(GameObject arm)

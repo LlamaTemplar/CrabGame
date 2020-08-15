@@ -450,18 +450,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
-  postAttackCoolDown: 0
   punchExtentsion: 0
-  timeToCancelAttack: 0.2
-  rightArm: {fileID: 2938545436510049307}
-  rightCooldown: 0
-  rightStartTime: 0.5
-  leftArm: {fileID: 2938545435041801215}
-  leftCooldown: 0
-  leftStartTime: 0.5
-  blockCooldown: 0
-  startBlockTime: 0.8
+  timeToCancelAttack: 0.05
+  actionCooldown: 0
+  startACtionTime: 1
   isBlocking: 0
+  timeBeforePunch: 0.2
+  startPunch: 0
 --- !u!114 &2938545436605980143
 MonoBehaviour:
   m_ObjectHideFlags: 0
