@@ -123,7 +123,7 @@ public class PlayerActions : MonoBehaviour
 
     void StartAttackAnim()
     {
-        gameObject.GetComponent<Unit>().PlayPunchingSound();
+        //gameObject.GetComponent<Unit>().PlayPunchingSound();
 
         if(attackingArm.side == ArmSide.Right)
         {

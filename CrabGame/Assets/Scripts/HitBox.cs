@@ -59,17 +59,4 @@ public class HitBox : MonoBehaviour
                 unit.TakeDamage(damage);
         }
     }
-
-    // Did you miss?
-    void PlaySounds(GameObject arm)
-    {
-        if (arm.GetComponent<Arm>().GetTheEnemy() != null)
-        {
-            gameObject.GetComponent<Unit>().PlayPunchingSound();
-        }
-        else
-        {
-            gameObject.GetComponent<Enemy>().PlayMissSound();
-        }
-    }
 }
