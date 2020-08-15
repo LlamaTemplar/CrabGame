@@ -75,7 +75,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2938545435041801214
 Transform:
   m_ObjectHideFlags: 0
@@ -276,7 +276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2938545436510049306
 Transform:
   m_ObjectHideFlags: 0
@@ -451,12 +451,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   punchExtentsion: 0
+  punchCooldown: 1
   timeToCancelAttack: 0.05
-  actionCooldown: 0
-  startACtionTime: 1
+  actionCooldownTimer: 0
+  actionCooldown: 1
   isBlocking: 0
-  timeBeforePunch: 0.2
-  startPunch: 0
 --- !u!114 &2938545436605980143
 MonoBehaviour:
   m_ObjectHideFlags: 0

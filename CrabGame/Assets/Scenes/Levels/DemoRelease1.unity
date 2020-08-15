@@ -4960,19 +4960,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2938545436605979923, guid: a4cec788140598e42be33e4dea1f71fc,
         type: 3}
       propertyPath: m_Name
       value: Player with Art
-      objectReference: {fileID: 0}
-    - target: {fileID: 2938545436605979923, guid: a4cec788140598e42be33e4dea1f71fc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2938545436605979922, guid: a4cec788140598e42be33e4dea1f71fc,
         type: 3}
@@ -5028,21 +5019,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2938545436605980142, guid: a4cec788140598e42be33e4dea1f71fc,
-        type: 3}
-      propertyPath: rightStartTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2938545436605980142, guid: a4cec788140598e42be33e4dea1f71fc,
-        type: 3}
-      propertyPath: leftStartTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2938545436605980142, guid: a4cec788140598e42be33e4dea1f71fc,
-        type: 3}
-      propertyPath: timeToCancelAttack
-      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4cec788140598e42be33e4dea1f71fc, type: 3}

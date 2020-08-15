@@ -8,6 +8,7 @@ public class PlayerActions : MonoBehaviour
     private Player player;
     public bool isAttacking = false;
     public float punchExtentsion;
+    public float punchCooldown = 1f;
     public float timeToCancelAttack = 0.05f;
     private HitBox hitBox;
     private string hitBoxName = "hitBox";
@@ -19,7 +20,7 @@ public class PlayerActions : MonoBehaviour
     // Block variables
     public float actionCooldownTimer;
     public float actionCooldown = 1f;
-    public bool isBlocking = false;
+    //public bool isBlocking = false;
 
     struct PlayerArm
     {
@@ -38,7 +39,6 @@ public class PlayerActions : MonoBehaviour
 
         //punchExtentsion = timeToCancelAttack;
         punchExtentsion = 0;
-
 
         arms[0].side = ArmSide.Left;
 
@@ -60,7 +60,7 @@ public class PlayerActions : MonoBehaviour
             // shouldn't be called every frame
             Block();
         }
-        else if (isBlocking && (HasBlockReleaseInput() || !CheckCanBlock()))
+        else if (player.isBlocking && (HasBlockReleaseInput() || !CheckCanBlock()))
         {
             ReleaseBlock();
         }
@@ -75,7 +75,7 @@ public class PlayerActions : MonoBehaviour
         var attackInput = leftAttack || rightAttack;
         var attackingArm = leftAttack ? arms[0] : arms[1];
 
-        if (isAttacking && !isBlocking)
+        if (isAttacking && !player.isBlocking)
         {
             punchExtentsion += Time.deltaTime; // reset this...
 
@@ -113,7 +113,7 @@ public class PlayerActions : MonoBehaviour
         {
             return false;
         }
-        else if(isBlocking == true)
+        else if(player.isBlocking == true)
         {
             return false;
         }
@@ -187,13 +187,12 @@ public class PlayerActions : MonoBehaviour
 
     void Block()
     {
-        isBlocking = true;
+        //isBlocking = true;
         isAttacking = false;
         punchExtentsion = 0;
-        var b = true;
 
         // Make player bool true, to prevent taking damage
-        gameObject.GetComponent<Player>().isBlocking = b;
+        player.isBlocking = true;
         // Blocking Animation
         SetAnimations("block",true);
     }
@@ -202,12 +201,10 @@ public class PlayerActions : MonoBehaviour
     {
         // Blocking cooldown begins counting down
         actionCooldownTimer = actionCooldown;
-        isBlocking = false;
-        
-        var b = false;
+        //isBlocking = false;
 
         // Make player bool false, to prevent taking damage
-        gameObject.GetComponent<Player>().isBlocking = b;
+        player.isBlocking = false;
         // Stop Blocking Animation
         SetAnimations("block", false);
         SetAnimatorSpeed(1f);

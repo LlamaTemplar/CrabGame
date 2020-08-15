@@ -259,6 +259,7 @@ MonoBehaviour:
   isBlocking: 0
   soundPlayer: {fileID: 0}
   isWalking: 0
+  prevIsWalking: 0
   once: 0
   isPunching: 0
   knockBackDist: 0.5

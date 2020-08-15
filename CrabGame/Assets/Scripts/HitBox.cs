@@ -26,7 +26,6 @@ public class HitBox : MonoBehaviour
         {
             DealDamage(hits);
         }
-    
     }
 
     public void InitializeHitBox(int damage, LayerMask mask)
@@ -38,6 +37,7 @@ public class HitBox : MonoBehaviour
 
     public Collider2D[] GetHits()
     {
+        // X is forward for the HitBox
         return Physics2D.OverlapBoxAll(transform.position, new Vector2(1,3),transform.rotation.eulerAngles.z, targetMask);
     }
 
@@ -53,9 +53,10 @@ public class HitBox : MonoBehaviour
             else
                 hitList.Add(unit);
 
-            unit.TakeDamage(damage);
+            if (Vector3.Dot(transform.right, unit.transform.up) < 0 && unit.isBlocking == true)
+                unit.LoseStamina(damage/2);
+            else
+                unit.TakeDamage(damage);
         }
     }
-
-
 }
