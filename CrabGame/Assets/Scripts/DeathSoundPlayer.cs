@@ -26,7 +26,7 @@ public class DeathSoundPlayer : MonoBehaviour
         if (player == null && playerOnce == false)
         {
             playerOnce = true;
-            print("Player Death Sound Played");
+            //print("Player Death Sound Played");
             soundPlayer.PlaySound("PlayerDeath");
         }
     }
@@ -47,7 +47,7 @@ public class DeathSoundPlayer : MonoBehaviour
         {
             soundPlayer.StopSound("EnemyDeath");
         }
-        print("Enemy Death Sound Played");
+        //print("Enemy Death Sound Played");
         soundPlayer.PlaySound("EnemyDeath");
         enemyDied = false;
     }
