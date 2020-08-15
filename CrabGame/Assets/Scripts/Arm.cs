@@ -103,20 +103,20 @@ public class Arm : MonoBehaviour
         }
         else if (gameObject.CompareTag("Enemy Arm"))
         {
-            if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<Player>().isBlocking)
+            if (col.gameObject.CompareTag("Player Arm") && col.gameObject.GetComponentInParent<Enemy>().isBlocking)
             {
                 theEnemy = col.gameObject;
                 currentDamage = 0;
                 // Hey Cole, we can play a sound for when you punch someone guarding here
-                col.gameObject.GetComponentInParent<Player>().LoseStamina(dmgToStamina);
+                col.gameObject.GetComponentInParent<Enemy>().LoseStamina(dmgToStamina);
             }
             else if (col.gameObject.CompareTag("Player"))
             {
                 theEnemy = col.gameObject;
-                if (attacking && col.gameObject.GetComponentInParent<Player>().isBlocking == false)
+                if (attacking && col.gameObject.GetComponentInParent<Enemy>().isBlocking == false)
                 {
-                    col.gameObject.GetComponentInParent<Player>().TakeDamage(currentDamage);
-                    col.gameObject.GetComponentInParent<Player>().TakeKnockBack(transform.parent.position);
+                    col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
+                    col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
                     attacking = false;
                 }
             }

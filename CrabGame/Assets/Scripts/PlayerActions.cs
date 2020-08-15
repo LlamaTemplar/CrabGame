@@ -210,18 +210,6 @@ public class PlayerActions : MonoBehaviour
         SetAnimatorSpeed(1f);
     }
 
-    void PlaySounds(GameObject arm)
-    {
-        if (arm.GetComponent<Arm>().GetTheEnemy() != null)
-        {
-            gameObject.GetComponent<Unit>().PlayPunchingSound();
-        }
-        else
-        {
-            gameObject.GetComponent<Player>().PlayMissSound();
-        }
-    }
-
     public void SetAnimations(string anim, bool b)
     {
         if (animator != null)

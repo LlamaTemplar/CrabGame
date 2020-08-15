@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventCaller : MonoBehaviour
 {
     private PlayerActions playerActions;
-    private EnemyActions enemyActions;
+    private EnemyActions2 enemyActions;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class EventCaller : MonoBehaviour
         }
         else
         {
-            enemyActions = GetComponentInParent<EnemyActions>();
+            enemyActions = GetComponentInParent<EnemyActions2>();
         }
         
     }
@@ -30,8 +30,8 @@ public class EventCaller : MonoBehaviour
         }
         else
         {
-            //enemyActions.SetAnimations("left", false);
-            //enemyActions.DestoryHitBlock();
+            enemyActions.SetAnimations("left", false);
+            enemyActions.DestroyHitBox();
         }
     }
 
@@ -44,8 +44,8 @@ public class EventCaller : MonoBehaviour
         }
         else
         {
-            //enemyActions.SetAnimations("right", false);
-            //enemyActions.DestoryHitBlock();
+            enemyActions.SetAnimations("right", false);
+            enemyActions.DestroyHitBox();
         }
     }
 
