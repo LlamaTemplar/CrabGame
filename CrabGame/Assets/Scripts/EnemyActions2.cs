@@ -29,7 +29,6 @@ public class EnemyActions2 : MonoBehaviour
     public float cooldownMin = 1f;
     public float cooldownMax = 1.5f;
 
-    private bool once = false;
     public float blockTimer = -1;
     public float minBlockLength = 0.5f;
     public float maxBlockLength = 1.5f;
@@ -116,22 +115,22 @@ public class EnemyActions2 : MonoBehaviour
     {
         if (actionTimer > 0)
         {
-            print("attack: a");
+            //print("attack: a");
             return false;
         }
         else if (punchExtentsion > 0)
         {
-            print("attack: b");
+            //print("attack: b");
             return false;
         }
         else if (enemy.isBlocking == true)
         {
-            print("attack: c");
+            //print("attack: c");
             return false;
         }
         else if (currentAction != Action.Attack)
         {
-            print("attack: d");
+            //print("attack: d");
             return false;
         }
 
@@ -180,27 +179,27 @@ public class EnemyActions2 : MonoBehaviour
     {
         if (enemy.currentStamina < 0)
         {
-            print("block: a");
+            //print("block: a");
             return false;
         }
         else if (blockTimer <= 0)
         {
-            print("block: b");
+            //print("block: b");
             return false;
         }
         else if (actionTimer > 0)
         {
-            print("block: c");
+            //print("block: c");
             return false;
         }
         else if (punchExtentsion > timeToCancelAttack)
         {
-            print("block: d");
+            //print("block: d");
             return false;
         }
         else if (currentAction != Action.Block)
         {
-            print("block: e");
+            //print("block: e");
             return false;
         }
 

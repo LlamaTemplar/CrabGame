@@ -53,10 +53,22 @@ public class HitBox : MonoBehaviour
             else
                 hitList.Add(unit);
 
-            if (Vector3.Dot(transform.right, unit.transform.up) < 0 && unit.isBlocking == true)
-                unit.LoseStamina(damage/2);
+            if (transform.parent.gameObject.CompareTag("Enemy"))
+            {
+                if (Vector3.Dot(transform.up, unit.transform.right) < 0 && unit.isBlocking == true)
+                    unit.LoseStamina(damage / 2);
+                else
+                    unit.TakeDamage(damage);
+            }
             else
-                unit.TakeDamage(damage);
+            {
+                if (unit.isBlocking == true)
+                    unit.LoseStamina(damage / 2);
+                else
+                    unit.TakeDamage(damage);
+            }
+
+            //unit.TakeDamage(damage);
         }
     }
 }
