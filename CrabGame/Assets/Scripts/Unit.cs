@@ -166,8 +166,8 @@ public class Unit : MonoBehaviour
         else
         {
             int diff = (int)(amount - currentStamina);
-            TakeDamage(diff);
             currentStamina = 0f;
+            TakeDamage(diff);
         }
         staminaBar.SetHealth((int)currentStamina);
     }
@@ -186,11 +186,6 @@ public class Unit : MonoBehaviour
     {
         return transform.position != oldPos;
 
-    }
-
-    private void UpdateOldPosition()
-    {
-        oldPos = transform.position;
     }
 
     private void PlayWalkingSound(bool canPlay)
@@ -234,16 +229,13 @@ public class Unit : MonoBehaviour
         beenHit = true;
     }
 
-    public void TakeKnockBack(Vector3 otherPos)
+    public void TakeKnockBack(Vector3 otherPos, int dmg)
     {
-        isKnockedBack = true;
         Vector2 diff = transform.position - otherPos;
         targetPos = new Vector2(transform.position.x + (diff.x * knockBackDist), transform.position.y + (diff.y * knockBackDist));
-    }
-
-    public void BeingKnockedBack()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        TakeDamage(dmg);
+        knockTime = knockTimeLength;
+        isKnockedBack = true;
     }
 
     private void KeepMoving(Vector2 unitObject)
@@ -253,7 +245,7 @@ public class Unit : MonoBehaviour
             knockTime -= Time.deltaTime;
             if (Mathf.Abs(targetPos.x - unitObject.x) > 0.1 && Mathf.Abs(targetPos.y - unitObject.y) > 0.1)
             {
-                BeingKnockedBack();
+                transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             }
             else
             {
@@ -275,7 +267,6 @@ public class Unit : MonoBehaviour
             soundPlayer.StopSound("Missing");
             missed = false;
         }
-        //print("Miss Sound Played");
         soundPlayer.PlaySound("Missing");
         missed = true;
     }

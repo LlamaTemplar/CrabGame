@@ -39,8 +39,8 @@ public class EnemyActions2 : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<Player>();
-        //currentAction = (Action)Random.Range(0, 2);
-        currentAction = Action.Block;
+        currentAction = (Action)Random.Range(0, 2);
+        //currentAction = Action.Block;
 
         //punchExtentsion = timeToCancelAttack;
         punchExtentsion = 0;
@@ -139,16 +139,16 @@ public class EnemyActions2 : MonoBehaviour
 
     void StartAttackAnim()
     {
-        //gameObject.GetComponent<Unit>().PlayPunchingSound();
+        GetComponent<Unit>().PlayMissSound();
         int randArm = Random.Range(0,2);
 
         if (randArm == 0)
         {
-            SetAnimations("right", true);
+            SetPunchAnim("IsAttack_RightClaw", true);
         }
         else
         {
-            SetAnimations("left", true);
+            SetPunchAnim("IsAttack_LeftClaw", true);
         }
     }
 
@@ -177,7 +177,7 @@ public class EnemyActions2 : MonoBehaviour
     // Check if the player can start blocking
     bool CheckCanBlock()
     {
-        if (enemy.currentStamina < 0)
+        if (enemy.currentStamina <= 0)
         {
             //print("block: a");
             return false;
@@ -266,19 +266,16 @@ public class EnemyActions2 : MonoBehaviour
         }
     }
 
+    public void SetPunchAnim(string anim, bool b)
+    {
+        animator.SetBool(anim, b);
+    }
+
     public void SetAnimations(string anim, bool b)
     {
         if (animator != null)
         {
-            if (anim.Equals("left"))
-            {
-                animator.SetBool("IsAttack_LeftClaw", b);
-            }
-            else if (anim.Equals("right"))
-            {
-                animator.SetBool("IsAttack_RightClaw", b);
-            }
-            else if (anim.Equals("block"))
+            if (anim.Equals("block"))
             {
                 animator.SetBool("IsDefend", b);
             }

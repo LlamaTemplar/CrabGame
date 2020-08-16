@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class HitBox : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class HitBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -48,24 +49,34 @@ public class HitBox : MonoBehaviour
             Unit unit = hit.GetComponentInParent<Unit>();
 
             // check if unit has already been hit
-            if (hitList.Contains(unit)) 
+            if (hitList.Contains(unit))
                 continue;
             else
                 hitList.Add(unit);
 
             if (transform.parent.gameObject.CompareTag("Enemy"))
             {
+                GetComponentInParent<Unit>().PlayPunchingSound();
                 if (Vector3.Dot(transform.up, unit.transform.right) < 0 && unit.isBlocking == true)
-                    unit.LoseStamina(damage / 2);
+                {
+                    unit.LoseStamina(damage);
+                }
                 else
-                    unit.TakeDamage(damage);
+                {
+                    unit.TakeKnockBack(transform.parent.position, damage);
+                }
             }
             else
             {
+                GetComponentInParent<Unit>().PlayPunchingSound();
                 if (unit.isBlocking == true)
+                {
                     unit.LoseStamina(damage / 2);
+                }
                 else
-                    unit.TakeDamage(damage);
+                {
+                    unit.TakeKnockBack(transform.parent.position, damage);
+                }
             }
 
             //unit.TakeDamage(damage);
