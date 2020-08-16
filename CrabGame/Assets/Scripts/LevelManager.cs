@@ -74,6 +74,27 @@ public class LevelManager : MonoBehaviour
 		StartCoroutine("LoadSceneCoroutine");
 	}
 
+	public void LoadNextScene()
+	{
+		// Resets any time effects from the previous scene
+		Time.timeScale = 1;
+
+		//string nextSceneName = SceneManager.GetSceneAt(currentIndex + 1).name
+		int currentScene = SceneManager.GetActiveScene().buildIndex;
+		
+		if(currentScene + 1 >= SceneManager.sceneCountInBuildSettings)
+		{
+			sceneToLoad = currentScene;
+			print("No scene to load next");
+		}
+		else
+		{
+			sceneToLoad = currentScene + 1;
+		}
+
+		StartCoroutine("LoadSceneCoroutine");
+	}
+
 	public IEnumerator LoadSceneCoroutine()
 	{
 		// Setup transition object
