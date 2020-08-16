@@ -74,7 +74,6 @@ public class LevelManager : MonoBehaviour
 
 		sceneToLoad = index;
 		previousActiveSceneLoaded = SceneManager.GetActiveScene().buildIndex;
-		print(previousActiveSceneLoaded);
 		StartCoroutine("LoadSceneCoroutine");
 	}
 
@@ -125,7 +124,6 @@ public class LevelManager : MonoBehaviour
 	// Used for the restart button in the game over scene
 	public void LoadPreviousActiveScene()
 	{
-		print(previousActiveSceneLoaded);
 		if (previousActiveSceneLoaded < 0)
 		{
 			sceneToLoad = SceneManager.GetActiveScene().buildIndex;
