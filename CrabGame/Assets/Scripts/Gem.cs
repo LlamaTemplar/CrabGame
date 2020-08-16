@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
+    private Camera main;
+
     public int healingNum = 5;
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -17,5 +19,16 @@ public class Gem : MonoBehaviour
             collision.gameObject.GetComponent<Player>().Heal(healingNum);
 			Destroy(gameObject);
         }
+    }
+
+	private void Awake()
+	{
+        main = Camera.main;
+    }
+
+	private void Update()
+	{
+        transform.rotation = main.transform.rotation;
+
     }
 }

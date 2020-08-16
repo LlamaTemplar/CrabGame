@@ -2903,6 +2903,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 597aacb037e732a4998ba7b9a433f945, type: 3}
+--- !u!1001 &1332930993
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7736542782471337298, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_Name
+      value: Death Sound Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.391129
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.9368837
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.48985723
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736542782471337309, guid: f4900c371764bf94fb7866fd1e6f819e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4900c371764bf94fb7866fd1e6f819e, type: 3}
 --- !u!4 &1367901433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6078058020006227876, guid: cedd7e3b37b8ed94585863820b7efcd3,
@@ -3432,6 +3501,16 @@ PrefabInstance:
     - target: {fileID: 6493811793290197493, guid: 369713fc8de09dd41b3b30bddceb5b52,
         type: 3}
       propertyPath: gemScore
+      value: 
+      objectReference: {fileID: 266893280}
+    - target: {fileID: 6493811793290197493, guid: 369713fc8de09dd41b3b30bddceb5b52,
+        type: 3}
+      propertyPath: AlgaeRootObject
+      value: 
+      objectReference: {fileID: 720992680}
+    - target: {fileID: 6493811793290197493, guid: 369713fc8de09dd41b3b30bddceb5b52,
+        type: 3}
+      propertyPath: algaeScore
       value: 
       objectReference: {fileID: 266893280}
     m_RemovedComponents: []
