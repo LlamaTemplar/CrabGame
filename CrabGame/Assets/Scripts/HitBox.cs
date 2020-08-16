@@ -59,11 +59,12 @@ public class HitBox : MonoBehaviour
                 GetComponentInParent<Unit>().PlayPunchingSound();
                 if (Vector3.Dot(transform.up, unit.transform.right) < 0 && unit.isBlocking == true)
                 {
-
                     unit.LoseStamina(damage);
                 }
                 else
-                    unit.TakeDamage(damage);
+                {
+                    unit.TakeKnockBack(transform.parent.position, damage);
+                }
             }
             else
             {
