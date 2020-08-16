@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
-    private Camera main;
-
     public int healingNum = 5;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,14 +21,8 @@ public class Gem : MonoBehaviour
         }
     }
 
-	private void Awake()
-	{
-        main = Camera.main;
-    }
-
-	private void Update()
-	{
-        transform.rotation = main.transform.rotation;
-
+    private void LateUpdate()
+    {
+        transform.right = Camera.main.transform.right;
     }
 }

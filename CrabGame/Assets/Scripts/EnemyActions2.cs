@@ -39,8 +39,8 @@ public class EnemyActions2 : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<Player>();
-        currentAction = (Action)Random.Range(0, 2);
-        //currentAction = Action.Block;
+        //currentAction = (Action)Random.Range(0, 2);
+        currentAction = Action.Block;
 
         //punchExtentsion = timeToCancelAttack;
         punchExtentsion = 0;
@@ -177,7 +177,7 @@ public class EnemyActions2 : MonoBehaviour
     // Check if the player can start blocking
     bool CheckCanBlock()
     {
-        if (enemy.currentStamina <= 0)
+        if (enemy.currentStamina < 0)
         {
             //print("block: a");
             return false;
