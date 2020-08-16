@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class HitBox : MonoBehaviour
 {
@@ -55,8 +56,10 @@ public class HitBox : MonoBehaviour
 
             if (transform.parent.gameObject.CompareTag("Enemy"))
             {
+                GetComponentInParent<Unit>().PlayPunchingSound();
                 if (Vector3.Dot(transform.up, unit.transform.right) < 0 && unit.isBlocking == true)
                 {
+                    
                     unit.LoseStamina(damage);
                 }
                 else
@@ -66,10 +69,15 @@ public class HitBox : MonoBehaviour
             }
             else
             {
+                GetComponentInParent<Unit>().PlayPunchingSound();
                 if (unit.isBlocking == true)
+                {
                     unit.LoseStamina(damage / 2);
+                }
                 else
+                {
                     unit.TakeKnockBack(transform.parent.position, damage);
+                }
             }
 
             //unit.TakeDamage(damage);

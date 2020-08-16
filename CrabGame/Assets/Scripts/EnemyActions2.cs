@@ -139,7 +139,7 @@ public class EnemyActions2 : MonoBehaviour
 
     void StartAttackAnim()
     {
-        //gameObject.GetComponent<Unit>().PlayPunchingSound();
+        GetComponent<Unit>().PlayMissSound();
         int randArm = Random.Range(0,2);
 
         if (randArm == 0)
@@ -266,19 +266,16 @@ public class EnemyActions2 : MonoBehaviour
         }
     }
 
+    public void SetPunchAnim(string anim, bool b)
+    {
+        animator.SetBool(anim, b);
+    }
+
     public void SetAnimations(string anim, bool b)
     {
         if (animator != null)
         {
-            if (anim.Equals("left"))
-            {
-                animator.SetBool("IsAttack_LeftClaw", b);
-            }
-            else if (anim.Equals("right"))
-            {
-                animator.SetBool("IsAttack_RightClaw", b);
-            }
-            else if (anim.Equals("block"))
+            if (anim.Equals("block"))
             {
                 animator.SetBool("IsDefend", b);
             }

@@ -21,32 +21,42 @@ public class EventCaller : MonoBehaviour
         
     }
 
-    public void SetLeftPunchFalse()
+    public void DestroyHitBox()
     {
         if (gameObject.CompareTag("Player"))
         {
-            playerActions.SetAnimations("left",false);
             playerActions.DestroyHitBox();
         }
         else
         {
-            enemyActions.SetAnimations("left", false);
             enemyActions.DestroyHitBox();
         }
+    }
+
+    public void SetLeftPunchFalse()
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            playerActions.SetPunchAnim("IsAttack_LeftClaw", false);
+        }
+        else
+        {
+            enemyActions.SetPunchAnim("IsAttack_LeftClaw", false);
+        }
+        DestroyHitBox();
     }
 
     public void SetRightPunchFalse()
     {
         if (gameObject.CompareTag("Player"))
         {
-            playerActions.SetAnimations("right", false);
-            playerActions.DestroyHitBox();
+            playerActions.SetPunchAnim("IsAttack_RightClaw", false);
         }
         else
         {
-            enemyActions.SetAnimations("right", false);
-            enemyActions.DestroyHitBox();
+            enemyActions.SetPunchAnim("IsAttack_RightClaw", false);
         }
+        DestroyHitBox();
     }
 
     public void PauseBlock()

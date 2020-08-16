@@ -266,7 +266,6 @@ public class Unit : MonoBehaviour
             soundPlayer.StopSound("Missing");
             missed = false;
         }
-        //print("Miss Sound Played");
         soundPlayer.PlaySound("Missing");
         missed = true;
     }

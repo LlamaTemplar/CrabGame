@@ -117,20 +117,24 @@ public class PlayerActions : MonoBehaviour
         {
             return false;
         }
+        else if (hitBox != null)
+        {
+            return false;
+        }
 
         return true;
     }
 
     void StartAttackAnim()
     {
-        //gameObject.GetComponent<Unit>().PlayPunchingSound();
-
+        GetComponent<Unit>().PlayMissSound();
         if(attackingArm.side == ArmSide.Right)
         {
-            SetAnimations("right", true);
-        } else
+            SetPunchAnim("IsAttack_RightClaw", true);
+        } 
+        else
         {
-            SetAnimations("left", true);
+            SetPunchAnim("IsAttack_LeftClaw", true);
         }
     }
 
@@ -210,19 +214,16 @@ public class PlayerActions : MonoBehaviour
         SetAnimatorSpeed(1f);
     }
 
+    public void SetPunchAnim(string anim, bool b)
+    {
+        animator.SetBool(anim, b);
+    }
+
     public void SetAnimations(string anim, bool b)
     {
         if (animator != null)
         {
-            if (anim.Equals("left"))
-            {
-                animator.SetBool("IsAttack_LeftClaw", b);
-            }
-            else if(anim.Equals("right"))
-            {
-                animator.SetBool("IsAttack_RightClaw", b);
-            }
-            else if (anim.Equals("block"))
+            if (anim.Equals("block"))
             {
                 animator.SetBool("IsDefend",b);
             }
