@@ -125,6 +125,8 @@ public class Unit : MonoBehaviour
             prevIsWalking = isWalking;
             oldPos = transform.position;
         }
+        
+        
     }
 
     protected virtual void Die()
@@ -159,14 +161,13 @@ public class Unit : MonoBehaviour
     {
         if (currentStamina >= amount)
         {
-            print("lost stam");
             currentStamina -= amount;
         }
         else
         {
             int diff = (int)(amount - currentStamina);
-            currentStamina = 0f;
             TakeDamage(diff);
+            currentStamina = 0f;
         }
         staminaBar.SetHealth((int)currentStamina);
     }
@@ -184,6 +185,12 @@ public class Unit : MonoBehaviour
     private bool CheckIfWalking()
     {
         return transform.position != oldPos;
+
+    }
+
+    private void UpdateOldPosition()
+    {
+        oldPos = transform.position;
     }
 
     private void PlayWalkingSound(bool canPlay)
@@ -227,24 +234,26 @@ public class Unit : MonoBehaviour
         beenHit = true;
     }
 
-    public void TakeKnockBack(Vector3 otherPos, int dmg)
+    public void TakeKnockBack(Vector3 otherPos)
     {
-        TakeDamage(dmg);
+        isKnockedBack = true;
         Vector2 diff = transform.position - otherPos;
         targetPos = new Vector2(transform.position.x + (diff.x * knockBackDist), transform.position.y + (diff.y * knockBackDist));
-        knockTime = knockTimeLength;
-        isKnockedBack = true;
+    }
+
+    public void BeingKnockedBack()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
     }
 
     private void KeepMoving(Vector2 unitObject)
     {
-        
         if (knockTime > 0)
         {
             knockTime -= Time.deltaTime;
             if (Mathf.Abs(targetPos.x - unitObject.x) > 0.1 && Mathf.Abs(targetPos.y - unitObject.y) > 0.1)
             {
-                transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+                BeingKnockedBack();
             }
             else
             {

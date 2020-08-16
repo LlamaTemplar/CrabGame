@@ -16,7 +16,7 @@ public class HitBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class HitBox : MonoBehaviour
             Unit unit = hit.GetComponentInParent<Unit>();
 
             // check if unit has already been hit
-            if (hitList.Contains(unit)) 
+            if (hitList.Contains(unit))
                 continue;
             else
                 hitList.Add(unit);
@@ -59,13 +59,11 @@ public class HitBox : MonoBehaviour
                 GetComponentInParent<Unit>().PlayPunchingSound();
                 if (Vector3.Dot(transform.up, unit.transform.right) < 0 && unit.isBlocking == true)
                 {
-                    
+
                     unit.LoseStamina(damage);
                 }
                 else
-                {
-                    unit.TakeKnockBack(transform.parent.position, damage);
-                }
+                    unit.TakeDamage(damage);
             }
             else
             {

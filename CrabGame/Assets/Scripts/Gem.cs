@@ -4,31 +4,25 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
-    private Camera main;
-
     public int healingNum = 5;
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        var contact = collision.collider.tag;
+        var contact = collision.gameObject.tag;
 
         if(contact == "Player")
         {
 			ScoreManager gemManager = FindObjectOfType<ScoreManager>();
 			gemManager.RemoveAlgae(1);
-            collision.gameObject.GetComponent<Player>().PlayEatSound();
-            collision.gameObject.GetComponent<Player>().Heal(healingNum);
+            var player = collision.gameObject.GetComponentInParent<Player>();
+            player.PlayEatSound();
+            player.Heal(healingNum);
 			Destroy(gameObject);
         }
     }
 
-	private void Awake()
-	{
-        main = Camera.main;
-    }
-
-	private void Update()
-	{
-        transform.rotation = main.transform.rotation;
-
+    private void LateUpdate()
+    {
+        transform.right = Camera.main.transform.right;
     }
 }

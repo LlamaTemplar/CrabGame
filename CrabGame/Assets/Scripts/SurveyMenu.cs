@@ -20,4 +20,9 @@ public class SurveyMenu : MonoBehaviour
 	{
 		levelManager.LoadScene(0);
 	}
+
+	public void ExitGame()
+	{
+		Application.Quit();
+	}
 }

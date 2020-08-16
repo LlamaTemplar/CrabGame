@@ -7,8 +7,9 @@ public class StartScreen : MonoBehaviour
 {
     public GameObject startMenu;
     public GameObject controls;
+    public GameObject credits;
 
-	private LevelManager levelManager;
+    private LevelManager levelManager;
 
 	private void Awake()
 	{
@@ -36,6 +37,23 @@ public class StartScreen : MonoBehaviour
     {
         // Hide Controls
         controls.SetActive(false);
+        // Show Start Menu
+        startMenu.SetActive(true);
+    }
+
+    public void ShowCredits()
+    {
+        // Hide Start Menu
+        startMenu.SetActive(false);
+        // Show Controls
+        credits.SetActive(true);
+    }
+
+    // For OnClick Event for Back Button (After Controls are shown)
+    public void HideCredits()
+    {
+        // Hide Controls
+        credits.SetActive(false);
         // Show Start Menu
         startMenu.SetActive(true);
     }

@@ -96,7 +96,7 @@ public class Arm : MonoBehaviour
                 if (attacking && col.gameObject.GetComponentInParent<EnemyActions>().currentAction != EnemyAction.Block)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
-                    //col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
+                    col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
                     attacking = false;
                 }
             }
@@ -116,7 +116,7 @@ public class Arm : MonoBehaviour
                 if (attacking && col.gameObject.GetComponentInParent<Enemy>().isBlocking == false)
                 {
                     col.gameObject.GetComponentInParent<Enemy>().TakeDamage(currentDamage);
-                    //col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
+                    col.gameObject.GetComponentInParent<Enemy>().TakeKnockBack(transform.parent.position);
                     attacking = false;
                 }
             }
