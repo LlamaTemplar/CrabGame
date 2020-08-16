@@ -142,8 +142,6 @@ public class PlayerActions : MonoBehaviour
         hitBox.transform.parent = this.transform;
         hitBox.transform.position = transform.position + transform.right;
         hitBox.transform.rotation = this.transform.rotation;
-        //hitBox.transform.Rotate(0,0,-90);
-        print(damage);
         hitBox.InitializeHitBox(damage, LayerMask.GetMask("Enemy"));
     }
 
@@ -171,7 +169,7 @@ public class PlayerActions : MonoBehaviour
     // Check if the player can start blocking
     bool CheckCanBlock()
     {      
-        if (player.currentStamina < 0)
+        if (player.currentStamina <= 0)
         {
             return false;
         }
