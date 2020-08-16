@@ -102,12 +102,12 @@ public class Unit : MonoBehaviour
             // If NOT blocking then regain Stamina
             if (isBlocking == false && currentStamina < startingStamina)
             {
-                currentStamina += staminaNum * Time.deltaTime;
+                currentStamina += (staminaNum * Time.deltaTime) * .5f;
                 staminaBar.SetHealth((int)currentStamina);
             }
             else if (isBlocking && currentStamina > 0)
             {
-                currentStamina -= staminaNum * Time.deltaTime;
+                currentStamina -= (staminaNum * Time.deltaTime) * 2f;
                 staminaBar.SetHealth((int)currentStamina);
             }
         }
