@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
 	// Save a static reference to the global LevelManager
 	private void Awake()
 	{
+		print("once");
 		if (Instance == null)
 		{
 			Instance = this;
@@ -73,6 +74,7 @@ public class LevelManager : MonoBehaviour
 
 		sceneToLoad = index;
 		previousActiveSceneLoaded = SceneManager.GetActiveScene().buildIndex;
+		print(previousActiveSceneLoaded);
 		StartCoroutine("LoadSceneCoroutine");
 	}
 
@@ -123,10 +125,16 @@ public class LevelManager : MonoBehaviour
 	// Used for the restart button in the game over scene
 	public void LoadPreviousActiveScene()
 	{
+		print(previousActiveSceneLoaded);
 		if (previousActiveSceneLoaded < 0)
+		{
+			sceneToLoad = SceneManager.GetActiveScene().buildIndex;
 			print("No previousActiveScene");
+		}
 		else
 			sceneToLoad = previousActiveSceneLoaded;
+
+		previousActiveSceneLoaded = SceneManager.GetActiveScene().buildIndex;
 
 		StartCoroutine("LoadSceneCoroutine");
 	}

@@ -38,7 +38,7 @@ public class HitBox : MonoBehaviour
     public Collider2D[] GetHits()
     {
         // X is forward for the HitBox
-        return Physics2D.OverlapBoxAll(transform.position, new Vector2(1,3),transform.rotation.eulerAngles.z, targetMask);
+        return Physics2D.OverlapBoxAll(transform.position, new Vector2(1.5f,3),transform.rotation.eulerAngles.z, targetMask);
     }
 
     public void DealDamage(Collider2D[] hits)
