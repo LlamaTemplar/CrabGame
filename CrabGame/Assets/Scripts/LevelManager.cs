@@ -19,7 +19,6 @@ public class LevelManager : MonoBehaviour
 	// Save a static reference to the global LevelManager
 	private void Awake()
 	{
-		print("once");
 		if (Instance == null)
 		{
 			Instance = this;
