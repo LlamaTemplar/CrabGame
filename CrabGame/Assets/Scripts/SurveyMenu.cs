@@ -13,7 +13,7 @@ public class SurveyMenu : MonoBehaviour
 
 	public void RestartGame()
 	{
-		levelManager.LoadScene(1);
+		levelManager.LoadPreviousActiveScene();
 	}
 
 	public void MainMenu()
