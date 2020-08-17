@@ -122,26 +122,30 @@ MonoBehaviour:
   sounds:
   - clipName: Walking
     clip: {fileID: 8300000, guid: c7a87ae5c18b89d45b8712db6a457d6e, type: 3}
-    audioMixerGroup: {fileID: 0}
-    volume: 0.262
+    audioMixerGroup: {fileID: 6052530306325993589, guid: 50afea2e475099a4f9a4d6daaa0a4329,
+      type: 2}
+    volume: 0.076
     loop: 1
     playOnAwake: 0
   - clipName: Punching
     clip: {fileID: 8300000, guid: 11d673e931b53ef4991c04cfbad37d81, type: 3}
-    audioMixerGroup: {fileID: 0}
-    volume: 0.2
+    audioMixerGroup: {fileID: 6052530306325993589, guid: 50afea2e475099a4f9a4d6daaa0a4329,
+      type: 2}
+    volume: 0.109
     loop: 0
     playOnAwake: 0
   - clipName: Missing
     clip: {fileID: 8300000, guid: a32d5cd16c78731499eae1899243bd53, type: 3}
-    audioMixerGroup: {fileID: 0}
-    volume: 0.256
+    audioMixerGroup: {fileID: 6052530306325993589, guid: 50afea2e475099a4f9a4d6daaa0a4329,
+      type: 2}
+    volume: 0.141
     loop: 0
     playOnAwake: 0
   - clipName: BeingHit
     clip: {fileID: 8300000, guid: 1f3c203f2e006124388cbfe0ba119782, type: 3}
-    audioMixerGroup: {fileID: 0}
-    volume: 0.267
+    audioMixerGroup: {fileID: 6052530306325993589, guid: 50afea2e475099a4f9a4d6daaa0a4329,
+      type: 2}
+    volume: 0.131
     loop: 0
     playOnAwake: 0
 --- !u!114 &3336862842372791230

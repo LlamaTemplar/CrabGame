@@ -61,12 +61,12 @@ MonoBehaviour:
   - clipName: EnemyDeath
     clip: {fileID: 8300000, guid: 5730e6e27eea6304cbf58bc54c70031c, type: 3}
     audioMixerGroup: {fileID: 0}
-    volume: 0.293
+    volume: 0.093
     loop: 0
     playOnAwake: 0
   - clipName: PlayerDeath
     clip: {fileID: 8300000, guid: 6b82c995fc6c78a428400b8eb0df64d3, type: 3}
     audioMixerGroup: {fileID: 0}
-    volume: 0.308
+    volume: 0.106
     loop: 0
     playOnAwake: 0
