@@ -36,7 +36,7 @@ public class PauseMenu : MonoBehaviour
 
 	public void RestartGame()
 	{
-		levelManager.LoadScene(1);
+		levelManager.ReLoadScene();
 	}
 
 	public void LoadSurvey()
