@@ -76,6 +76,16 @@ public class LevelManager : MonoBehaviour
 		StartCoroutine("LoadSceneCoroutine");
 	}
 
+	public void ReLoadScene()
+	{
+		// Resets any time effects from the previous scene
+		Time.timeScale = 1;
+
+		sceneToLoad = SceneManager.GetActiveScene().buildIndex;
+		previousActiveSceneLoaded = SceneManager.GetActiveScene().buildIndex;
+		StartCoroutine("LoadSceneCoroutine");
+	}
+
 
 	// load the next scene in the build list
 	public void LoadNextScene()

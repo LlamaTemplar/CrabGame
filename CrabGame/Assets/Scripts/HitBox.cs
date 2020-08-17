@@ -5,8 +5,6 @@ using System.Linq;
 
 public class HitBox : MonoBehaviour
 {
-
-    private float hitRadius = 1f;
     private LayerMask targetMask;
     private bool isInitialized = false;
     private int damage;
