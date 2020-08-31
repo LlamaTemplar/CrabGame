@@ -8,6 +8,7 @@ using TMPro;
 public class LevelManager : MonoBehaviour
 {
 	private int sceneToLoad = -1;
+	private int previousActiveSceneLoaded = -1;
 	
 	[SerializeField]
 	private TransitionFade faderPrefab = null; // Used for transitions
@@ -71,11 +72,83 @@ public class LevelManager : MonoBehaviour
 		Time.timeScale = 1;
 
 		sceneToLoad = index;
+		previousActiveSceneLoaded = SceneManager.GetActiveScene().buildIndex;
+		StartCoroutine("LoadSceneCoroutine");
+	}
+
+	public void ReLoadScene()
+	{
+		// Resets any time effects from the previous scene
+		Time.timeScale = 1;
+
+		sceneToLoad = SceneManager.GetActiveScene().buildIndex;
+		previousActiveSceneLoaded = SceneManager.GetActiveScene().buildIndex;
+		StartCoroutine("LoadSceneCoroutine");
+	}
+
+
+	// load the next scene in the build list
+	public void LoadNextScene()
+	{
+		// Resets any time effects from the previous scene
+		Time.timeScale = 1;
+
+		int currentScene = SceneManager.GetActiveScene().buildIndex;
+		
+		if(currentScene + 1 >= SceneManager.sceneCountInBuildSettings)
+		{
+			sceneToLoad = currentScene;
+			print("No scene to load next");
+		}
+		else
+		{
+			sceneToLoad = currentScene + 1;
+		}
+
+		previousActiveSceneLoaded = currentScene;
+		StartCoroutine("LoadSceneCoroutine");
+	}
+
+	// load the previous scene relative to the current scene in the build list
+	public void LoadPreviousScene()
+	{
+		// Resets any time effects from the previous scene
+		Time.timeScale = 1;
+
+		int currentScene = SceneManager.GetActiveScene().buildIndex;
+		if (currentScene - 1 <= 0)
+		{
+			sceneToLoad = currentScene;
+			print("No previous scene to load");
+		}
+		else
+		{
+			sceneToLoad = currentScene - 1;
+		}
+		previousActiveSceneLoaded = currentScene;
+		StartCoroutine("LoadSceneCoroutine");
+	}
+
+	// load the previous active scene.
+	// Used for the restart button in the game over scene
+	public void LoadPreviousActiveScene()
+	{
+		if (previousActiveSceneLoaded < 0)
+		{
+			sceneToLoad = SceneManager.GetActiveScene().buildIndex;
+			print("No previousActiveScene");
+		}
+		else
+			sceneToLoad = previousActiveSceneLoaded;
+
+		previousActiveSceneLoaded = SceneManager.GetActiveScene().buildIndex;
+
 		StartCoroutine("LoadSceneCoroutine");
 	}
 
 	public IEnumerator LoadSceneCoroutine()
 	{
+
 		// Setup transition object
 		fader.SetTransitionState(TransitionState.FadingOut);
 		fader.PlayTransitionSound();

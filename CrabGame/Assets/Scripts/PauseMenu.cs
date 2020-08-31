@@ -36,12 +36,12 @@ public class PauseMenu : MonoBehaviour
 
 	public void RestartGame()
 	{
-		levelManager.LoadScene(1);
+		levelManager.ReLoadScene();
 	}
 
 	public void LoadSurvey()
 	{
-		levelManager.LoadScene(2);
+		levelManager.LoadScene(0);
 	}
 
 	public void ShowControls(bool controlState)
@@ -52,6 +52,7 @@ public class PauseMenu : MonoBehaviour
 	private void SetState(bool state)
 	{
 		root.SetActive(state);
+		controlRoot.SetActive(controlRoot.activeSelf && state);
 		if (state)
 			Time.timeScale = 0.1f;
 		else

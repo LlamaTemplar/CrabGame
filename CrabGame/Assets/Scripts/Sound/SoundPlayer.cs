@@ -9,7 +9,7 @@ public class SoundPlayer : MonoBehaviour
     #pragma warning disable 649
 
     AudioSource audioSource;
-    SoundManager soundManager;
+    //SoundManager soundManager;
 
     [SerializeField]
     Sound[] sounds;
@@ -56,9 +56,9 @@ public class SoundPlayer : MonoBehaviour
     
     #pragma warning restore 649
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        soundManager = FindObjectOfType<SoundManager>();
+        //soundManager = FindObjectOfType<SoundManager>();
 
         GameObject soundContainer = new GameObject("Sound Container");      
         soundContainer.transform.SetParent(this.transform);

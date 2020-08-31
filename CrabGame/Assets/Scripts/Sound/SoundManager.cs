@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     public float volumeSetByUser = 1f;
-    private float masterVolume = 1f;
+    private float masterVolume = 0f;
 
     private void Awake()
     {
@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(this);
         }
         else if(instance != this)
         {
@@ -24,7 +25,8 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-
+        // hack, I'm realizing I need to change how this class functions..
+        FadeVolumeIn(10f);
     }
 
     private void Update()

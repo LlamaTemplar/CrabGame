@@ -5,36 +5,73 @@ using UnityEngine;
 public class EventCaller : MonoBehaviour
 {
     private PlayerActions playerActions;
+    private EnemyActions2 enemyActions;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerActions = GetComponentInParent<PlayerActions>();
+        if (gameObject.CompareTag("Player"))
+        {
+            playerActions = GetComponentInParent<PlayerActions>();
+        }
+        else
+        {
+            enemyActions = GetComponentInParent<EnemyActions2>();
+        }
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DestroyHitBox()
     {
-        
+        if (gameObject.CompareTag("Player"))
+        {
+            playerActions.DestroyHitBox();
+        }
+        else
+        {
+            enemyActions.DestroyHitBox();
+        }
     }
 
     public void SetLeftPunchFalse()
     {
-        playerActions.SetAnimations("left",false);
+        if (gameObject.CompareTag("Player"))
+        {
+            playerActions.SetPunchAnim("IsAttack_LeftClaw", false);
+        }
+        else
+        {
+            enemyActions.SetPunchAnim("IsAttack_LeftClaw", false);
+        }
+        DestroyHitBox();
     }
 
     public void SetRightPunchFalse()
     {
-        playerActions.SetAnimations("right", false);
+        if (gameObject.CompareTag("Player"))
+        {
+            playerActions.SetPunchAnim("IsAttack_RightClaw", false);
+        }
+        else
+        {
+            enemyActions.SetPunchAnim("IsAttack_RightClaw", false);
+        }
+        DestroyHitBox();
     }
 
     public void PauseBlock()
     {
-        playerActions.SetAnimatorSpeed(0f);
+        if (gameObject.CompareTag("Player"))
+            playerActions.SetAnimatorSpeed(0f);
+        else
+            enemyActions.SetAnimatorSpeed(0f);
     }
 
     public void SetBlockFalse()
     {
-        playerActions.SetAnimations("block", false);
+        if (gameObject.CompareTag("Player"))
+            playerActions.SetAnimations("block", false);
+        else
+            enemyActions.SetAnimations("block", false);
     }
 }

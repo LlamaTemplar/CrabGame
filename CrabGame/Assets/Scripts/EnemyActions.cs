@@ -164,10 +164,12 @@ public class EnemyActions : MonoBehaviour
 		{
 			attacksInARow++;
 			if (attacksInARow > maxAttacksInARow)
+			{
 				currentAction = EnemyAction.Block;
+				/*BUG FIX: I changed this value to reset here. Fixed the issue */
+				attacksInARow = 0;
+			}
 		}
-		else
-			attacksInARow = 0;
 	}
 
 	// Generate a cooldown between a min and max value

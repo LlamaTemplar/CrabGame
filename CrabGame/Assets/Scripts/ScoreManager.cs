@@ -39,7 +39,7 @@ public class ScoreManager : MonoBehaviour
 		UpdateScore();
 
 		if (algaeNum <= 0)
-			levelManager.LoadScene(2);
+			levelManager.LoadNextScene();
 	}
 
 	private void UpdateScore()

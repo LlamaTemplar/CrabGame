@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-	private bool missed = false;
-
 	protected override void Die()
     {
 		base.Die();

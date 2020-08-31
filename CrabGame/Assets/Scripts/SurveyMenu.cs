@@ -13,11 +13,16 @@ public class SurveyMenu : MonoBehaviour
 
 	public void RestartGame()
 	{
-		levelManager.LoadScene(1);
+		levelManager.LoadPreviousActiveScene();
 	}
 
 	public void MainMenu()
 	{
 		levelManager.LoadScene(0);
+	}
+
+	public void ExitGame()
+	{
+		Application.Quit();
 	}
 }

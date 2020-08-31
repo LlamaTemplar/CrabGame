@@ -24,7 +24,7 @@ public class Player : Unit
         
         // Que Game over screen
         print("Game Over");
-		levelManager.LoadScene(1);
+		levelManager.LoadScene(6);
 	}
 
 	public void Heal(int hp)
@@ -44,7 +44,7 @@ public class Player : Unit
 			soundPlayer.StopSound("Eating");
 			isEating = false;
 		}
-		print("Eating Sound played");
+		//print("Eating Sound played");
 		soundPlayer.PlaySound("Eating");
 		isEating = true;
 	}
