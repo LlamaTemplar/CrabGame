@@ -46,7 +46,8 @@ MonoBehaviour:
   sounds:
   - clipName: Song
     clip: {fileID: 8300000, guid: 654d49430db305f4695300f931e1245b, type: 3}
-    audioMixerGroup: {fileID: 0}
-    volume: 0.089
+    audioMixerGroup: {fileID: 1427652688645742796, guid: 50afea2e475099a4f9a4d6daaa0a4329,
+      type: 2}
+    volume: 0.03
     loop: 1
     playOnAwake: 0
